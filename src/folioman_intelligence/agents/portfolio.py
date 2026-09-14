@@ -4,11 +4,10 @@ import json
 import sys
 
 from deepagents import create_deep_agent
-from langchain.tools import tool
 from langchain_openai import ChatOpenAI
 
-from src.folioman_intelligence.analytics.portfolio import analyze_portfolio
 from src.folioman_intelligence.config import llm_settings
+from src.folioman_intelligence.tools.portfolio import portfolio_tools
 
 # Ensure console supports UTF-8 characters (e.g. ₹ currency symbol) on Windows
 if hasattr(sys.stdout, "reconfigure"):
@@ -16,24 +15,6 @@ if hasattr(sys.stdout, "reconfigure"):
         sys.stdout.reconfigure(encoding="utf-8")
     except Exception:
         pass
-
-
-# not building a tools registry right now.
-@tool
-async def get_portfolio_analysis(investor_id: int = 1):
-    """Get the latest calculated portfolio analysis.
-    Returns deterministic portfolio metrics such as:
-        portfolio value,
-        invested value,
-        returns,
-        holdings,
-        allocation,
-        concentration,
-        gainers and losers.
-    """
-    analysis = await analyze_portfolio(investor_id)
-    # Ensure Decimals and dates are JSON-serializable
-    return json.loads(json.dumps(analysis, default=str))
 
 
 # TODO: Introduce LLMLite so models can be swapped easily.
@@ -67,7 +48,7 @@ Rules:
 
 agent = create_deep_agent(
     model=chat_model,
-    tools=[get_portfolio_analysis],
+    tools=portfolio_tools,
     system_prompt=SYSTEM_PROMPT,
 )
 
