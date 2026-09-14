@@ -27,7 +27,6 @@ from folioman_intelligence.clients.folioman.models import (
 )
 from .conftest import create_mock_jwt
 
-
 BASE_URL = "http://folioman.local:8000"
 
 
@@ -39,7 +38,9 @@ def mock_tokens() -> tuple[str, str]:
 
 
 @pytest.mark.asyncio
-async def test_authenticated_api_request_adds_bearer_token(mock_tokens: tuple[str, str]) -> None:
+async def test_authenticated_api_request_adds_bearer_token(
+    mock_tokens: tuple[str, str],
+) -> None:
     access, refresh = mock_tokens
     async with FoliomanClient(
         base_url=BASE_URL,
@@ -74,7 +75,10 @@ async def test_authenticated_api_request_adds_bearer_token(mock_tokens: tuple[st
             assert investors[0].id == 1
             assert investors[0].name == "Sudhanwa"
             assert api_route.called
-            assert api_route.calls.last.request.headers["Authorization"] == f"Bearer {access}"
+            assert (
+                api_route.calls.last.request.headers["Authorization"]
+                == f"Bearer {access}"
+            )
 
 
 @pytest.mark.asyncio
@@ -95,7 +99,9 @@ async def test_401_triggers_refresh_and_retry(mock_tokens: tuple[str, str]) -> N
             # 1. API route first returns 401, then returns 200 on retry
             investor_route = respx_mock.get("/api/investors/1")
             investor_route.side_effect = [
-                httpx.Response(401, json={"detail": "Given token not valid for any token type"}),
+                httpx.Response(
+                    401, json={"detail": "Given token not valid for any token type"}
+                ),
                 httpx.Response(
                     200,
                     json={
@@ -126,11 +132,16 @@ async def test_401_triggers_refresh_and_retry(mock_tokens: tuple[str, str]) -> N
             assert refresh_route.called
             assert investor_route.call_count == 2
             # Second call used the fresh access token
-            assert investor_route.calls.last.request.headers["Authorization"] == f"Bearer {fresh_access}"
+            assert (
+                investor_route.calls.last.request.headers["Authorization"]
+                == f"Bearer {fresh_access}"
+            )
 
 
 @pytest.mark.asyncio
-async def test_404_raises_folioman_not_found_error(mock_tokens: tuple[str, str]) -> None:
+async def test_404_raises_folioman_not_found_error(
+    mock_tokens: tuple[str, str],
+) -> None:
     access, refresh = mock_tokens
     async with FoliomanClient(
         base_url=BASE_URL,
@@ -141,9 +152,13 @@ async def test_404_raises_folioman_not_found_error(mock_tokens: tuple[str, str])
         client._auth._refresh_token = refresh
 
         with respx.mock(base_url=BASE_URL) as respx_mock:
-            respx_mock.get("/api/investors/999").respond(404, json={"detail": "Not found"})
+            respx_mock.get("/api/investors/999").respond(
+                404, json={"detail": "Not found"}
+            )
 
-            with pytest.raises(FoliomanNotFoundError, match="Resource not found at /api/investors/999"):
+            with pytest.raises(
+                FoliomanNotFoundError, match="Resource not found at /api/investors/999"
+            ):
                 await client.investors.get(999)
 
 
@@ -241,7 +256,9 @@ async def test_portfolio_and_holdings_retrieval(mock_tokens: tuple[str, str]) ->
         }
 
         with respx.mock(base_url=BASE_URL) as respx_mock:
-            respx_mock.get("/api/investors/1/summary").respond(200, json=summary_payload)
+            respx_mock.get("/api/investors/1/summary").respond(
+                200, json=summary_payload
+            )
 
             # Test portfolio.get
             portfolio = await client.portfolio.get(1)
@@ -300,7 +317,9 @@ async def test_holdings_get_scheme_detail(mock_tokens: tuple[str, str]) -> None:
         }
 
         with respx.mock(base_url=BASE_URL) as respx_mock:
-            respx_mock.get("/api/investors/1/holdings/10").respond(200, json=scheme_payload)
+            respx_mock.get("/api/investors/1/holdings/10").respond(
+                200, json=scheme_payload
+            )
 
             scheme = await client.holdings.get(1, 10)
             assert isinstance(scheme, SchemeDetail)
@@ -344,7 +363,9 @@ async def test_transactions_list(mock_tokens: tuple[str, str]) -> None:
         ]
 
         with respx.mock(base_url=BASE_URL) as respx_mock:
-            respx_mock.get("/api/investors/1/transactions").respond(200, json=txns_payload)
+            respx_mock.get("/api/investors/1/transactions").respond(
+                200, json=txns_payload
+            )
 
             txns = await client.transactions.list(1)
             assert len(txns) == 1
@@ -393,8 +414,12 @@ async def test_valuations_series_and_status(mock_tokens: tuple[str, str]) -> Non
         }
 
         with respx.mock(base_url=BASE_URL) as respx_mock:
-            respx_mock.get("/api/investors/1/value-series").respond(200, json=series_payload)
-            respx_mock.get("/api/investors/1/valuation-status").respond(200, json=status_payload)
+            respx_mock.get("/api/investors/1/value-series").respond(
+                200, json=series_payload
+            )
+            respx_mock.get("/api/investors/1/valuation-status").respond(
+                200, json=status_payload
+            )
 
             series = await client.valuations.list(1, granularity="monthly")
             assert isinstance(series, ValueSeries)
@@ -444,8 +469,12 @@ async def test_capital_gains_list_and_get(mock_tokens: tuple[str, str]) -> None:
         }
 
         with respx.mock(base_url=BASE_URL) as respx_mock:
-            respx_mock.get("/api/investors/1/reports/capital-gains-by-fy").respond(200, json=by_fy_payload)
-            respx_mock.get("/api/investors/1/exports/capital-gains").respond(200, json=report_payload)
+            respx_mock.get("/api/investors/1/reports/capital-gains-by-fy").respond(
+                200, json=by_fy_payload
+            )
+            respx_mock.get("/api/investors/1/exports/capital-gains").respond(
+                200, json=report_payload
+            )
 
             fy_points = await client.capital_gains.list(1)
             assert len(fy_points) == 2
@@ -487,12 +516,17 @@ async def test_client_auth_failure_on_retry_raises_auth_error() -> None:
 
         with respx.mock(base_url=BASE_URL) as respx_mock:
             # First attempt: 401
-            respx_mock.get("/api/investors/1").respond(401, json={"detail": "Expired token"})
+            respx_mock.get("/api/investors/1").respond(
+                401, json={"detail": "Expired token"}
+            )
             # Refresh fails: 401
-            respx_mock.post("/api/auth/token/refresh").respond(401, json={"detail": "Refresh rejected"})
+            respx_mock.post("/api/auth/token/refresh").respond(
+                401, json={"detail": "Refresh rejected"}
+            )
             # Re-auth also fails: 401
-            respx_mock.post("/api/auth/token/pair").respond(401, json={"detail": "Invalid credentials"})
+            respx_mock.post("/api/auth/token/pair").respond(
+                401, json={"detail": "Invalid credentials"}
+            )
 
             with pytest.raises(FoliomanAuthError):
                 await client.investors.get(1)
-
