@@ -8,6 +8,7 @@ from unittest.mock import AsyncMock, MagicMock, patch
 
 import pytest
 
+from src.folioman_intelligence.tools.portfolio import get_portfolio_analysis
 from src.folioman_intelligence.agents.portfolio import (
     PortfolioAgentResponse,
     _extract_final_text,
@@ -15,13 +16,12 @@ from src.folioman_intelligence.agents.portfolio import (
     _parse_output_value,
     _safe_format,
     ask_portfolio_agent,
-    get_portfolio_analysis,
 )
-
 
 # ============================================================================
 # Tests for Helper Functions
 # ============================================================================
+
 
 def test_safe_format_with_dict_and_list():
     """Test _safe_format with dictionary and list structures."""
@@ -125,6 +125,7 @@ def test_extract_final_text():
 # Tests for PortfolioAgentResponse
 # ============================================================================
 
+
 def test_portfolio_agent_response():
     """Test PortfolioAgentResponse properties, dictionary interface, and string casting."""
     data = {
@@ -149,6 +150,7 @@ def test_portfolio_agent_response():
 # ============================================================================
 # Tests for get_portfolio_analysis Tool
 # ============================================================================
+
 
 @pytest.mark.asyncio
 async def test_get_portfolio_analysis_tool():
@@ -183,9 +185,11 @@ async def test_get_portfolio_analysis_tool():
 # Tests for ask_portfolio_agent Workflow
 # ============================================================================
 
+
 @pytest.mark.asyncio
 async def test_ask_portfolio_agent_streaming_workflow():
     """Test ask_portfolio_agent processing streaming events including tool calls and text chunks."""
+
     # Define an async generator yielding simulated LangChain events
     async def mock_events(*args, **kwargs):
         # 1. Tool start
@@ -197,7 +201,9 @@ async def test_ask_portfolio_agent_streaming_workflow():
         # 2. Tool end (using artifact / content wrapper)
         tool_output_msg = MagicMock()
         tool_output_msg.artifact = None
-        tool_output_msg.content = '{"total_value": 150000, "top_3_holdings": ["Fund A"]}'
+        tool_output_msg.content = (
+            '{"total_value": 150000, "top_3_holdings": ["Fund A"]}'
+        )
         yield {
             "event": "on_tool_end",
             "name": "get_portfolio_analysis",
@@ -223,21 +229,31 @@ async def test_ask_portfolio_agent_streaming_workflow():
             "data": {},
         }
 
-    with patch("src.folioman_intelligence.agents.portfolio.agent.astream_events", side_effect=mock_events):
+    with patch(
+        "src.folioman_intelligence.agents.portfolio.agent.astream_events",
+        side_effect=mock_events,
+    ):
         response = await ask_portfolio_agent("Analyze my investments")
 
         assert isinstance(response, PortfolioAgentResponse)
-        assert response.content == "Based on your portfolio analysis, your equity allocation is strong."
+        assert (
+            response.content
+            == "Based on your portfolio analysis, your equity allocation is strong."
+        )
         assert len(response.tool_calls) == 1
         tool_call = response.tool_calls[0]
         assert tool_call["name"] == "get_portfolio_analysis"
         assert tool_call["input"] == {"investor_id": 1}
-        assert tool_call["output"] == {"total_value": 150000, "top_3_holdings": ["Fund A"]}
+        assert tool_call["output"] == {
+            "total_value": 150000,
+            "top_3_holdings": ["Fund A"],
+        }
 
 
 @pytest.mark.asyncio
 async def test_ask_portfolio_agent_artifact_output():
     """Test ask_portfolio_agent capturing tool output when raw_output has an artifact attribute."""
+
     async def mock_events(*args, **kwargs):
         yield {
             "event": "on_tool_start",
@@ -258,7 +274,10 @@ async def test_ask_portfolio_agent_artifact_output():
             "data": {"chunk": chunk},
         }
 
-    with patch("src.folioman_intelligence.agents.portfolio.agent.astream_events", side_effect=mock_events):
+    with patch(
+        "src.folioman_intelligence.agents.portfolio.agent.astream_events",
+        side_effect=mock_events,
+    ):
         response = await ask_portfolio_agent("Check portfolio")
         assert response.tool_calls[0]["output"] == {"metric": "value"}
 
@@ -266,6 +285,7 @@ async def test_ask_portfolio_agent_artifact_output():
 @pytest.mark.asyncio
 async def test_ask_portfolio_agent_fallback_text_extraction():
     """Test ask_portfolio_agent fallback when chunks are absent and text is only in on_chat_model_end."""
+
     async def mock_events(*args, **kwargs):
         generation_msg = MagicMock()
         generation_msg.content = "Fallback generated summary without stream chunks."
@@ -274,12 +294,13 @@ async def test_ask_portfolio_agent_fallback_text_extraction():
 
         yield {
             "event": "on_chat_model_end",
-            "data": {
-                "output": MagicMock(generations=[gen_mock])
-            },
+            "data": {"output": MagicMock(generations=[gen_mock])},
         }
 
-    with patch("src.folioman_intelligence.agents.portfolio.agent.astream_events", side_effect=mock_events):
+    with patch(
+        "src.folioman_intelligence.agents.portfolio.agent.astream_events",
+        side_effect=mock_events,
+    ):
         response = await ask_portfolio_agent("What is my summary?")
 
         assert response.content == "Fallback generated summary without stream chunks."
