@@ -18,17 +18,20 @@ async def main():
 
         # 2. Portfolio Summary & Holdings
         summary = await client.portfolio.get(investor.id)
+        # print(summary.model_dump(), end="\n\n")
         print(f"Net Worth: INR {summary.total_inr}", end="\n\n")
 
         holdings = await client.holdings.list(investor.id)
         for h in holdings:
-            print(f"- {h.name}: {h.units} units (₹{h.value_inr})", end="\n\n")
+            print(f"- {h.name}: {h.units} units (₹{h.value_inr})")
 
+        print()
         # 3. Scheme Details
         if holdings:
             scheme = await client.holdings.get(investor.id, holdings[0].security_id)
             print(
                 f"ISIN: {scheme.security.isin}, NAV Points: {len(scheme.nav_history)}",
+                end="\n\n",
             )
 
         # 4. Transactions
