@@ -23,8 +23,6 @@ class FoliomanBaseModel(BaseModel):
 
 
 # --- Auth Models ---
-
-
 class TokenPair(FoliomanBaseModel):
     """Access and refresh token pair returned on authentication."""
 
@@ -39,8 +37,6 @@ class AccessToken(FoliomanBaseModel):
 
 
 # --- Investor Models ---
-
-
 class Investor(FoliomanBaseModel):
     """Investor summary representation."""
 
@@ -63,8 +59,6 @@ class InvestorDetail(Investor):
 
 
 # --- Holding & Security Models ---
-
-
 class Holding(FoliomanBaseModel):
     """Priced holding row under an investor."""
 
@@ -115,8 +109,6 @@ class FolioBalance(FoliomanBaseModel):
 
 
 # --- Transaction Models ---
-
-
 class Transaction(FoliomanBaseModel):
     """Transaction ledger record."""
 
@@ -164,8 +156,6 @@ class SchemeDetail(FoliomanBaseModel):
 
 
 # --- Portfolio & Valuation Models ---
-
-
 class AssetMixRow(FoliomanBaseModel):
     """Allocation breakdown row by security type."""
 
@@ -248,8 +238,6 @@ class ValuationStatus(FoliomanBaseModel):
 
 
 # --- Capital Gains Models ---
-
-
 class CapitalGainRow(FoliomanBaseModel):
     """One realised disposal lot in capital gains report."""
 

@@ -10,13 +10,21 @@ import httpx
 import pytest
 import respx
 
-from folioman_intelligence.clients.folioman.auth import JWTAuthManager, _extract_jwt_expiry, _is_expired
+from folioman_intelligence.clients.folioman.auth import (
+    JWTAuthManager,
+    _extract_jwt_expiry,
+    _is_expired,
+)
 from folioman_intelligence.clients.folioman.errors import FoliomanAuthError
 
 
 def create_mock_jwt(exp: float) -> str:
     """Create a mock JWT with the given expiration timestamp."""
-    header = base64.urlsafe_b64encode(b'{"alg":"HS256","typ":"JWT"}').decode("ascii").rstrip("=")
+    header = (
+        base64.urlsafe_b64encode(b'{"alg":"HS256","typ":"JWT"}')
+        .decode("ascii")
+        .rstrip("=")
+    )
     payload = (
         base64.urlsafe_b64encode(json.dumps({"user_id": 1, "exp": exp}).encode("ascii"))
         .decode("ascii")
@@ -40,7 +48,9 @@ async def test_jwt_expiry_parsing() -> None:
 @pytest.mark.asyncio
 async def test_successful_initial_authentication() -> None:
     base_url = "http://folioman.test"
-    auth = JWTAuthManager(base_url=base_url, username="advisor", password="secretpassword")
+    auth = JWTAuthManager(
+        base_url=base_url, username="advisor", password="secretpassword"
+    )
 
     valid_token = create_mock_jwt(time.time() + 3600)
     refresh_token = create_mock_jwt(time.time() + 86400)
@@ -61,7 +71,9 @@ async def test_successful_initial_authentication() -> None:
 @pytest.mark.asyncio
 async def test_invalid_credentials_raises_folioman_auth_error() -> None:
     base_url = "http://folioman.test"
-    auth = JWTAuthManager(base_url=base_url, username="advisor", password="wrongpassword")
+    auth = JWTAuthManager(
+        base_url=base_url, username="advisor", password="wrongpassword"
+    )
 
     async with httpx.AsyncClient() as client:
         with respx.mock(base_url=base_url) as respx_mock:
@@ -77,7 +89,9 @@ async def test_invalid_credentials_raises_folioman_auth_error() -> None:
 @pytest.mark.asyncio
 async def test_proactive_token_refresh() -> None:
     base_url = "http://folioman.test"
-    auth = JWTAuthManager(base_url=base_url, username="advisor", password="secretpassword")
+    auth = JWTAuthManager(
+        base_url=base_url, username="advisor", password="secretpassword"
+    )
 
     # Access token expiring in 10s (within 30s skew window)
     expiring_access = create_mock_jwt(time.time() + 10)
@@ -104,7 +118,9 @@ async def test_proactive_token_refresh() -> None:
 @pytest.mark.asyncio
 async def test_refresh_rejected_falls_back_to_login() -> None:
     base_url = "http://folioman.test"
-    auth = JWTAuthManager(base_url=base_url, username="advisor", password="secretpassword")
+    auth = JWTAuthManager(
+        base_url=base_url, username="advisor", password="secretpassword"
+    )
 
     expired_access = create_mock_jwt(time.time() - 100)
     stale_refresh = create_mock_jwt(time.time() - 50)
@@ -117,7 +133,9 @@ async def test_refresh_rejected_falls_back_to_login() -> None:
     async with httpx.AsyncClient() as client:
         with respx.mock(base_url=base_url) as respx_mock:
             # Refresh returns 401
-            respx_mock.post("/api/auth/token/refresh").respond(401, json={"detail": "Token expired"})
+            respx_mock.post("/api/auth/token/refresh").respond(
+                401, json={"detail": "Token expired"}
+            )
             # Re-login succeeds
             respx_mock.post("/api/auth/token/pair").respond(
                 200,
@@ -134,7 +152,9 @@ async def test_concurrent_token_refresh_single_flight() -> None:
     import asyncio
 
     base_url = "http://folioman.test"
-    auth = JWTAuthManager(base_url=base_url, username="advisor", password="secretpassword")
+    auth = JWTAuthManager(
+        base_url=base_url, username="advisor", password="secretpassword"
+    )
 
     auth._access_token = create_mock_jwt(time.time() - 100)
     auth._refresh_token = create_mock_jwt(time.time() + 86400)
@@ -157,4 +177,3 @@ async def test_concurrent_token_refresh_single_flight() -> None:
             assert all(t == new_access for t in tokens)
             # Exactly 1 refresh request was fired despite 4 concurrent calls
             assert refresh_route.call_count == 1
-

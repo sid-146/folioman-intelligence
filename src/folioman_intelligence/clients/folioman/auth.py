@@ -12,7 +12,10 @@ import json
 import time
 from typing import TYPE_CHECKING, Any
 
-from folioman_intelligence.clients.folioman.errors import FoliomanAPIError, FoliomanAuthError
+from folioman_intelligence.clients.folioman.errors import (
+    FoliomanAPIError,
+    FoliomanAuthError,
+)
 
 if TYPE_CHECKING:
     import httpx
@@ -119,7 +122,9 @@ class JWTAuthManager:
         try:
             response = await client.post(url, json=payload)
         except Exception as exc:
-            raise FoliomanAuthError(f"Network error during authentication: {exc}") from exc
+            raise FoliomanAuthError(
+                f"Network error during authentication: {exc}"
+            ) from exc
 
         if response.status_code == 401:
             raise FoliomanAuthError("Invalid username or password.")
@@ -132,7 +137,9 @@ class JWTAuthManager:
         access = data.get("access")
         refresh = data.get("refresh")
         if not access or not refresh:
-            raise FoliomanAuthError("Malformed authentication response: missing tokens.")
+            raise FoliomanAuthError(
+                "Malformed authentication response: missing tokens."
+            )
 
         self._access_token = access
         self._refresh_token = refresh
@@ -149,7 +156,9 @@ class JWTAuthManager:
         try:
             response = await client.post(url, json=payload)
         except Exception as exc:
-            raise FoliomanAuthError(f"Network error during token refresh: {exc}") from exc
+            raise FoliomanAuthError(
+                f"Network error during token refresh: {exc}"
+            ) from exc
 
         if response.status_code == 401:
             self.clear()

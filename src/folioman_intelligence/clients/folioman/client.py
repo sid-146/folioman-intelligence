@@ -90,9 +90,13 @@ class PortfolioResource(_BaseResource):
         """
         params: dict[str, Any] = {}
         if as_of is not None:
-            params["as_of"] = as_of.isoformat() if isinstance(as_of, date) else str(as_of)
+            params["as_of"] = (
+                as_of.isoformat() if isinstance(as_of, date) else str(as_of)
+            )
 
-        data = await self._client.request("GET", f"/investors/{investor_id}/summary", params=params)
+        data = await self._client.request(
+            "GET", f"/investors/{investor_id}/summary", params=params
+        )
         return PortfolioSummary.model_validate(data)
 
 
@@ -130,7 +134,9 @@ class HoldingsResource(_BaseResource):
         """
         params: dict[str, Any] = {}
         if as_of is not None:
-            params["as_of"] = as_of.isoformat() if isinstance(as_of, date) else str(as_of)
+            params["as_of"] = (
+                as_of.isoformat() if isinstance(as_of, date) else str(as_of)
+            )
 
         data = await self._client.request(
             "GET",
@@ -149,7 +155,9 @@ class TransactionsResource(_BaseResource):
         Args:
             investor_id: The ID of the investor.
         """
-        data = await self._client.request("GET", f"/investors/{investor_id}/transactions")
+        data = await self._client.request(
+            "GET", f"/investors/{investor_id}/transactions"
+        )
         return [Transaction.model_validate(item) for item in data]
 
 
@@ -174,9 +182,13 @@ class ValuationsResource(_BaseResource):
         """
         params: dict[str, Any] = {"granularity": granularity}
         if from_date is not None:
-            params["from"] = from_date.isoformat() if isinstance(from_date, date) else str(from_date)
+            params["from"] = (
+                from_date.isoformat() if isinstance(from_date, date) else str(from_date)
+            )
         if to_date is not None:
-            params["to"] = to_date.isoformat() if isinstance(to_date, date) else str(to_date)
+            params["to"] = (
+                to_date.isoformat() if isinstance(to_date, date) else str(to_date)
+            )
 
         data = await self._client.request(
             "GET",
@@ -191,7 +203,9 @@ class ValuationsResource(_BaseResource):
         Args:
             investor_id: The ID of the investor.
         """
-        data = await self._client.request("GET", f"/investors/{investor_id}/valuation-status")
+        data = await self._client.request(
+            "GET", f"/investors/{investor_id}/valuation-status"
+        )
         return ValuationStatus.model_validate(data)
 
 
