@@ -8,9 +8,12 @@ authors = [
 ]
 requires-python = ">=3.12"
 dependencies = [
+    "deepagents>=0.7.13",
     "httpx>=0.28.1",
+    "langchain-openai>=1.6.2",
     "pydantic>=2.13.5",
     "pydantic-settings>=2.15.0",
+    "pytest-cov>=7.1.0",
 ]
 
 [project.scripts]
