@@ -19,6 +19,11 @@ class FoliomanBaseModel(BaseModel):
     model_config = ConfigDict(
         extra="ignore",
         populate_by_name=True,
+        json_encoders={
+            Decimal: float,
+            datetime: lambda v: v.isoformat(),
+            date: lambda v: v.isoformat(),
+        },
     )
 
 
@@ -204,6 +209,8 @@ class PortfolioSummary(FoliomanBaseModel):
     category_mix: list[AllocationBucket] = Field(default_factory=list)
     top_holdings: list[Holding] = Field(default_factory=list)
     holdings: list[Holding] = Field(default_factory=list)
+
+    model_config = ConfigDict(json_encoders={Decimal: float})
 
 
 class ValueSeriesPoint(FoliomanBaseModel):
