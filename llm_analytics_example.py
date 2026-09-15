@@ -13,7 +13,15 @@ import pprint
 # pprint.pprint(response)
 
 
+# response = asyncio.run(
+#     ask_portfolio_agent("""What are my biggest portfolio concentrations?""")
+# )
+
 response = asyncio.run(
-    ask_portfolio_agent("""What are my biggest portfolio concentrations?""")
+    ask_portfolio_agent(
+        """I want you to evaluate each holding in detail and tell what are the red flags in my current folios?"""
+    )
 )
+
+
 pprint.pprint(response)
