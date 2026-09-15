@@ -8,7 +8,7 @@ from src.folioman_intelligence.analytics.portfolio import (
 )
 
 
-# not building a tools registry right now.
+# Todo: This returns a very large object; break down into more tools to be called by llm.
 @tool
 async def get_portfolio_analysis(investor_id: int = 1):
     """Get the latest calculated portfolio analysis.

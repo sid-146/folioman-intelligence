@@ -37,6 +37,9 @@ async def analyze_portfolio(investor_id: int):
     top_3_holding = sorted(
         portfolio.holdings, key=lambda x: x.invested_inr or 0, reverse=True
     )[:3]
+    top_3_by_current = sorted(
+        portfolio.holdings, key=lambda x: x.value_inr or 0, reverse=True
+    )[:3]
     analysis = {
         "currency": "INR",
         "total_value": portfolio.total_inr,
@@ -49,7 +52,10 @@ async def analyze_portfolio(investor_id: int):
         "xirr": portfolio.xirr,
         "period_returns": period_returns,
         "holdings": holdings,
-        "top_3_holding": [t.name for t in top_3_holding],
+        "top_3_by_invested": {i: t.name for i, t in enumerate(top_3_holding, start=1)},
+        "top_3_by_current_value": {
+            i: t.name for i, t in enumerate(top_3_by_current, start=1)
+        },
     }
 
     return analysis
