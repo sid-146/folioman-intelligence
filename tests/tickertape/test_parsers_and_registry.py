@@ -1,8 +1,7 @@
 """Tests for parser registry and extension mechanics."""
 
 import pytest
-from folioman_intelligence.clients.tickertape.contants import URLS as OLD_URLS
-from folioman_intelligence.clients.tickertape.constants import URLS as NEW_URLS
+from folioman_intelligence.clients.tickertape.constants import URLS
 from folioman_intelligence.clients.tickertape.errors import TickerTapeHTTPError
 from folioman_intelligence.clients.tickertape.parsers import (
     BaseParser,
@@ -14,11 +13,6 @@ from folioman_intelligence.clients.tickertape.parsers import (
 from folioman_intelligence.clients.tickertape.parsers.etf import ETFParser
 from folioman_intelligence.clients.tickertape.parsers.screens import ScreenParser
 from folioman_intelligence.clients.tickertape.parsers.stocks import StockParser
-
-
-def test_constants_backward_compatibility():
-    assert OLD_URLS == NEW_URLS
-    assert "mf" in OLD_URLS
 
 
 def test_parser_registry():
@@ -58,7 +52,9 @@ def test_stubs_raise_not_implemented():
 
 
 def test_error_str_representation():
-    err_with_data = TickerTapeHTTPError("Failed", status_code=500, response_data="Internal error details")
+    err_with_data = TickerTapeHTTPError(
+        "Failed", status_code=500, response_data="Internal error details"
+    )
     assert "[500] Failed - Internal error details" in str(err_with_data)
 
     err_no_data = TickerTapeHTTPError("Failed", status_code=404)

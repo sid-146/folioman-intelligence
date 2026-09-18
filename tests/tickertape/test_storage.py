@@ -18,8 +18,14 @@ def test_cache_save_and_load(temp_cache_dir: Path):
     assert not manager.exists("mf")
 
     items = [
-        SitemapURL(record_id="M_AAA", url="https://www.tickertape.in/mutualfunds/fund-a-M_AAA", priority=0.8),
-        SitemapURL(record_id="M_BBB", url="https://www.tickertape.in/mutualfunds/fund-b-M_BBB"),
+        SitemapURL(
+            record_id="M_AAA",
+            url="https://www.tickertape.in/mutualfunds/fund-a-M_AAA",
+            priority=0.8,
+        ),
+        SitemapURL(
+            record_id="M_BBB", url="https://www.tickertape.in/mutualfunds/fund-b-M_BBB"
+        ),
     ]
 
     saved_path = manager.save("mf", items)

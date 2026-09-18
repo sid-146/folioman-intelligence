@@ -61,9 +61,13 @@ def test_parse_sitemap_index():
     assert len(results) == 2
     assert all(isinstance(r, SitemapReference) for r in results)
 
-    assert results[0].url == "https://www.tickertape.in/sitemaps/mutualfunds/sitemap-1.xml"
+    assert (
+        results[0].url == "https://www.tickertape.in/sitemaps/mutualfunds/sitemap-1.xml"
+    )
     assert results[0].last_modified == "2026-03-01"
-    assert results[1].url == "https://www.tickertape.in/sitemaps/mutualfunds/sitemap-2.xml"
+    assert (
+        results[1].url == "https://www.tickertape.in/sitemaps/mutualfunds/sitemap-2.xml"
+    )
 
 
 def test_parse_invalid_xml():

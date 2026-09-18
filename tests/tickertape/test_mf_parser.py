@@ -93,12 +93,16 @@ def test_extract_isin():
 def test_parse_missing_next_data():
     html = "<html><body><p>No Next Data</p></body></html>"
     parser = MFParser()
-    with pytest.raises(TickerTapeParseError, match="Could not find <script id='__NEXT_DATA__'>"):
+    with pytest.raises(
+        TickerTapeParseError, match="Could not find <script id='__NEXT_DATA__'>"
+    ):
         parser.parse(html)
 
 
 def test_parse_invalid_json():
     html = '<html><body><script id="__NEXT_DATA__">{invalid json</script></body></html>'
     parser = MFParser()
-    with pytest.raises(TickerTapeParseError, match="Failed to decode __NEXT_DATA__ JSON"):
+    with pytest.raises(
+        TickerTapeParseError, match="Failed to decode __NEXT_DATA__ JSON"
+    ):
         parser.parse(html)

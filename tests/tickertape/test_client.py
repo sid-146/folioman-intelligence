@@ -48,8 +48,12 @@ async def test_client_context_manager(temp_cache_dir: Path):
 @pytest.mark.asyncio
 @respx.mock
 async def test_client_http_errors(temp_cache_dir: Path):
-    respx.get(f"{BASE_URL}/not-found").mock(return_value=httpx.Response(404, text="Not Found"))
-    respx.get(f"{BASE_URL}/server-error").mock(return_value=httpx.Response(500, text="Internal Error"))
+    respx.get(f"{BASE_URL}/not-found").mock(
+        return_value=httpx.Response(404, text="Not Found")
+    )
+    respx.get(f"{BASE_URL}/server-error").mock(
+        return_value=httpx.Response(500, text="Internal Error")
+    )
 
     async with TickerTapeClient(cache_dir=temp_cache_dir) as client:
         with pytest.raises(TickerTapeNotFoundError) as exc_404:
@@ -145,12 +149,17 @@ async def test_sitemap_get_references(temp_cache_dir: Path):
         </sitemap>
     </sitemapindex>
     """
-    respx.get("https://example.com/index.xml").mock(return_value=httpx.Response(200, text=index_xml))
+    respx.get("https://example.com/index.xml").mock(
+        return_value=httpx.Response(200, text=index_xml)
+    )
 
     async with TickerTapeClient(cache_dir=temp_cache_dir) as client:
         refs = await client.sitemap.get_references("https://example.com/index.xml")
         assert len(refs) == 1
-        assert refs[0].url == "https://www.tickertape.in/sitemaps/mutualfunds/sitemap-1.xml"
+        assert (
+            refs[0].url
+            == "https://www.tickertape.in/sitemaps/mutualfunds/sitemap-1.xml"
+        )
 
         # Clear cache test
         client.sitemap.clear_cache()
@@ -161,4 +170,3 @@ async def test_sitemap_unknown_category(temp_cache_dir: Path):
     async with TickerTapeClient(cache_dir=temp_cache_dir) as client:
         with pytest.raises(ValueError, match="Unknown sitemap category 'unknown'"):
             await client.sitemap.get("unknown")
-
