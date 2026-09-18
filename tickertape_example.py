@@ -1,9 +1,11 @@
-"""Example demonstrating usage of TickerTapeClient.
+"""Example demonstrating usage of TickerTapeClient and ISIN Lookup.
 
 Shows:
 1. Loading sitemap with persistent local caching (.cache/tickertape)
-2. Explicitly refreshing sitemap
-3. Fetching mutual fund details and extracting ISIN
+2. Fetching mutual fund details
+3. Looking up and resolving mutual funds directly by ISIN (from Folioman DB)
+4. Querying the persistent SQLite lookup table
+5. Building / syncing the ISIN index with force refresh logic
 """
 
 import asyncio
@@ -20,25 +22,36 @@ async def main():
             first = sitemap_items[0]
             print(f"First item: ID={first.record_id}, URL={first.url}")
 
-        print("\n=== 2. Fetching Single Mutual Fund Details ===")
-        # Fetch fund details by slug or MFID
-        sample_slug = "quant-infrastructure-fund-M_QUNG"
-        fund = await client.mf.get(sample_slug)
-        print(f"Fund Name: {fund.name}")
-        print(f"ISIN: {fund.isin}")
-        print(f"NAV: {fund.nav}")
-        if fund.meta:
-            print(f"Benchmark: {fund.meta.benchmark_index}")
-            print(f"Expense Ratio: {fund.meta.expense_ratio}%")
-            print(f"AUM: ₹{fund.meta.aum} Cr")
+        print("\n=== 2. Resolving Mutual Fund by Folioman ISIN ===")
+        # Scenario: You only have an ISIN from Folioman (e.g. 'INF966L01721')
+        sample_isin = "INF966L01721"
+        hint = "Quant Infrastructure Fund - Direct Plan - Growth"
 
-        print("\n=== 3. Convenience ISIN Extraction ===")
-        isin = await client.mf.get_isin(sample_slug)
-        print(f"ISIN via get_isin(): {isin}")
+        # Resolves via SQLite lookup table (or sitemap keyword match if not yet indexed)
+        fund = await client.mf.get_by_isin(sample_isin, hint_name=hint)
+        if fund:
+            print(f"Resolved ISIN {sample_isin} -> {fund.name}")
+            print(f"TickerTape MFID: {fund.mf_id}, Slug: {fund.slug}")
+            print(f"NAV: ₹{fund.nav}")
+            if fund.meta:
+                print(f"Benchmark: {fund.meta.benchmark_index}")
+                print(f"Expense Ratio: {fund.meta.expense_ratio}%")
+                print(f"AUM: ₹{fund.meta.aum} Cr")
 
-        # print("\n=== 4. Explicit Sitemap Refresh (Bypasses Cache) ===")
-        # refreshed_items = await client.sitemap.refresh("mf")
-        # print(f"Refreshed sitemap count: {len(refreshed_items)}")
+        print("\n=== 3. Querying the SQLite Lookup Table directly ===")
+        # Instant O(1) query by ISIN from .cache/tickertape/isin_lookup.db
+        mapping = client.mf.lookup.get(sample_isin)
+        if mapping:
+            print(
+                f"Lookup Table Match: {mapping.isin} -> {mapping.record_id} ({mapping.name})"
+            )
+
+        print(f"Total indexed schemes in SQLite: {client.mf.lookup.count()}")
+
+        # print("\n=== 4. Indexing / Syncing (Force Refresh Example) ===")
+        # # Force logic parses live sitemap, updates sitemap cache, and updates SQLite DB:
+        # count = await client.mf.build_isin_index(force_refresh=True, limit=10000)
+        # print(f"Indexed {count} funds into SQLite table")
 
 
 if __name__ == "__main__":
