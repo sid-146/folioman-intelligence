@@ -48,7 +48,14 @@ async def main():
 
         print(f"Total indexed schemes in SQLite: {client.mf.lookup.count()}")
 
-        # print("\n=== 4. Indexing / Syncing (Force Refresh Example) ===")
+        print("\n=== 4. Gathering Same Kind of Mutual Funds (Peer Discovery) ===")
+        # AI Agent can find all peers in the same category/subsector
+        peers = client.mf.get_peers(sample_isin, limit=5)
+        print(f"Peers in same subsector for {sample_isin}: {len(peers)}")
+        for peer in peers:
+            print(f"- {peer.name} | ISIN: {peer.isin} | Benchmark: {peer.benchmark}")
+
+        # print("\n=== 5. Indexing / Syncing (Force Refresh Example) ===")
         # # Force logic parses live sitemap, updates sitemap cache, and updates SQLite DB:
         # count = await client.mf.build_isin_index(force_refresh=True, limit=10000)
         # print(f"Indexed {count} funds into SQLite table")
