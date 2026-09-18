@@ -90,6 +90,54 @@ class MutualFundsResource(_BaseResource):
         html_content = await self._client.request("GET", path)
         return self._parser.extract_next_data(html_content)
 
+    def get_peers(
+        self,
+        isin: str,
+        match_plan: bool = True,
+        match_option: bool = True,
+        limit: int = 20,
+    ) -> list[ISINMapping]:
+        """Gather peer mutual funds in the same subsector/category as the given ISIN.
+
+        Args:
+            isin: Source fund ISIN.
+            match_plan: If True, matches plan (e.g. Direct with Direct).
+            match_option: If True, matches option (e.g. Growth with Growth).
+            limit: Maximum peers to return.
+        """
+        return self.lookup.get_peers(
+            isin,
+            match_plan=match_plan,
+            match_option=match_option,
+            limit=limit,
+        )
+
+    def find_funds(
+        self,
+        *,
+        sector: Optional[str] = None,
+        subsector: Optional[str] = None,
+        fund_type: Optional[str] = None,
+        plan: Optional[str] = None,
+        option: Optional[str] = None,
+        risk_level: Optional[str] = None,
+        benchmark: Optional[str] = None,
+        amc: Optional[str] = None,
+        limit: int = 100,
+    ) -> list[ISINMapping]:
+        """Find and gather mutual funds sharing similar classification attributes."""
+        return self.lookup.find_funds(
+            sector=sector,
+            subsector=subsector,
+            fund_type=fund_type,
+            plan=plan,
+            option=option,
+            risk_level=risk_level,
+            benchmark=benchmark,
+            amc=amc,
+            limit=limit,
+        )
+
     async def build_isin_index(
         self,
         *,

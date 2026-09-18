@@ -7,16 +7,36 @@ import json
 import logging
 from pathlib import Path
 import sqlite3
-from typing import Optional
+from typing import Any, Optional
 
 from folioman_intelligence.clients.tickertape.constants import DEFAULT_CACHE_DIR
 from folioman_intelligence.clients.tickertape.lookup.models import ISINMapping
 
 logger = logging.getLogger(__name__)
 
+EXPECTED_COLUMNS = {
+    "isin": "TEXT PRIMARY KEY",
+    "record_id": "TEXT NOT NULL",
+    "slug": "TEXT NOT NULL",
+    "name": "TEXT NOT NULL",
+    "amc": "TEXT",
+    "amc_code": "TEXT",
+    "sector": "TEXT",
+    "subsector": "TEXT",
+    "fund_type": "TEXT",
+    "fund_class": "TEXT",
+    "plan": "TEXT",
+    "option": "TEXT",
+    "risk_level": "TEXT",
+    "benchmark": "TEXT",
+    "url": "TEXT NOT NULL",
+    "nav": "REAL",
+    "updated_at": "TEXT NOT NULL",
+}
+
 
 class ISINLookupTable:
-    """Persistent SQLite store mapping mutual fund ISINs to TickerTape records."""
+    """Persistent SQLite store mapping mutual fund ISINs to TickerTape records and categorization."""
 
     def __init__(
         self,
@@ -38,7 +58,7 @@ class ISINLookupTable:
         return conn
 
     def _init_db(self) -> None:
-        """Initialize database schema and indexes."""
+        """Initialize database schema, migrations, and indexes."""
         with self._get_connection() as conn:
             conn.execute("""
                 CREATE TABLE IF NOT EXISTS mf_isin_lookup (
@@ -47,15 +67,48 @@ class ISINLookupTable:
                     slug TEXT NOT NULL,
                     name TEXT NOT NULL,
                     amc TEXT,
+                    amc_code TEXT,
+                    sector TEXT,
+                    subsector TEXT,
+                    fund_type TEXT,
+                    fund_class TEXT,
                     plan TEXT,
                     option TEXT,
+                    risk_level TEXT,
+                    benchmark TEXT,
                     url TEXT NOT NULL,
                     nav REAL,
                     updated_at TEXT NOT NULL
                 )
                 """)
+
+            # Auto-migration for existing databases
+            cursor = conn.execute("PRAGMA table_info(mf_isin_lookup)")
+            existing_cols = {row["name"] for row in cursor.fetchall()}
+            for col_name, col_type in EXPECTED_COLUMNS.items():
+                if col_name not in existing_cols:
+                    conn.execute(
+                        f"ALTER TABLE mf_isin_lookup ADD COLUMN {col_name} {col_type}"
+                    )
+                    logger.info(
+                        "Migrated SQLite lookup table: added column '%s'", col_name
+                    )
+
+            # Indexes for fast grouping and peer clustering
             conn.execute(
                 "CREATE INDEX IF NOT EXISTS idx_lookup_record_id ON mf_isin_lookup(record_id)"
+            )
+            conn.execute(
+                "CREATE INDEX IF NOT EXISTS idx_lookup_sector ON mf_isin_lookup(sector)"
+            )
+            conn.execute(
+                "CREATE INDEX IF NOT EXISTS idx_lookup_subsector ON mf_isin_lookup(subsector)"
+            )
+            conn.execute(
+                "CREATE INDEX IF NOT EXISTS idx_lookup_benchmark ON mf_isin_lookup(benchmark)"
+            )
+            conn.execute(
+                "CREATE INDEX IF NOT EXISTS idx_lookup_amc ON mf_isin_lookup(amc)"
             )
             conn.commit()
 
@@ -103,6 +156,95 @@ class ISINLookupTable:
                 return ISINMapping.model_validate(dict(row))
         return None
 
+    def find_funds(
+        self,
+        *,
+        sector: Optional[str] = None,
+        subsector: Optional[str] = None,
+        fund_type: Optional[str] = None,
+        plan: Optional[str] = None,
+        option: Optional[str] = None,
+        risk_level: Optional[str] = None,
+        benchmark: Optional[str] = None,
+        amc: Optional[str] = None,
+        limit: int = 100,
+    ) -> list[ISINMapping]:
+        """Gather mutual funds sharing similar classification attributes (peers).
+
+        Useful for AI agents to compare funds in the same category or benchmark.
+        """
+        clauses: list[str] = []
+        params: list[Any] = []
+
+        if sector:
+            clauses.append("LOWER(sector) = LOWER(?)")
+            params.append(sector)
+        if subsector:
+            clauses.append("LOWER(subsector) = LOWER(?)")
+            params.append(subsector)
+        if fund_type:
+            clauses.append("LOWER(fund_type) = LOWER(?)")
+            params.append(fund_type)
+        if plan:
+            clauses.append("LOWER(plan) = LOWER(?)")
+            params.append(plan)
+        if option:
+            clauses.append("LOWER(option) = LOWER(?)")
+            params.append(option)
+        if risk_level:
+            clauses.append("LOWER(risk_level) = LOWER(?)")
+            params.append(risk_level)
+        if benchmark:
+            clauses.append("LOWER(benchmark) = LOWER(?)")
+            params.append(benchmark)
+        if amc:
+            clauses.append("LOWER(amc) LIKE LOWER(?)")
+            params.append(f"%{amc}%")
+
+        where_sql = f"WHERE {' AND '.join(clauses)}" if clauses else ""
+        query = f"SELECT * FROM mf_isin_lookup {where_sql} ORDER BY name ASC LIMIT ?"
+        params.append(limit)
+
+        with self._get_connection() as conn:
+            cursor = conn.execute(query, params)
+            return [ISINMapping.model_validate(dict(row)) for row in cursor.fetchall()]
+
+    def get_peers(
+        self,
+        isin: str,
+        match_plan: bool = True,
+        match_option: bool = True,
+        limit: int = 20,
+    ) -> list[ISINMapping]:
+        """Get peer mutual funds in the same subsector/category as the given ISIN.
+
+        Args:
+            isin: Source fund ISIN.
+            match_plan: If True, matches plan (e.g. Direct with Direct).
+            match_option: If True, matches option (e.g. Growth with Growth).
+            limit: Maximum peers to return.
+        """
+        fund = self.get(isin)
+        if not fund or not fund.subsector:
+            return []
+
+        clauses = ["isin != ?", "LOWER(subsector) = LOWER(?)"]
+        params: list[Any] = [fund.isin, fund.subsector]
+
+        if match_plan and fund.plan:
+            clauses.append("LOWER(plan) = LOWER(?)")
+            params.append(fund.plan)
+        if match_option and fund.option:
+            clauses.append("LOWER(option) = LOWER(?)")
+            params.append(fund.option)
+
+        query = f"SELECT * FROM mf_isin_lookup WHERE {' AND '.join(clauses)} ORDER BY name ASC LIMIT ?"
+        params.append(limit)
+
+        with self._get_connection() as conn:
+            cursor = conn.execute(query, params)
+            return [ISINMapping.model_validate(dict(row)) for row in cursor.fetchall()]
+
     def get_all_record_ids(self) -> set[str]:
         """Return a set of all indexed TickerTape record_ids."""
         with self._get_connection() as conn:
@@ -126,17 +268,26 @@ class ISINLookupTable:
 
         query = """
         INSERT INTO mf_isin_lookup (
-            isin, record_id, slug, name, amc, plan, option, url, nav, updated_at
+            isin, record_id, slug, name, amc, amc_code, sector, subsector,
+            fund_type, fund_class, plan, option, risk_level, benchmark, url, nav, updated_at
         ) VALUES (
-            :isin, :record_id, :slug, :name, :amc, :plan, :option, :url, :nav, :updated_at
+            :isin, :record_id, :slug, :name, :amc, :amc_code, :sector, :subsector,
+            :fund_type, :fund_class, :plan, :option, :risk_level, :benchmark, :url, :nav, :updated_at
         )
         ON CONFLICT(isin) DO UPDATE SET
             record_id = excluded.record_id,
             slug = excluded.slug,
             name = excluded.name,
             amc = excluded.amc,
+            amc_code = excluded.amc_code,
+            sector = excluded.sector,
+            subsector = excluded.subsector,
+            fund_type = excluded.fund_type,
+            fund_class = excluded.fund_class,
             plan = excluded.plan,
             option = excluded.option,
+            risk_level = excluded.risk_level,
+            benchmark = excluded.benchmark,
             url = excluded.url,
             nav = excluded.nav,
             updated_at = excluded.updated_at

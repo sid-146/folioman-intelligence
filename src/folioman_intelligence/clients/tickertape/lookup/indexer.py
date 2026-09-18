@@ -112,18 +112,28 @@ class ISINIndexer:
                         raw_slug = fund.slug or item.url
                         clean_slug = raw_slug.split("/mutualfunds/")[-1].lstrip("/")
 
+                        sec_info = fund.security_info
+                        meta = fund.meta
+
                         mapping = ISINMapping(
                             isin=fund.isin.strip().upper(),
                             record_id=fund.mf_id or item.record_id,
                             slug=clean_slug,
                             name=fund.name,
-                            amc=fund.security_info.amc if fund.security_info else None,
-                            plan=fund.meta.plan if fund.meta else None,
-                            option=(
-                                fund.security_info.option
-                                if fund.security_info
-                                else None
-                            ),
+                            amc=(meta.amc if meta else None)
+                            or (sec_info.amc if sec_info else None),
+                            amc_code=sec_info.amc_code if sec_info else None,
+                            sector=(sec_info.sector if sec_info else None)
+                            or (meta.sector if meta else None),
+                            subsector=(sec_info.subsector if sec_info else None)
+                            or (meta.subsector if meta else None),
+                            fund_type=meta.fund_type if meta else None,
+                            fund_class=meta.type if meta else None,
+                            plan=meta.plan if meta else None,
+                            option=(sec_info.option if sec_info else None)
+                            or (meta.option if meta else None),
+                            risk_level=meta.risk_classification if meta else None,
+                            benchmark=meta.benchmark_index if meta else None,
                             url=item.url,
                             nav=fund.nav,
                         )

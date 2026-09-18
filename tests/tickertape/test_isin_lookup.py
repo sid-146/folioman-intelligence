@@ -255,3 +255,66 @@ async def test_client_get_by_isin(temp_cache_dir: Path):
         assert fund.isin == "INF966L01721"
         assert fund.mf_id == "M_QUNG"
         assert fund.name == "Quant Infrastructure Fund"
+
+
+def test_lookup_peer_gathering(lookup_table: ISINLookupTable):
+    # Seed 3 funds: two Large Cap Direct Growth peers, one Large Cap Regular, one Mid Cap
+    f1 = ISINMapping(
+        isin="INF1",
+        record_id="M_1",
+        slug="fund-1",
+        name="HDFC Large Cap Direct",
+        amc="HDFC AMC",
+        sector="Equity",
+        subsector="Large Cap Fund",
+        plan="Direct",
+        option="Growth",
+        benchmark="Nifty 50 - TRI",
+        url="https://example.com/1",
+    )
+    f2 = ISINMapping(
+        isin="INF2",
+        record_id="M_2",
+        slug="fund-2",
+        name="ICICI Large Cap Direct",
+        amc="ICICI AMC",
+        sector="Equity",
+        subsector="Large Cap Fund",
+        plan="Direct",
+        option="Growth",
+        benchmark="Nifty 50 - TRI",
+        url="https://example.com/2",
+    )
+    f3 = ISINMapping(
+        isin="INF3",
+        record_id="M_3",
+        slug="fund-3",
+        name="Nippon Mid Cap Direct",
+        amc="Nippon AMC",
+        sector="Equity",
+        subsector="Mid Cap Fund",
+        plan="Direct",
+        option="Growth",
+        benchmark="Nifty Midcap 150 - TRI",
+        url="https://example.com/3",
+    )
+    lookup_table.upsert_batch([f1, f2, f3])
+
+    # 1. Get peers for INF1 (should return INF2, not INF1 or INF3)
+    peers = lookup_table.get_peers("INF1")
+    assert len(peers) == 1
+    assert peers[0].isin == "INF2"
+    assert peers[0].name == "ICICI Large Cap Direct"
+
+    # 2. Find funds by subsector
+    large_caps = lookup_table.find_funds(subsector="Large Cap Fund")
+    assert len(large_caps) == 2
+
+    # 3. Find funds by benchmark
+    nifty_50_funds = lookup_table.find_funds(benchmark="Nifty 50 - TRI")
+    assert len(nifty_50_funds) == 2
+
+    # 4. Find funds by amc
+    hdfc_funds = lookup_table.find_funds(amc="HDFC")
+    assert len(hdfc_funds) == 1
+    assert hdfc_funds[0].isin == "INF1"

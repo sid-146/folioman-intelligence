@@ -85,6 +85,10 @@ class MFMeta(BaseModel):
     isin: Optional[str] = None
     amc: Optional[str] = None
     plan: Optional[str] = None
+    option: Optional[str] = None
+    type: Optional[str] = None
+    sector: Optional[str] = None
+    subsector: Optional[str] = None
     benchmark_index: Optional[str] = Field(default=None, alias="benchmarkIndex")
     fund_type: Optional[str] = Field(default=None, alias="fundType")
     full_name: Optional[str] = Field(default=None, alias="fullName")
