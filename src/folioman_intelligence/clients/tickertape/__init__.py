@@ -14,6 +14,12 @@ from folioman_intelligence.clients.tickertape.errors import (
     TickerTapeNotFoundError,
     TickerTapeParseError,
 )
+from folioman_intelligence.clients.tickertape.lookup import (
+    ISINIndexer,
+    ISINLookupTable,
+    ISINMapping,
+    ISINResolver,
+)
 from folioman_intelligence.clients.tickertape.models import (
     MFMeta,
     MFScorecardItem,
@@ -51,6 +57,10 @@ __all__ = [
     "register_parser",
     "get_parser",
     "SitemapCacheManager",
+    "ISINMapping",
+    "ISINLookupTable",
+    "ISINResolver",
+    "ISINIndexer",
     "BASE_URL",
     "DEFAULT_CACHE_DIR",
     "DEFAULT_HEADERS",
