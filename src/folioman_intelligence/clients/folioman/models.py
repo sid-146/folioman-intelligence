@@ -10,7 +10,7 @@ from datetime import date, datetime
 from decimal import Decimal
 from typing import Any
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, field_serializer
 
 
 class FoliomanBaseModel(BaseModel):
@@ -19,12 +19,13 @@ class FoliomanBaseModel(BaseModel):
     model_config = ConfigDict(
         extra="ignore",
         populate_by_name=True,
-        json_encoders={
-            Decimal: float,
-            datetime: lambda v: v.isoformat(),
-            date: lambda v: v.isoformat(),
-        },
     )
+
+    @field_serializer("*", mode="wrap", check_fields=False)
+    def _serialize_all(self, v: Any, handler: Any) -> Any:
+        if isinstance(v, Decimal):
+            return float(v)
+        return handler(v)
 
 
 # --- Auth Models ---
@@ -209,8 +210,6 @@ class PortfolioSummary(FoliomanBaseModel):
     category_mix: list[AllocationBucket] = Field(default_factory=list)
     top_holdings: list[Holding] = Field(default_factory=list)
     holdings: list[Holding] = Field(default_factory=list)
-
-    model_config = ConfigDict(json_encoders={Decimal: float})
 
 
 class ValueSeriesPoint(FoliomanBaseModel):
