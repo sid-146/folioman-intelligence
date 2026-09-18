@@ -7,6 +7,13 @@ from folioman_intelligence.clients.folioman import (
     FoliomanError,
     FoliomanNotFoundError,
 )
+from folioman_intelligence.clients.tickertape import (
+    TickerTapeClient,
+    TickerTapeError,
+    TickerTapeHTTPError,
+    TickerTapeNotFoundError,
+    TickerTapeParseError,
+)
 from folioman_intelligence.config import FoliomanSettings, settings
 
 __all__ = [
@@ -15,6 +22,11 @@ __all__ = [
     "FoliomanAuthError",
     "FoliomanNotFoundError",
     "FoliomanAPIError",
+    "TickerTapeClient",
+    "TickerTapeError",
+    "TickerTapeHTTPError",
+    "TickerTapeNotFoundError",
+    "TickerTapeParseError",
     "FoliomanSettings",
     "settings",
 ]
