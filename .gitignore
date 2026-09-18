@@ -216,3 +216,4 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+src/folioman_intelligence/clients/tickertape/sample_mf_parser_response.json
