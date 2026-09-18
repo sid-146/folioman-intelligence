@@ -3,7 +3,7 @@
 from __future__ import annotations
 from dotenv import load_dotenv
 
-from pydantic import AliasChoices, Field, SecretStr
+from pydantic import Field, SecretStr
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 print(f"Env Loaded : {load_dotenv()}")

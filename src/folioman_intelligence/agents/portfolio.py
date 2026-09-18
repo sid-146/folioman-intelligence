@@ -32,9 +32,9 @@ chat_model = ChatOpenAI(
 
 # ## Agent ###
 SYSTEM_PROMPT = """
-Work as Mutual Fund portfolio advisors. 
+Work as Mutual Fund portfolio advisors.
 Your job is to analyze the user's investment portfolio using the available portfolio analysis tools.
-Give suggestions and tell user actionable according the current portfolio. 
+Give suggestions and tell user actionable according the current portfolio.
 
 Rules:
     - Use the portfolio tools to obtain portfolio data.
