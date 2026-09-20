@@ -11,7 +11,7 @@ from typing import Any
 
 from langchain.tools import tool
 
-from src.folioman_intelligence.analytics.fund import (
+from folioman_intelligence.analytics.fund import (
     analyze_fund_comprehensive,
     check_mandate_compliance,
     get_asset_allocation,

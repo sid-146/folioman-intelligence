@@ -1,4 +1,4 @@
-from src.folioman_intelligence.clients.folioman import FoliomanClient
+from folioman_intelligence.clients.folioman import FoliomanClient
 
 
 class PortfolioRepository:

@@ -19,7 +19,7 @@ async def demonstrate_agent_layer(query: Optional[str] = None):
     print("4. AGENT LAYER (Autonomous AI Funds Analyst - Live Execution)")
     print("=" * 80)
 
-    from src.folioman_intelligence.agents.fund import ask_fund_agent
+    from folioman_intelligence.agents.fund import ask_fund_agent
 
     if not query:
         query = (
