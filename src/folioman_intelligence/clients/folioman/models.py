@@ -6,11 +6,15 @@ All models use extra="ignore" to remain resilient against future schema extensio
 
 from __future__ import annotations
 
-from datetime import date, datetime
 from decimal import Decimal
-from typing import Any
 
-from pydantic import BaseModel, ConfigDict, Field, field_serializer
+from pydantic import BaseModel, ConfigDict, Field
+
+from folioman_intelligence.types import (
+    ConfiguredDate,
+    ConfiguredDatetime,
+    ConfiguredDecimal,
+)
 
 
 class FoliomanBaseModel(BaseModel):
@@ -20,12 +24,6 @@ class FoliomanBaseModel(BaseModel):
         extra="ignore",
         populate_by_name=True,
     )
-
-    @field_serializer("*", mode="wrap", check_fields=False)
-    def _serialize_all(self, v: Any, handler: Any) -> Any:
-        if isinstance(v, Decimal):
-            return float(v)
-        return handler(v)
 
 
 # --- Auth Models ---
@@ -54,8 +52,8 @@ class Investor(FoliomanBaseModel):
     family_id: int | None = None
     has_pan: bool = False
     pan_locked: bool = False
-    created_at: datetime | None = None
-    updated_at: datetime | None = None
+    created_at: ConfiguredDatetime | None = None
+    updated_at: ConfiguredDatetime | None = None
 
 
 class InvestorDetail(Investor):
@@ -74,13 +72,13 @@ class Holding(FoliomanBaseModel):
     symbol: str = ""
     amc: str = ""
     category: str = ""
-    units: Decimal
-    value_inr: Decimal | None = None
-    invested_inr: Decimal | None = None
-    latest_nav: Decimal | None = None
+    units: ConfiguredDecimal
+    value_inr: ConfiguredDecimal | None = None
+    invested_inr: ConfiguredDecimal | None = None
+    latest_nav: ConfiguredDecimal | None = None
     return_pct: float | None = None
     xirr: float | None = None
-    day_change_inr: Decimal | None = None
+    day_change_inr: ConfiguredDecimal | None = None
     day_change_pct: float | None = None
 
 
@@ -100,8 +98,8 @@ class SchemeRef(FoliomanBaseModel):
 class NavPoint(FoliomanBaseModel):
     """Single date and NAV point."""
 
-    date: date
-    nav: Decimal
+    date: ConfiguredDate
+    nav: ConfiguredDecimal
 
 
 class FolioBalance(FoliomanBaseModel):
@@ -110,8 +108,8 @@ class FolioBalance(FoliomanBaseModel):
     number: str
     broker: str = ""
     folio_type: str = ""
-    units: Decimal
-    value_inr: Decimal | None = None
+    units: ConfiguredDecimal
+    value_inr: ConfiguredDecimal | None = None
 
 
 # --- Transaction Models ---
@@ -122,40 +120,40 @@ class Transaction(FoliomanBaseModel):
     investor_id: int
     security_id: int
     folio_id: int | None = None
-    date: date
+    date: ConfiguredDate
     transaction_type: str
-    units: Decimal
-    nav_or_price: Decimal
-    amount: Decimal | None = None
-    fees: Decimal = Decimal("0")
-    stamp_duty: Decimal = Decimal("0")
-    brokerage: Decimal = Decimal("0")
+    units: ConfiguredDecimal
+    nav_or_price: ConfiguredDecimal
+    amount: ConfiguredDecimal | None = None
+    fees: ConfiguredDecimal = Decimal("0")
+    stamp_duty: ConfiguredDecimal = Decimal("0")
+    brokerage: ConfiguredDecimal = Decimal("0")
     currency: str = "INR"
     source: str = ""
     narration: str = ""
     cost_basis_complete: bool = True
     via_security: str | None = None
-    balance: Decimal | None = None
+    balance: ConfiguredDecimal | None = None
 
 
 class SchemeDetail(FoliomanBaseModel):
     """Detailed scheme view for an investor."""
 
     security: SchemeRef
-    as_of: date
-    units: Decimal
-    value_inr: Decimal | None = None
-    invested_inr: Decimal | None = None
+    as_of: ConfiguredDate
+    units: ConfiguredDecimal
+    value_inr: ConfiguredDecimal | None = None
+    invested_inr: ConfiguredDecimal | None = None
     return_pct: float | None = None
     xirr: float | None = None
     xirr_status: str = ""
-    day_change_inr: Decimal | None = None
+    day_change_inr: ConfiguredDecimal | None = None
     day_change_pct: float | None = None
-    latest_nav: Decimal | None = None
-    latest_nav_date: date | None = None
+    latest_nav: ConfiguredDecimal | None = None
+    latest_nav_date: ConfiguredDate | None = None
     has_transactions: bool = False
     partial_history: bool = False
-    partial_history_from: date | None = None
+    partial_history_from: ConfiguredDate | None = None
     folios: list[FolioBalance] = Field(default_factory=list)
     nav_history: list[NavPoint] = Field(default_factory=list)
     transactions: list[Transaction] = Field(default_factory=list)
@@ -166,14 +164,14 @@ class AssetMixRow(FoliomanBaseModel):
     """Allocation breakdown row by security type."""
 
     security_type: str
-    value_inr: Decimal
+    value_inr: ConfiguredDecimal
 
 
 class AllocationBucket(FoliomanBaseModel):
     """Allocation breakdown row by AMC or category."""
 
     label: str
-    value_inr: Decimal
+    value_inr: ConfiguredDecimal
 
 
 class PeriodReturn(FoliomanBaseModel):
@@ -189,10 +187,10 @@ class PortfolioSummary(FoliomanBaseModel):
     """Overall portfolio summary for an investor (InvestorSummaryOut)."""
 
     investor_id: int
-    as_of: date
-    total_inr: Decimal
+    as_of: ConfiguredDate
+    total_inr: ConfiguredDecimal
     is_provisional: bool = False
-    navs_as_of: date | None = None
+    navs_as_of: ConfiguredDate | None = None
     navs_stale: bool = False
     holdings_count: int = 0
     integrity_unit_count: int = 0
@@ -201,8 +199,8 @@ class PortfolioSummary(FoliomanBaseModel):
     snapshot_count: int = 0
     stale_count: int = 0
     unpriced_fund_count: int = 0
-    last_import_at: datetime | None = None
-    day_change_inr: Decimal | None = None
+    last_import_at: ConfiguredDatetime | None = None
+    day_change_inr: ConfiguredDecimal | None = None
     xirr: float | None = None
     period_returns: list[PeriodReturn] = Field(default_factory=list)
     asset_mix: list[AssetMixRow] = Field(default_factory=list)
@@ -215,9 +213,9 @@ class PortfolioSummary(FoliomanBaseModel):
 class ValueSeriesPoint(FoliomanBaseModel):
     """Single date point in net worth valuation series."""
 
-    date: date
-    value_inr: Decimal
-    invested_inr: Decimal
+    date: ConfiguredDate
+    value_inr: ConfiguredDecimal
+    invested_inr: ConfiguredDecimal
     stale: bool = False
 
 
@@ -226,8 +224,8 @@ class ValueSeries(FoliomanBaseModel):
 
     investor_id: int | None = None
     family_id: int | None = None
-    start: date
-    end: date
+    start: ConfiguredDate
+    end: ConfiguredDate
     granularity: str
     points: list[ValueSeriesPoint] = Field(default_factory=list)
 
@@ -238,8 +236,8 @@ class ValuationStatus(FoliomanBaseModel):
     investor_id: int | None = None
     family_id: int | None = None
     status: str
-    computed_through: date | None = None
-    recompute_from: date | None = None
+    computed_through: ConfiguredDate | None = None
+    recompute_from: ConfiguredDate | None = None
     is_provisional: bool = False
 
 
@@ -250,13 +248,13 @@ class CapitalGainRow(FoliomanBaseModel):
     security_id: int | None = None
     name: str
     isin: str = ""
-    units: Decimal
-    sale_value: Decimal
-    cost: Decimal
-    gain: Decimal
+    units: ConfiguredDecimal
+    sale_value: ConfiguredDecimal
+    cost: ConfiguredDecimal
+    gain: ConfiguredDecimal
     term: str
-    acquired_on: date
-    sold_on: date
+    acquired_on: ConfiguredDate
+    sold_on: ConfiguredDate
     grandfathering_unavailable: bool = False
 
 
@@ -264,8 +262,8 @@ class CapitalGainsReport(FoliomanBaseModel):
     """Realised capital gains report for a financial year (CapitalGainsOut)."""
 
     fy: str
-    stcg_total: Decimal
-    ltcg_total: Decimal
+    stcg_total: ConfiguredDecimal
+    ltcg_total: ConfiguredDecimal
     rows: list[CapitalGainRow] = Field(default_factory=list)
     disclaimer: str = ""
 
@@ -274,5 +272,33 @@ class CapitalGainsFyPoint(FoliomanBaseModel):
     """Year-over-year capital gains summary point."""
 
     fy: str
-    stcg: Decimal
-    ltcg: Decimal
+    stcg: ConfiguredDecimal
+    ltcg: ConfiguredDecimal
+
+
+__all__ = [
+    "FoliomanBaseModel",
+    "TokenPair",
+    "AccessToken",
+    "Investor",
+    "InvestorDetail",
+    "Holding",
+    "SchemeRef",
+    "NavPoint",
+    "FolioBalance",
+    "Transaction",
+    "SchemeDetail",
+    "AssetMixRow",
+    "AllocationBucket",
+    "PeriodReturn",
+    "PortfolioSummary",
+    "ValueSeriesPoint",
+    "ValueSeries",
+    "ValuationStatus",
+    "CapitalGainRow",
+    "CapitalGainsReport",
+    "CapitalGainsFyPoint",
+    "ConfiguredDecimal",
+    "ConfiguredDate",
+    "ConfiguredDatetime",
+]

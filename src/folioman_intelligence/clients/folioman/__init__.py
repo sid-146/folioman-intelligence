@@ -14,6 +14,9 @@ from folioman_intelligence.clients.folioman.models import (
     CapitalGainRow,
     CapitalGainsFyPoint,
     CapitalGainsReport,
+    ConfiguredDate,
+    ConfiguredDatetime,
+    ConfiguredDecimal,
     FolioBalance,
     Holding,
     Investor,
@@ -54,4 +57,7 @@ __all__ = [
     "CapitalGainRow",
     "CapitalGainsReport",
     "CapitalGainsFyPoint",
+    "ConfiguredDecimal",
+    "ConfiguredDate",
+    "ConfiguredDatetime",
 ]
