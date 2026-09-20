@@ -2,9 +2,10 @@ import json
 
 from langchain.tools import tool
 
-from src.folioman_intelligence.analytics.portfolio import (
+from folioman_intelligence.analytics.portfolio import (
     analyze_portfolio,
     holding_details,
+    portfolio_risk_analyse,
 )
 
 
@@ -43,4 +44,21 @@ async def get_holding_details(investor_id: int, security_id: int):
     return json.loads(json.dumps(analysis, default=str))
 
 
-portfolio_tools = [get_portfolio_analysis, get_holding_details]
+@tool
+async def get_portfolio_risk_analyse(investor_id: int = 1):
+    """Get the latest calculated Risk analysis.
+    Returns deterministic metrics such as:
+        - Top 3 Holding by invested
+        - Asset Allocation
+        - 3 Months Volatility
+        - Sector Exposure
+    """
+    analysis = await portfolio_risk_analyse(investor_id)
+    return json.loads(json.dumps(analysis, default=str))
+
+
+portfolio_tools = [
+    get_portfolio_analysis,
+    get_holding_details,
+    get_portfolio_risk_analyse,
+]

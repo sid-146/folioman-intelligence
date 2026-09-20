@@ -30,10 +30,10 @@ async def get_isin(investor_id: int, security_id: int):
 async def get_top_holdings_by_invested(investor_id: int, k: int = 3):
     repo = PortfolioRepository()
     portfolio = await repo.get_portfolio(investor_id)
-    holdings = [(-h.invested_inr, h) for h in portfolio.holdings if h.invested_inr]
-    heapq.heapify(holdings)
+    holdings = [h for h in portfolio.holdings if h.invested_inr is not None]
+    holdings = sorted(holdings, key=lambda h: (h.invested_inr or 0), reverse=True)[:k]
     selected: List[Dict[str, Any]] = []
-    for _, i in holdings[:k]:
+    for i in holdings:
         isin = await get_isin(investor_id, i.security_id)
         selected.append(
             {
@@ -52,20 +52,20 @@ async def get_top_holdings_by_invested(investor_id: int, k: int = 3):
 async def get_top_holdings_by_returns(investor_id: int, k: int = 3):
     repo = PortfolioRepository()
     portfolio = await repo.get_portfolio(investor_id)
-    heap = [(-h.value_inr, h) for h in portfolio.holdings if h.value_inr]
-    heapq.heapify(heap)
-    selected = []
+    holdings = [h for h in portfolio.holdings if h.value_inr is not None]
+    top_holdings = sorted(holdings, key=lambda h: (h.value_inr or 0), reverse=True)[:k]
 
-    for _, i in heap[:k]:
-        isin = get_isin(investor_id, i.security_id)
+    selected = []
+    for h in top_holdings:
+        isin = await get_isin(investor_id, h.security_id)
         selected.append(
             {
-                "name": i.name,
+                "name": h.name,
                 "isin": isin,
-                "security_id": i.security_id,
-                "xirr": i.xirr,
-                "current_value": i.value_inr,
-                "return_percent": (i.return_pct if i.return_pct else 0) * 100,
+                "security_id": h.security_id,
+                "xirr": h.xirr,
+                "current_value": h.value_inr,
+                "return_percent": (h.return_pct or 0) * 100,
             }
         )
 
@@ -84,10 +84,10 @@ async def get_asset_allocation(investor_id: int):
 
     asset_categories = {}
     for _, cache in mappings.items():
-        if cache.fund_type and cache.fund_type.lower() in asset_categories:
-            asset_categories[cache.fund_type] = asset_categories[cache.fund_type] + 1
-        else:
-            asset_categories[cache.fund_type] = 1
+        if cache.fund_type:
+            current = asset_categories.get(cache.fund_type, 0)
+            asset_categories[cache.fund_type] = current + 1
+
     total = sum(list(asset_categories.values()))
     for cat, cat_total in asset_categories.items():
         asset_categories[cat] = (cat_total / total) * 100
@@ -104,18 +104,17 @@ async def get_sector_exposure(investor_id: int):
     isins = await asyncio.gather(*tasks)
     mappings = await ticker.mf.get_cached_by_isin_batch(isins)
 
-    asset_categories = {}
+    exposure_cats = {}
     for _, cache in mappings.items():
-        if cache.sector and cache.sector.lower() in asset_categories:
-            asset_categories[cache.sector] = asset_categories[cache.sector] + 1
-        else:
-            asset_categories[cache.sector] = 1
+        if cache.sector:
+            current = exposure_cats.get(cache.sector, 0)
+            exposure_cats[cache.sector] = current + 1
 
-    total = sum(list(asset_categories.values()))
-    for cat, cat_total in asset_categories.items():
-        asset_categories[cat] = (cat_total / total) * 100
+    total = sum(list(exposure_cats.values()))
+    for cat, cat_total in exposure_cats.items():
+        exposure_cats[cat] = (cat_total / total) * 100
 
-    return asset_categories
+    return exposure_cats
 
 
 # TODO: Write test for this
@@ -125,10 +124,13 @@ async def get_portfolio_volatility(investor_id: int, days=90):
     to_date = datetime.today().date()
     from_date = to_date - timedelta(days=days)
 
+    print(from_date, to_date)
+
     monthly_volatility = await folioman.valuations.list(
         investor_id, from_date=from_date, to_date=to_date
     )
-    return monthly_volatility
+    points = [i.model_dump() for i in monthly_volatility.points]
+    return points
 
 
 # TODO: Write test for this
@@ -263,9 +265,7 @@ async def portfolio_risk_analyse(investor_id: int):
         "investor_id": investor_id,
         "top_3_holding_by_invested": top_3_by_invested,
         "asset_allocation": asset_allocation,
-        "three_months_volatility": [
-            i.model_dump(mode="json") for i in monthly_volatility.points
-        ],
+        "three_months_volatility": monthly_volatility,
         "sector_exposure": sector_exposure,
     }
     return obj

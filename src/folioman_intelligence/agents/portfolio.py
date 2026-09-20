@@ -6,8 +6,8 @@ import sys
 from deepagents import create_deep_agent
 from langchain_openai import ChatOpenAI
 
-from src.folioman_intelligence.config import llm_settings
-from src.folioman_intelligence.tools.portfolio import portfolio_tools
+from folioman_intelligence.config import llm_settings
+from folioman_intelligence.tools.portfolio import portfolio_tools
 
 # Ensure console supports UTF-8 characters (e.g. ₹ currency symbol) on Windows
 if hasattr(sys.stdout, "reconfigure"):

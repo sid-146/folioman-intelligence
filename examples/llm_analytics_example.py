@@ -1,4 +1,4 @@
-from src.folioman_intelligence.agents.portfolio import ask_portfolio_agent
+from folioman_intelligence.agents.portfolio import ask_portfolio_agent
 import asyncio
 import pprint
 
@@ -17,9 +17,14 @@ import pprint
 #     ask_portfolio_agent("""What are my biggest portfolio concentrations?""")
 # )
 
+# response = asyncio.run(
+#     ask_portfolio_agent(
+#         """I want you to evaluate each holding in detail and tell what are the red flags in my current folios?"""
+#     )
+# )
 response = asyncio.run(
     ask_portfolio_agent(
-        """I want you to evaluate each holding in detail and tell what are the red flags in my current folios?"""
+        """I want you to evaluate risk of the portfolio in detail and tell what are the red flags in my current portfolio?"""
     )
 )
 
