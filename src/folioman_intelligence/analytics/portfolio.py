@@ -1,6 +1,137 @@
-from src.folioman_intelligence.repository.portfolio import PortfolioRepository
+import asyncio
+import heapq
+import logging
+
+from typing import List, Dict, Any
+from datetime import datetime, timedelta
+
+from folioman_intelligence.repository.portfolio import PortfolioRepository
+from folioman_intelligence.clients.tickertape.client import TickerTapeClient
+from folioman_intelligence.clients.folioman.client import FoliomanClient
+from folioman_intelligence.clients.folioman.errors import FoliomanNotFoundError
+
+# TODO: Need optimization (too many db calls)
+# TODO: Add diversification
 
 
+logger = logging.getLogger(__name__)
+
+
+# TODO: Write test for this
+async def get_isin(investor_id: int, security_id: int):
+    repo = PortfolioRepository()
+    scheme = await repo.get_holding(investor_id, security_id)
+    if not scheme:
+        raise FoliomanNotFoundError("Scheme not found.")
+    return scheme.security.isin
+
+
+# TODO: Write test for this
+async def get_top_holdings_by_invested(investor_id: int, k: int = 3):
+    repo = PortfolioRepository()
+    portfolio = await repo.get_portfolio(investor_id)
+    holdings = [(-h.invested_inr, h) for h in portfolio.holdings if h.invested_inr]
+    heapq.heapify(holdings)
+    selected: List[Dict[str, Any]] = []
+    for _, i in holdings[:k]:
+        isin = await get_isin(investor_id, i.security_id)
+        selected.append(
+            {
+                "name": i.name,
+                "isin": isin,
+                "security_id": i.security_id,
+                "xirr": i.xirr,
+                "invested_amount": i.invested_inr,
+                "return_percent": (i.return_pct if i.return_pct else 0) * 100,
+            }
+        )
+    return selected
+
+
+# TODO: Write test for this
+async def get_top_holdings_by_returns(investor_id: int, k: int = 3):
+    repo = PortfolioRepository()
+    portfolio = await repo.get_portfolio(investor_id)
+    heap = [(-h.value_inr, h) for h in portfolio.holdings if h.value_inr]
+    heapq.heapify(heap)
+    selected = []
+
+    for _, i in heap[:k]:
+        isin = get_isin(investor_id, i.security_id)
+        selected.append(
+            {
+                "name": i.name,
+                "isin": isin,
+                "security_id": i.security_id,
+                "xirr": i.xirr,
+                "current_value": i.value_inr,
+                "return_percent": (i.return_pct if i.return_pct else 0) * 100,
+            }
+        )
+
+    return selected
+
+
+# TODO: Write test for this
+async def get_asset_allocation(investor_id: int):
+    repo = PortfolioRepository()
+    ticker = TickerTapeClient()
+    portfolio = await repo.get_portfolio(investor_id)
+    holdings = portfolio.holdings
+    tasks = [get_isin(investor_id, h.security_id) for h in holdings]
+    isins = await asyncio.gather(*tasks)
+    mappings = await ticker.mf.get_cached_by_isin_batch(isins)
+
+    asset_categories = {}
+    for _, cache in mappings.items():
+        if cache.fund_type and cache.fund_type.lower() in asset_categories:
+            asset_categories[cache.fund_type] = asset_categories[cache.fund_type] + 1
+        else:
+            asset_categories[cache.fund_type] = 1
+    total = sum(list(asset_categories.values()))
+    for cat, cat_total in asset_categories.items():
+        asset_categories[cat] = (cat_total / total) * 100
+    return asset_categories
+
+
+# TODO: Write test for this
+async def get_sector_exposure(investor_id: int):
+    repo = PortfolioRepository()
+    ticker = TickerTapeClient()
+    portfolio = await repo.get_portfolio(investor_id)
+    holdings = portfolio.holdings
+    tasks = [get_isin(investor_id, h.security_id) for h in holdings]
+    isins = await asyncio.gather(*tasks)
+    mappings = await ticker.mf.get_cached_by_isin_batch(isins)
+
+    asset_categories = {}
+    for _, cache in mappings.items():
+        if cache.sector and cache.sector.lower() in asset_categories:
+            asset_categories[cache.sector] = asset_categories[cache.sector] + 1
+        else:
+            asset_categories[cache.sector] = 1
+
+    total = sum(list(asset_categories.values()))
+    for cat, cat_total in asset_categories.items():
+        asset_categories[cat] = (cat_total / total) * 100
+
+    return asset_categories
+
+
+# TODO: Write test for this
+async def get_portfolio_volatility(investor_id: int, days=90):
+    folioman = FoliomanClient()
+
+    to_date = datetime.today().date()
+    from_date = to_date - timedelta(days=days)
+
+    monthly_volatility = await folioman.valuations.list(
+        investor_id, from_date=from_date, to_date=to_date
+    )
+    return monthly_volatility
+
+
+# TODO: Write test for this
 async def analyze_portfolio(investor_id: int):
     repo = PortfolioRepository()
     portfolio = await repo.get_portfolio(investor_id)
@@ -61,6 +192,8 @@ async def analyze_portfolio(investor_id: int):
     return analysis
 
 
+# Todo: Figure out this should be moved inside the analyze_portfolio?
+# This should be called before the fund tools call
 async def holding_details(investor_id: int, security_id: int):
     repo = PortfolioRepository()
     holding = await repo.get_holding(investor_id, security_id)
@@ -97,3 +230,42 @@ async def holding_details(investor_id: int, security_id: int):
         "count_buy_transaction": len(buy_transactions),
     }
     return analytics
+
+
+# TODO: Write test for this
+async def portfolio_risk_analyse(investor_id: int):
+    ticker = TickerTapeClient()
+
+    # Top 3 holdings by invested amount
+    top_3_by_invested = await get_top_holdings_by_invested(investor_id, k=3)
+    for holding in top_3_by_invested:
+        mapping = await ticker.mf.get_cached_by_isin(holding["isin"])
+        if mapping:
+            holding["sector"] = (
+                mapping.sector if mapping.sector is None else "Not Available"
+            )
+            holding["subsector"] = (
+                mapping.subsector if mapping.subsector else "Not Available"
+            )
+            holding["risk_level"] = mapping.risk_level
+            holding["fund_type"] = mapping.fund_type
+
+    # Asset Allocation
+    asset_allocation = await get_asset_allocation(investor_id)
+
+    # Sector exposure
+    sector_exposure = await get_sector_exposure(investor_id)
+
+    # Portfolio Volatility from 90 days
+    monthly_volatility = await get_portfolio_volatility(investor_id, days=90)
+
+    obj = {
+        "investor_id": investor_id,
+        "top_3_holding_by_invested": top_3_by_invested,
+        "asset_allocation": asset_allocation,
+        "three_months_volatility": [
+            i.model_dump(mode="json") for i in monthly_volatility.points
+        ],
+        "sector_exposure": sector_exposure,
+    }
+    return obj
