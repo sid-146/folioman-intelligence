@@ -147,6 +147,26 @@ async def analyze_portfolio(investor_id: int):
         }
         for pr in portfolio.period_returns
     ]
+    holdings = [
+        {
+            "security_id": holding.security_id,
+            "name": holding.name,
+            "category": holding.category,
+            "units": holding.units,
+            "value_inr": holding.value_inr,
+            "invested_inr": holding.invested_inr,
+            "return_pct": holding.return_pct * 100 if holding.return_pct else None,
+            "contribution_to_portfolio (invested_inr / total_invested)": (
+                holding.invested_inr / total_invested
+                if holding.invested_inr and total_invested
+                else 0
+            )
+            * 100,
+            "xirr": holding.xirr * 100 if holding.xirr else 0,
+        }
+        for holding in portfolio.holdings
+    ]
+
     top_3_holding = sorted(
         portfolio.holdings, key=lambda x: x.invested_inr or 0, reverse=True
     )[:3]
@@ -163,6 +183,7 @@ async def analyze_portfolio(investor_id: int):
         "category_mix": [
             category.model_dump(mode="json") for category in portfolio.category_mix
         ],
+        "all_holdings": holdings,
         "xirr": portfolio.xirr,
         "period_returns": period_returns,
         "allocation": allocation,
