@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import logging
-from typing import Any, Callable, Optional
+from typing import Any, Callable, Optional, List, Dict
 
 from folioman_intelligence.clients.tickertape.lookup.indexer import ISINIndexer
 from folioman_intelligence.clients.tickertape.lookup.models import ISINMapping
@@ -169,3 +169,26 @@ class MutualFundsResource(_BaseResource):
             limit=limit,
             progress_callback=progress_callback,
         )
+
+    async def get_cached_by_isin(self, isin: str) -> ISINMapping | None:
+        """
+        Get table record by isin.
+
+        Args:
+            isin (str): Unique Identifier of scheme.
+
+        Returns:
+            ISINMapping: ISINMapping Object (Table Record)
+        """
+        mapping = await self._resolver.resolve(isin=isin)
+        if not mapping:
+            return None
+        return mapping
+
+    async def get_cached_by_isin_batch(
+        self, isins: List[str]
+    ) -> Dict[str, ISINMapping]:
+        mappings = self.lookup.get_batch(isins)
+        if not mappings:
+            return {}
+        return mappings

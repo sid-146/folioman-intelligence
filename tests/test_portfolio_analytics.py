@@ -23,11 +23,31 @@ def sample_portfolio_data():
         "xirr": 15.0,
         "period_returns": [],
         "holdings": [
-            {"name": "Fund Alpha", "invested_inr": Decimal("50000.00"), "value_inr": Decimal("60000.00")},
-            {"name": "Fund Beta", "invested_inr": Decimal("10000.00"), "value_inr": Decimal("12000.00")},
-            {"name": "Fund Gamma", "invested_inr": Decimal("80000.00"), "value_inr": Decimal("95000.00")},
-            {"name": "Fund Delta", "invested_inr": Decimal("25000.00"), "value_inr": Decimal("30000.00")},
-            {"name": "Fund Epsilon", "invested_inr": Decimal("100000.00"), "value_inr": Decimal("120000.00")},
+            {
+                "name": "Fund Alpha",
+                "invested_inr": Decimal("50000.00"),
+                "value_inr": Decimal("60000.00"),
+            },
+            {
+                "name": "Fund Beta",
+                "invested_inr": Decimal("10000.00"),
+                "value_inr": Decimal("12000.00"),
+            },
+            {
+                "name": "Fund Gamma",
+                "invested_inr": Decimal("80000.00"),
+                "value_inr": Decimal("95000.00"),
+            },
+            {
+                "name": "Fund Delta",
+                "invested_inr": Decimal("25000.00"),
+                "value_inr": Decimal("30000.00"),
+            },
+            {
+                "name": "Fund Epsilon",
+                "invested_inr": Decimal("100000.00"),
+                "value_inr": Decimal("120000.00"),
+            },
         ],
     }
 

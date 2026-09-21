@@ -16,8 +16,8 @@ from typing import Any
 from deepagents import create_deep_agent
 from langchain_openai import ChatOpenAI
 
-from src.folioman_intelligence.config import llm_settings
-from src.folioman_intelligence.tools.fund import fund_tools
+from folioman_intelligence.config import llm_settings
+from folioman_intelligence.tools.fund import fund_tools
 
 logger = logging.getLogger(__name__)
 

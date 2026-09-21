@@ -15,6 +15,15 @@ from folioman_intelligence.clients.tickertape import (
     TickerTapeParseError,
 )
 from folioman_intelligence.config import FoliomanSettings, settings
+from folioman_intelligence.types import (
+    ConfiguredDate,
+    ConfiguredDatetime,
+    ConfiguredDecimal,
+    ConfiguredPath,
+    ConfiguredTime,
+    ConfiguredTimedelta,
+    ConfiguredUUID,
+)
 
 __all__ = [
     "FoliomanClient",
@@ -29,4 +38,11 @@ __all__ = [
     "TickerTapeParseError",
     "FoliomanSettings",
     "settings",
+    "ConfiguredDecimal",
+    "ConfiguredDate",
+    "ConfiguredDatetime",
+    "ConfiguredTime",
+    "ConfiguredTimedelta",
+    "ConfiguredUUID",
+    "ConfiguredPath",
 ]
