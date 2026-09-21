@@ -147,32 +147,13 @@ async def analyze_portfolio(investor_id: int):
         }
         for pr in portfolio.period_returns
     ]
-    holdings = [
-        {
-            "security_id": holding.security_id,
-            "name": holding.name,
-            "category": holding.category,
-            "units": holding.units,
-            "value_inr": holding.value_inr,
-            "invested_inr": holding.invested_inr,
-            "return_pct": holding.return_pct * 100 if holding.return_pct else None,
-            "contribution_to_portfolio (invested_inr / total_invested)": (
-                holding.invested_inr / total_invested
-                if holding.invested_inr and total_invested
-                else 0
-            )
-            * 100,
-            "xirr": holding.xirr * 100 if holding.xirr else 0,
-        }
-        for holding in portfolio.holdings
-    ]
-
     top_3_holding = sorted(
         portfolio.holdings, key=lambda x: x.invested_inr or 0, reverse=True
     )[:3]
     top_3_by_current = sorted(
         portfolio.holdings, key=lambda x: x.value_inr or 0, reverse=True
     )[:3]
+    allocation = await get_asset_allocation(investor_id)
     analysis = {
         "currency": "INR",
         "total_value": portfolio.total_inr,
@@ -184,7 +165,7 @@ async def analyze_portfolio(investor_id: int):
         ],
         "xirr": portfolio.xirr,
         "period_returns": period_returns,
-        "holdings": holdings,
+        "allocation": allocation,
         "top_3_by_invested": {i: t.name for i, t in enumerate(top_3_holding, start=1)},
         "top_3_by_current_value": {
             i: t.name for i, t in enumerate(top_3_by_current, start=1)

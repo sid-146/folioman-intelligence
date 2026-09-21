@@ -22,9 +22,22 @@ import pprint
 #         """I want you to evaluate each holding in detail and tell what are the red flags in my current folios?"""
 #     )
 # )
+
+# response = asyncio.run(
+#     ask_portfolio_agent(
+#         """I want you to evaluate risk of the portfolio in detail and tell what are the red flags in my current portfolio?"""
+#     )
+# )
+
+# response = asyncio.run(ask_portfolio_agent("""Analyse my portfolio."""))
+
+# response = asyncio.run(
+#     ask_portfolio_agent("""What are the biggest risk in my portfolio.""")
+# )
+# response = asyncio.run(ask_portfolio_agent("""Why is my portfolio concentrated?"""))
 response = asyncio.run(
     ask_portfolio_agent(
-        """I want you to evaluate risk of the portfolio in detail and tell what are the red flags in my current portfolio?"""
+        """What are top funds from my portfolio and what are sector distribution of these funds."""
     )
 )
 
