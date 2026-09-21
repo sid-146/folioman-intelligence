@@ -12,7 +12,7 @@ from datetime import datetime, timezone
 import statistics
 from typing import Any, Optional
 
-from src.folioman_intelligence.repository.fund import MutualFundRepository
+from folioman_intelligence.repository.fund import MutualFundRepository
 
 
 async def _resolve_fund_data(
