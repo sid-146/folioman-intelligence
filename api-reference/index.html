@@ -1,0 +1,2454 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Intelligence, portfolio analytics, and AI reasoning service for Folioman">
+      
+      
+        <meta name="author" content="Sudhanwa Kaveeshwar">
+      
+      
+        <link rel="canonical" href="https://sid-146.github.io/folioman-intelligence/api-reference/">
+      
+      
+        <link rel="prev" href="../tools-and-agents/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>API Reference - Folioman Intelligence</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#api-reference" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Folioman Intelligence" class="md-header__button md-logo" aria-label="Folioman Intelligence" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Folioman Intelligence
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              API Reference
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/sid-146/folioman-intelligence" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    sid-146/folioman-intelligence
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../getting-started/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Getting Started
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../architecture/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Architecture
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../folioman-client/" class="md-tabs__link">
+          
+  
+  
+  Client Guides
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../repositories/" class="md-tabs__link">
+          
+  
+  
+  Core Modules
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  
+  Reference
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Folioman Intelligence" class="md-nav__button md-logo" aria-label="Folioman Intelligence" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Folioman Intelligence
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/sid-146/folioman-intelligence" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    sid-146/folioman-intelligence
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Client Guides
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Client Guides
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../folioman-client/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Folioman Client
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tickertape-client/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TickerTape Client
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Core Modules
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Core Modules
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../repositories/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Repositories
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../analytics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Financial Analytics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tools-and-agents/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tools & Agents
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-configuration-folioman_intelligenceconfig" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Configuration (folioman_intelligence.config)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Configuration (folioman_intelligence.config)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#foliomansettings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FoliomanSettings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#llmsettings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LLMSettings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#global-instances" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Global Instances
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-folioman-client-folioman_client" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Folioman Client (folioman_client)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Folioman Client (folioman_client)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#foliomanclient" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FoliomanClient
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="FoliomanClient">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#constructor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Constructor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#class-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Class Methods
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#core-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Methods
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resource-attributes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resource Attributes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resource-classes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resource Classes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Resource Classes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#investorsresource" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        InvestorsResource
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#portfolioresource" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PortfolioResource
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#holdingsresource" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        HoldingsResource
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transactionsresource" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TransactionsResource
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#valuationsresource" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ValuationsResource
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#capitalgainsresource" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CapitalGainsResource
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authentication-manager-jwtauthmanager" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authentication Manager (JWTAuthManager)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#folioman-data-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Folioman Data Models
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#folioman-exceptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Folioman Exceptions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-tickertape-client-tickertape" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. TickerTape Client (tickertape)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. TickerTape Client (tickertape)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tickertapeclient" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TickerTapeClient
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="TickerTapeClient">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#constructor_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Constructor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#core-methods_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Methods
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resource-attributes_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resource Attributes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resource-classes_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resource Classes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Resource Classes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sitemapresource" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SitemapResource
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mutualfundsresource" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MutualFundsResource
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lookup-storage-classes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lookup &amp; Storage Classes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Lookup &amp; Storage Classes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#isinlookuptable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ISINLookupTable
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#isinresolver" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ISINResolver
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#isinindexer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ISINIndexer
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tickertape-data-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TickerTape Data Models
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tickertape-exceptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TickerTape Exceptions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-repositories-folioman_intelligencerepository" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Repositories (folioman_intelligence.repository)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Repositories (folioman_intelligence.repository)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mutualfundrepository" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MutualFundRepository
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#portfoliorepository" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PortfolioRepository
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-analytics-functions-folioman_intelligenceanalytics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Analytics Functions (folioman_intelligence.analytics)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Analytics Functions (folioman_intelligence.analytics)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fund-analytics-analyticsfund" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fund Analytics (analytics.fund)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#portfolio-analytics-analyticsportfolio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Portfolio Analytics (analytics.portfolio)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-langchain-tools-folioman_intelligencetools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. LangChain Tools (folioman_intelligence.tools)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. LangChain Tools (folioman_intelligence.tools)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fund-tools-toolsfund" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fund Tools (tools.fund)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#portfolio-tools-toolsportfolio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Portfolio Tools (tools.portfolio)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-autonomous-ai-agents-folioman_intelligenceagents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Autonomous AI Agents (folioman_intelligence.agents)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Autonomous AI Agents (folioman_intelligence.agents)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#funds-analyst-agent-agentsfund" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Funds Analyst Agent (agents.fund)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#portfolio-advisor-agent-agentsportfolio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Portfolio Advisor Agent (agents.portfolio)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-configuration-folioman_intelligenceconfig" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Configuration (folioman_intelligence.config)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Configuration (folioman_intelligence.config)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#foliomansettings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FoliomanSettings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#llmsettings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LLMSettings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#global-instances" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Global Instances
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-folioman-client-folioman_client" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Folioman Client (folioman_client)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Folioman Client (folioman_client)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#foliomanclient" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FoliomanClient
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="FoliomanClient">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#constructor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Constructor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#class-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Class Methods
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#core-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Methods
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resource-attributes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resource Attributes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resource-classes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resource Classes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Resource Classes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#investorsresource" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        InvestorsResource
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#portfolioresource" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PortfolioResource
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#holdingsresource" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        HoldingsResource
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transactionsresource" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TransactionsResource
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#valuationsresource" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ValuationsResource
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#capitalgainsresource" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CapitalGainsResource
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authentication-manager-jwtauthmanager" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authentication Manager (JWTAuthManager)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#folioman-data-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Folioman Data Models
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#folioman-exceptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Folioman Exceptions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-tickertape-client-tickertape" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. TickerTape Client (tickertape)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. TickerTape Client (tickertape)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tickertapeclient" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TickerTapeClient
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="TickerTapeClient">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#constructor_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Constructor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#core-methods_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Methods
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resource-attributes_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resource Attributes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resource-classes_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resource Classes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Resource Classes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sitemapresource" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SitemapResource
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mutualfundsresource" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MutualFundsResource
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lookup-storage-classes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lookup &amp; Storage Classes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Lookup &amp; Storage Classes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#isinlookuptable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ISINLookupTable
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#isinresolver" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ISINResolver
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#isinindexer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ISINIndexer
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tickertape-data-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TickerTape Data Models
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tickertape-exceptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TickerTape Exceptions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-repositories-folioman_intelligencerepository" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Repositories (folioman_intelligence.repository)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Repositories (folioman_intelligence.repository)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mutualfundrepository" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MutualFundRepository
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#portfoliorepository" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PortfolioRepository
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-analytics-functions-folioman_intelligenceanalytics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Analytics Functions (folioman_intelligence.analytics)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Analytics Functions (folioman_intelligence.analytics)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fund-analytics-analyticsfund" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fund Analytics (analytics.fund)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#portfolio-analytics-analyticsportfolio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Portfolio Analytics (analytics.portfolio)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-langchain-tools-folioman_intelligencetools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. LangChain Tools (folioman_intelligence.tools)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. LangChain Tools (folioman_intelligence.tools)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fund-tools-toolsfund" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fund Tools (tools.fund)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#portfolio-tools-toolsportfolio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Portfolio Tools (tools.portfolio)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-autonomous-ai-agents-folioman_intelligenceagents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Autonomous AI Agents (folioman_intelligence.agents)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Autonomous AI Agents (folioman_intelligence.agents)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#funds-analyst-agent-agentsfund" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Funds Analyst Agent (agents.fund)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#portfolio-advisor-agent-agentsportfolio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Portfolio Advisor Agent (agents.portfolio)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="api-reference">API Reference<a class="headerlink" href="#api-reference" title="Permanent link">&para;</a></h1>
+<p>Complete technical reference for all public classes, methods, models, functions, attributes, and exceptions in <code>folioman-intelligence</code>.</p>
+<hr />
+<h2 id="1-configuration-folioman_intelligenceconfig">1. Configuration (<code>folioman_intelligence.config</code>)<a class="headerlink" href="#1-configuration-folioman_intelligenceconfig" title="Permanent link">&para;</a></h2>
+<h3 id="foliomansettings"><code>FoliomanSettings</code><a class="headerlink" href="#foliomansettings" title="Permanent link">&para;</a></h3>
+<p>Configuration model for the Folioman client, backed by environment variables with the <code>FOLIOMAN_</code> prefix.</p>
+<ul>
+<li><strong>Attributes</strong>:<ul>
+<li><code>base_url</code> (<em>str</em>): Folioman REST API base URL. Default: <code>"http://localhost:8000"</code>.</li>
+<li><code>username</code> (<em>str</em>): Username for authentication. Default: <code>""</code>.</li>
+<li><code>password</code> (<em>str</em>): Password for authentication. Default: <code>""</code>.</li>
+<li><code>timeout</code> (<em>float</em>): Request timeout in seconds. Default: <code>30.0</code>.</li>
+</ul>
+</li>
+<li><strong>Properties</strong>:<ul>
+<li><code>folioman_url</code> (<em>str</em>): Alias for <code>base_url</code>.</li>
+<li><code>folioman_username</code> (<em>str</em>): Alias for <code>username</code>.</li>
+<li><code>folioman_password</code> (<em>str</em>): Alias for <code>password</code>.</li>
+</ul>
+</li>
+</ul>
+<h3 id="llmsettings"><code>LLMSettings</code><a class="headerlink" href="#llmsettings" title="Permanent link">&para;</a></h3>
+<p>Configuration model for AI agents, backed by environment variables with the <code>LLM_</code> prefix.</p>
+<ul>
+<li><strong>Attributes</strong>:<ul>
+<li><code>MODEL_NAME</code> (<em>str</em>): LLM model identifier. Default: <code>"gpt-4"</code>.</li>
+<li><code>temperature</code> (<em>float</em>): Sampling temperature. Default: <code>0.7</code>.</li>
+<li><code>max_tokens</code> (<em>int</em>): Maximum generation token length. Default: <code>2048</code>.</li>
+<li><code>api_key</code> (<em>SecretStr | None</em>): API key for OpenAI or OpenAI-compatible endpoint.</li>
+</ul>
+</li>
+</ul>
+<h3 id="global-instances">Global Instances<a class="headerlink" href="#global-instances" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>settings</code>: Default pre-instantiated <code>FoliomanSettings()</code> instance.</li>
+<li><code>llm_settings</code>: Default pre-instantiated <code>LLMSettings()</code> instance.</li>
+</ul>
+<hr />
+<h2 id="2-folioman-client-folioman_client">2. Folioman Client (<code>folioman_client</code>)<a class="headerlink" href="#2-folioman-client-folioman_client" title="Permanent link">&para;</a></h2>
+<h3 id="foliomanclient"><code>FoliomanClient</code><a class="headerlink" href="#foliomanclient" title="Permanent link">&para;</a></h3>
+<p>Primary async client for the Folioman REST API.</p>
+<h4 id="constructor">Constructor<a class="headerlink" href="#constructor" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">FoliomanClient</span><span class="p">(</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">base_url</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="n">username</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="n">password</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="n">timeout</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">30.0</span><span class="p">,</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="n">http_client</span><span class="p">:</span> <span class="n">httpx</span><span class="o">.</span><span class="n">AsyncClient</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="p">)</span>
+</code></pre></div>
+<h4 id="class-methods">Class Methods<a class="headerlink" href="#class-methods" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>from_settings(settings: FoliomanSettings) -&gt; FoliomanClient</code>: Creates client from a settings object.</li>
+<li><code>from_env() -&gt; FoliomanClient</code>: Creates client using environment variables.</li>
+</ul>
+<h4 id="core-methods">Core Methods<a class="headerlink" href="#core-methods" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>async request(method: str, path: str, *, params=None, json=None, headers=None, **kwargs) -&gt; Any</code>: Executes authenticated request with auto-refresh and 401 retry.</li>
+<li><code>async close() -&gt; None</code>: Closes the underlying HTTP client transport.</li>
+</ul>
+<h4 id="resource-attributes">Resource Attributes<a class="headerlink" href="#resource-attributes" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>investors: InvestorsResource</code></li>
+<li><code>portfolio: PortfolioResource</code></li>
+<li><code>holdings: HoldingsResource</code></li>
+<li><code>transactions: TransactionsResource</code></li>
+<li><code>valuations: ValuationsResource</code></li>
+<li><code>capital_gains: CapitalGainsResource</code></li>
+</ul>
+<hr />
+<h3 id="resource-classes">Resource Classes<a class="headerlink" href="#resource-classes" title="Permanent link">&para;</a></h3>
+<h4 id="investorsresource"><code>InvestorsResource</code><a class="headerlink" href="#investorsresource" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>async list(*, family_id: int | None = None, unaffiliated: bool = False) -&gt; list[Investor]</code></li>
+<li><code>async get(investor_id: int) -&gt; InvestorDetail</code></li>
+</ul>
+<h4 id="portfolioresource"><code>PortfolioResource</code><a class="headerlink" href="#portfolioresource" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>async get(investor_id: int, *, as_of: date | str | None = None) -&gt; PortfolioSummary</code></li>
+</ul>
+<h4 id="holdingsresource"><code>HoldingsResource</code><a class="headerlink" href="#holdingsresource" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>async list(investor_id: int, *, as_of: date | str | None = None) -&gt; list[Holding]</code></li>
+<li><code>async get(investor_id: int, security_id: int, *, as_of: date | str | None = None) -&gt; SchemeDetail</code></li>
+</ul>
+<h4 id="transactionsresource"><code>TransactionsResource</code><a class="headerlink" href="#transactionsresource" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>async list(investor_id: int) -&gt; list[Transaction]</code></li>
+</ul>
+<h4 id="valuationsresource"><code>ValuationsResource</code><a class="headerlink" href="#valuationsresource" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>async list(investor_id: int, *, from_date: date | str | None = None, to_date: date | str | None = None, granularity: Literal["daily", "weekly", "monthly"] = "monthly") -&gt; ValueSeries</code></li>
+<li><code>async status(investor_id: int) -&gt; ValuationStatus</code></li>
+</ul>
+<h4 id="capitalgainsresource"><code>CapitalGainsResource</code><a class="headerlink" href="#capitalgainsresource" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>async list(investor_id: int, *, include_unreconciled: bool = False) -&gt; list[CapitalGainsFyPoint]</code></li>
+<li><code>async get(investor_id: int, *, fy: str, include_unreconciled: bool = False) -&gt; CapitalGainsReport</code></li>
+</ul>
+<hr />
+<h3 id="authentication-manager-jwtauthmanager">Authentication Manager (<code>JWTAuthManager</code>)<a class="headerlink" href="#authentication-manager-jwtauthmanager" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>has_tokens: bool</code>: True if manager holds access or refresh tokens.</li>
+<li><code>clear() -&gt; None</code>: Clears cached tokens.</li>
+<li><code>async get_valid_token(client: httpx.AsyncClient) -&gt; str</code>: Returns valid token, refreshing proactively if within skew seconds.</li>
+<li><code>async force_refresh(client: httpx.AsyncClient) -&gt; str</code>: Forces token refresh or re-authentication after receiving 401.</li>
+</ul>
+<hr />
+<h3 id="folioman-data-models">Folioman Data Models<a class="headerlink" href="#folioman-data-models" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>Investor</code>: <code>id</code>, <code>name</code>, <code>email</code>, <code>is_huf</code>, <code>relation</code>, <code>family_id</code>, <code>has_pan</code>, <code>pan_locked</code>, <code>created_at</code>, <code>updated_at</code>.</li>
+<li><code>InvestorDetail</code>: Inherits <code>Investor</code>; adds <code>pan_masked</code>.</li>
+<li><code>Holding</code>: <code>security_id</code>, <code>name</code>, <code>security_type</code>, <code>symbol</code>, <code>amc</code>, <code>category</code>, <code>units</code>, <code>value_inr</code>, <code>invested_inr</code>, <code>latest_nav</code>, <code>return_pct</code>, <code>xirr</code>, <code>day_change_inr</code>, <code>day_change_pct</code>.</li>
+<li><code>SchemeRef</code>: <code>id</code>, <code>name</code>, <code>isin</code>, <code>symbol</code>, <code>security_type</code>, <code>amfi_code</code>, <code>amc</code>, <code>category</code>.</li>
+<li><code>NavPoint</code>: <code>date</code>, <code>nav</code>.</li>
+<li><code>FolioBalance</code>: <code>number</code>, <code>broker</code>, <code>folio_type</code>, <code>units</code>, <code>value_inr</code>.</li>
+<li><code>Transaction</code>: <code>id</code>, <code>investor_id</code>, <code>security_id</code>, <code>folio_id</code>, <code>date</code>, <code>transaction_type</code>, <code>units</code>, <code>nav_or_price</code>, <code>amount</code>, <code>fees</code>, <code>stamp_duty</code>, <code>brokerage</code>, <code>currency</code>, <code>source</code>, <code>narration</code>, <code>cost_basis_complete</code>.</li>
+<li><code>SchemeDetail</code>: <code>security</code>, <code>as_of</code>, <code>units</code>, <code>value_inr</code>, <code>invested_inr</code>, <code>return_pct</code>, <code>xirr</code>, <code>xirr_status</code>, <code>day_change_inr</code>, <code>day_change_pct</code>, <code>latest_nav</code>, <code>latest_nav_date</code>, <code>folios</code>, <code>nav_history</code>, <code>transactions</code>.</li>
+<li><code>AssetMixRow</code>: <code>security_type</code>, <code>value_inr</code>.</li>
+<li><code>AllocationBucket</code>: <code>label</code>, <code>value_inr</code>.</li>
+<li><code>PeriodReturn</code>: <code>period</code>, <code>annualized</code>, <code>absolute</code>, <code>days</code>.</li>
+<li><code>PortfolioSummary</code>: <code>investor_id</code>, <code>as_of</code>, <code>total_inr</code>, <code>is_provisional</code>, <code>navs_as_of</code>, <code>holdings_count</code>, <code>xirr</code>, <code>period_returns</code>, <code>asset_mix</code>, <code>amc_mix</code>, <code>category_mix</code>, <code>holdings</code>.</li>
+<li><code>ValueSeriesPoint</code>: <code>date</code>, <code>value_inr</code>, <code>invested_inr</code>, <code>stale</code>.</li>
+<li><code>ValueSeries</code>: <code>investor_id</code>, <code>family_id</code>, <code>start</code>, <code>end</code>, <code>granularity</code>, <code>points</code>.</li>
+<li><code>ValuationStatus</code>: <code>investor_id</code>, <code>status</code>, <code>computed_through</code>, <code>recompute_from</code>, <code>is_provisional</code>.</li>
+<li><code>CapitalGainRow</code>: <code>security_id</code>, <code>name</code>, <code>isin</code>, <code>units</code>, <code>sale_value</code>, <code>cost</code>, <code>gain</code>, <code>term</code>, <code>acquired_on</code>, <code>sold_on</code>.</li>
+<li><code>CapitalGainsReport</code>: <code>fy</code>, <code>stcg_total</code>, <code>ltcg_total</code>, <code>rows</code>, <code>disclaimer</code>.</li>
+<li><code>CapitalGainsFyPoint</code>: <code>fy</code>, <code>stcg</code>, <code>ltcg</code>.</li>
+</ul>
+<hr />
+<h3 id="folioman-exceptions">Folioman Exceptions<a class="headerlink" href="#folioman-exceptions" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>FoliomanError</code>: Base exception for all client errors.</li>
+<li><code>FoliomanAuthError</code>: Authentication or token refresh failure.</li>
+<li><code>FoliomanNotFoundError</code>: Resource not found (HTTP 404).</li>
+<li><code>FoliomanAPIError</code>: HTTP 4xx/5xx API error. Contains <code>status_code</code> and <code>response_data</code>.</li>
+</ul>
+<hr />
+<h2 id="3-tickertape-client-tickertape">3. TickerTape Client (<code>tickertape</code>)<a class="headerlink" href="#3-tickertape-client-tickertape" title="Permanent link">&para;</a></h2>
+<h3 id="tickertapeclient"><code>TickerTapeClient</code><a class="headerlink" href="#tickertapeclient" title="Permanent link">&para;</a></h3>
+<p>Primary async client for TickerTape web scraping, sitemaps, and mutual fund data.</p>
+<h4 id="constructor_1">Constructor<a class="headerlink" href="#constructor_1" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">TickerTapeClient</span><span class="p">(</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="n">base_url</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"https://www.tickertape.in"</span><span class="p">,</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    <span class="n">timeout</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">30.0</span><span class="p">,</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    <span class="n">cache_dir</span><span class="p">:</span> <span class="n">Path</span> <span class="o">|</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">".cache/tickertape"</span><span class="p">,</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    <span class="n">http_client</span><span class="p">:</span> <span class="n">httpx</span><span class="o">.</span><span class="n">AsyncClient</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    <span class="n">headers</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    <span class="n">sitemap_urls</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="p">)</span>
+</code></pre></div>
+<h4 id="core-methods_1">Core Methods<a class="headerlink" href="#core-methods_1" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>async request(method: str, url_or_path: str, *, params=None, headers=None, **kwargs) -&gt; str</code>: Executes HTTP request and returns HTML text response.</li>
+<li><code>async close() -&gt; None</code>: Closes the HTTP client transport.</li>
+</ul>
+<h4 id="resource-attributes_1">Resource Attributes<a class="headerlink" href="#resource-attributes_1" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>sitemap: SitemapResource</code></li>
+<li><code>mf: MutualFundsResource</code></li>
+<li><code>cache_manager: SitemapCacheManager</code></li>
+</ul>
+<hr />
+<h3 id="resource-classes_1">Resource Classes<a class="headerlink" href="#resource-classes_1" title="Permanent link">&para;</a></h3>
+<h4 id="sitemapresource"><code>SitemapResource</code><a class="headerlink" href="#sitemapresource" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>async get(category: str = "mf", *, force_refresh: bool = False) -&gt; list[SitemapURL]</code></li>
+<li><code>async refresh(category: str = "mf") -&gt; list[SitemapURL]</code></li>
+<li><code>is_cached(category: str = "mf") -&gt; bool</code></li>
+<li><code>clear_cache(category: str | None = None) -&gt; None</code></li>
+</ul>
+<h4 id="mutualfundsresource"><code>MutualFundsResource</code><a class="headerlink" href="#mutualfundsresource" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>async get(slug_or_mfid: str) -&gt; MutualFundDetail</code></li>
+<li><code>async get_by_isin(isin: str, hint_name: str | None = None) -&gt; MutualFundDetail | None</code></li>
+<li><code>async get_isin(slug_or_mfid: str) -&gt; str | None</code></li>
+<li><code>async get_raw(slug_or_mfid: str) -&gt; dict[str, Any]</code></li>
+<li><code>get_peers(isin: str, match_plan: bool = True, match_option: bool = True, limit: int = 20) -&gt; list[ISINMapping]</code></li>
+<li><code>find_funds(*, sector=None, subsector=None, fund_type=None, plan=None, option=None, risk_level=None, benchmark=None, amc=None, limit=100) -&gt; list[ISINMapping]</code></li>
+<li><code>async build_isin_index(*, force_refresh: bool = False, concurrency: int = 5, delay: float = 0.5, limit: int | None = None, progress_callback=None) -&gt; int</code></li>
+<li>Attributes: <code>lookup: ISINLookupTable</code></li>
+</ul>
+<hr />
+<h3 id="lookup-storage-classes">Lookup &amp; Storage Classes<a class="headerlink" href="#lookup-storage-classes" title="Permanent link">&para;</a></h3>
+<h4 id="isinlookuptable"><code>ISINLookupTable</code><a class="headerlink" href="#isinlookuptable" title="Permanent link">&para;</a></h4>
+<p>SQLite-backed persistent lookup table for mutual funds (<code>isin_lookup.db</code>).</p>
+<ul>
+<li><code>get(isin: str) -&gt; ISINMapping | None</code></li>
+<li><code>get_batch(isins: list[str]) -&gt; dict[str, ISINMapping]</code></li>
+<li><code>get_by_record_id(record_id: str) -&gt; ISINMapping | None</code></li>
+<li><code>find_funds(...) -&gt; list[ISINMapping]</code></li>
+<li><code>get_peers(isin: str, match_plan=True, match_option=True, limit=20) -&gt; list[ISINMapping]</code></li>
+<li><code>get_all_record_ids() -&gt; set[str]</code></li>
+<li><code>get_all_isins() -&gt; set[str]</code></li>
+<li><code>upsert(mapping: ISINMapping) -&gt; None</code></li>
+<li><code>upsert_batch(mappings: list[ISINMapping]) -&gt; None</code></li>
+<li><code>count() -&gt; int</code></li>
+<li><code>all() -&gt; list[ISINMapping]</code></li>
+<li><code>clear() -&gt; None</code></li>
+<li><code>export_json(filepath: Path | str) -&gt; Path</code></li>
+<li><code>export_csv(filepath: Path | str) -&gt; Path</code></li>
+</ul>
+<h4 id="isinresolver"><code>ISINResolver</code><a class="headerlink" href="#isinresolver" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>async resolve(isin: str, hint_name: str | None = None, max_candidates: int = 3) -&gt; ISINMapping | None</code></li>
+</ul>
+<h4 id="isinindexer"><code>ISINIndexer</code><a class="headerlink" href="#isinindexer" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>async build_index(*, force_refresh=False, concurrency=5, delay=0.5, limit=None, progress_callback=None) -&gt; int</code></li>
+</ul>
+<hr />
+<h3 id="tickertape-data-models">TickerTape Data Models<a class="headerlink" href="#tickertape-data-models" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>SitemapURL</code>: <code>record_id</code>, <code>url</code>, <code>last_modified</code>, <code>change_frequency</code>, <code>priority</code>.</li>
+<li><code>MFScorecardItem</code>: <code>name</code>, <code>tag</code>, <code>colour</code>, <code>description</code>.</li>
+<li><code>MFSecurityInfo</code>: <code>mf_id</code>, <code>name</code>, <code>type</code>, <code>slug</code>, <code>amc</code>, <code>amc_code</code>, <code>nav_close</code>, <code>nav_ch_1d</code>, <code>option</code>, <code>sector</code>, <code>subsector</code>.</li>
+<li><code>MFMeta</code>: <code>name</code>, <code>isin</code>, <code>amc</code>, <code>plan</code>, <code>option</code>, <code>type</code>, <code>sector</code>, <code>subsector</code>, <code>benchmark_index</code>, <code>fund_type</code>, <code>full_name</code>, <code>risk_classification</code>, <code>cams_code</code>, <code>rta_scheme_code</code>, <code>expense_ratio</code>, <code>aum</code>.</li>
+<li><code>MutualFundDetail</code>: <code>mf_id</code>, <code>name</code>, <code>isin</code>, <code>slug</code>, <code>nav</code>, <code>security_info</code>, <code>meta</code>, <code>scorecard</code>, <code>raw_props</code>.</li>
+<li><code>ISINMapping</code>: <code>isin</code>, <code>record_id</code>, <code>slug</code>, <code>name</code>, <code>amc</code>, <code>amc_code</code>, <code>sector</code>, <code>subsector</code>, <code>fund_type</code>, <code>fund_class</code>, <code>plan</code>, <code>option</code>, <code>risk_level</code>, <code>benchmark</code>, <code>url</code>, <code>nav</code>, <code>updated_at</code>.</li>
+</ul>
+<hr />
+<h3 id="tickertape-exceptions">TickerTape Exceptions<a class="headerlink" href="#tickertape-exceptions" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>TickerTapeError</code>: Base exception for all TickerTape client errors.</li>
+<li><code>TickerTapeHTTPError</code>: HTTP request error. Contains <code>status_code</code> and <code>response_data</code>.</li>
+<li><code>TickerTapeNotFoundError</code>: Resource not found (HTTP 404).</li>
+<li><code>TickerTapeParseError</code>: Error extracting or decoding Next.js hydration data or XML.</li>
+</ul>
+<hr />
+<h2 id="4-repositories-folioman_intelligencerepository">4. Repositories (<code>folioman_intelligence.repository</code>)<a class="headerlink" href="#4-repositories-folioman_intelligencerepository" title="Permanent link">&para;</a></h2>
+<h3 id="mutualfundrepository"><code>MutualFundRepository</code><a class="headerlink" href="#mutualfundrepository" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>async get_fund_data(identifier: str, hint_name: str | None = None) -&gt; dict[str, Any]</code></li>
+<li><code>standardize_mutual_fund_payload(raw_props: dict[str, Any]) -&gt; dict[str, Any]</code></li>
+</ul>
+<h3 id="portfoliorepository"><code>PortfolioRepository</code><a class="headerlink" href="#portfoliorepository" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>async get_portfolio(investor_id: int) -&gt; PortfolioSummary</code></li>
+<li><code>async get_holding(investor_id: int, security_id: int) -&gt; SchemeDetail</code></li>
+</ul>
+<hr />
+<h2 id="5-analytics-functions-folioman_intelligenceanalytics">5. Analytics Functions (<code>folioman_intelligence.analytics</code>)<a class="headerlink" href="#5-analytics-functions-folioman_intelligenceanalytics" title="Permanent link">&para;</a></h2>
+<h3 id="fund-analytics-analyticsfund">Fund Analytics (<code>analytics.fund</code>)<a class="headerlink" href="#fund-analytics-analyticsfund" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>async get_fund_overview(identifier: str, fund_data=None) -&gt; dict[str, Any]</code></li>
+<li><code>async get_trailing_returns(identifier: str, fund_data=None) -&gt; dict[str, Any]</code></li>
+<li><code>async get_cagr_history(identifier: str, fund_data=None) -&gt; dict[str, Any]</code></li>
+<li><code>async get_risk_and_volatility(identifier: str, fund_data=None) -&gt; dict[str, Any]</code></li>
+<li><code>async get_portfolio_valuation(identifier: str, fund_data=None) -&gt; dict[str, Any]</code></li>
+<li><code>async get_top_holdings(identifier: str, top_n: int = 10, fund_data=None) -&gt; dict[str, Any]</code></li>
+<li><code>async get_portfolio_activity(identifier: str, fund_data=None) -&gt; dict[str, Any]</code></li>
+<li><code>async search_stock_in_fund(identifier: str, query: str, fund_data=None) -&gt; dict[str, Any]</code></li>
+<li><code>async get_asset_allocation(identifier: str, fund_data=None) -&gt; dict[str, Any]</code></li>
+<li><code>async check_mandate_compliance(identifier: str, fund_data=None) -&gt; dict[str, Any]</code></li>
+<li><code>async get_sector_allocation(identifier: str, fund_data=None) -&gt; dict[str, Any]</code></li>
+<li><code>async get_sector_rotation_trends(identifier: str, fund_data=None) -&gt; dict[str, Any]</code></li>
+<li><code>async get_peer_comparison(identifier: str, fund_data=None) -&gt; dict[str, Any]</code></li>
+<li><code>async get_fund_managers_analysis(identifier: str, fund_data=None) -&gt; dict[str, Any]</code></li>
+<li><code>async get_cost_and_tax_profile(identifier: str, fund_data=None) -&gt; dict[str, Any]</code></li>
+<li><code>async get_fund_health_audit(identifier: str, fund_data=None) -&gt; dict[str, Any]</code></li>
+<li><code>async analyze_fund_comprehensive(identifier: str, fund_data=None) -&gt; dict[str, Any]</code></li>
+</ul>
+<h3 id="portfolio-analytics-analyticsportfolio">Portfolio Analytics (<code>analytics.portfolio</code>)<a class="headerlink" href="#portfolio-analytics-analyticsportfolio" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>async analyze_portfolio(investor_id: int) -&gt; dict[str, Any]</code></li>
+<li><code>async holding_details(investor_id: int, security_id: int) -&gt; dict[str, Any]</code></li>
+<li><code>async portfolio_risk_analyse(investor_id: int) -&gt; dict[str, Any]</code></li>
+</ul>
+<hr />
+<h2 id="6-langchain-tools-folioman_intelligencetools">6. LangChain Tools (<code>folioman_intelligence.tools</code>)<a class="headerlink" href="#6-langchain-tools-folioman_intelligencetools" title="Permanent link">&para;</a></h2>
+<h3 id="fund-tools-toolsfund">Fund Tools (<code>tools.fund</code>)<a class="headerlink" href="#fund-tools-toolsfund" title="Permanent link">&para;</a></h3>
+<p>Exported list: <code>fund_tools</code> (17 tools)</p>
+<ul>
+<li><code>analyze_fund_tool</code></li>
+<li><code>get_fund_overview_tool</code></li>
+<li><code>get_fund_trailing_returns_tool</code></li>
+<li><code>get_fund_cagr_history_tool</code></li>
+<li><code>get_fund_risk_metrics_tool</code></li>
+<li><code>get_fund_valuation_tool</code></li>
+<li><code>get_fund_top_holdings_tool</code></li>
+<li><code>get_fund_portfolio_activity_tool</code></li>
+<li><code>search_stock_in_fund_tool</code></li>
+<li><code>get_fund_asset_allocation_tool</code></li>
+<li><code>check_fund_mandate_compliance_tool</code></li>
+<li><code>get_fund_sector_allocation_tool</code></li>
+<li><code>get_sector_rotation_trends_tool</code></li>
+<li><code>get_fund_peer_comparison_tool</code></li>
+<li><code>get_fund_managers_info_tool</code></li>
+<li><code>get_fund_cost_and_tax_tool</code></li>
+<li><code>get_fund_health_audit_tool</code></li>
+</ul>
+<h3 id="portfolio-tools-toolsportfolio">Portfolio Tools (<code>tools.portfolio</code>)<a class="headerlink" href="#portfolio-tools-toolsportfolio" title="Permanent link">&para;</a></h3>
+<p>Exported list: <code>portfolio_tools</code> (3 tools)</p>
+<ul>
+<li><code>get_portfolio_analysis</code></li>
+<li><code>get_holding_details</code></li>
+<li><code>get_portfolio_risk_analyse</code></li>
+</ul>
+<hr />
+<h2 id="7-autonomous-ai-agents-folioman_intelligenceagents">7. Autonomous AI Agents (<code>folioman_intelligence.agents</code>)<a class="headerlink" href="#7-autonomous-ai-agents-folioman_intelligenceagents" title="Permanent link">&para;</a></h2>
+<h3 id="funds-analyst-agent-agentsfund">Funds Analyst Agent (<code>agents.fund</code>)<a class="headerlink" href="#funds-analyst-agent-agentsfund" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>async ask_fund_agent(question: str) -&gt; FundAgentResponse</code></li>
+<li>Class <code>FundAgentResponse</code>:<ul>
+<li>Property <code>.content</code>: Final synthesized answer string.</li>
+<li>Property <code>.tool_calls</code>: List of recorded tool call dictionaries (<code>name</code>, <code>input</code>, <code>output</code>).</li>
+</ul>
+</li>
+</ul>
+<h3 id="portfolio-advisor-agent-agentsportfolio">Portfolio Advisor Agent (<code>agents.portfolio</code>)<a class="headerlink" href="#portfolio-advisor-agent-agentsportfolio" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>async ask_portfolio_agent(question: str) -&gt; PortfolioAgentResponse</code></li>
+<li>Class <code>PortfolioAgentResponse</code>:<ul>
+<li>Property <code>.content</code>: Final synthesized advice string.</li>
+<li>Property <code>.tool_calls</code>: List of recorded tool call dictionaries (<code>name</code>, <code>input</code>, <code>output</code>).</li>
+</ul>
+</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "search.suggest", "search.highlight", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

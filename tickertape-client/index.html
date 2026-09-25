@@ -1,0 +1,1928 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Intelligence, portfolio analytics, and AI reasoning service for Folioman">
+      
+      
+        <meta name="author" content="Sudhanwa Kaveeshwar">
+      
+      
+        <link rel="canonical" href="https://sid-146.github.io/folioman-intelligence/tickertape-client/">
+      
+      
+        <link rel="prev" href="../folioman-client/">
+      
+      
+        <link rel="next" href="../repositories/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>TickerTape Client - Folioman Intelligence</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#tickertape-client-market-scraper" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Folioman Intelligence" class="md-header__button md-logo" aria-label="Folioman Intelligence" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Folioman Intelligence
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              TickerTape Client
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/sid-146/folioman-intelligence" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    sid-146/folioman-intelligence
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../getting-started/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Getting Started
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../architecture/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Architecture
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../folioman-client/" class="md-tabs__link">
+          
+  
+  
+  Client Guides
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../repositories/" class="md-tabs__link">
+          
+  
+  
+  Core Modules
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../api-reference/" class="md-tabs__link">
+          
+  
+  
+  Reference
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Folioman Intelligence" class="md-nav__button md-logo" aria-label="Folioman Intelligence" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Folioman Intelligence
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/sid-146/folioman-intelligence" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    sid-146/folioman-intelligence
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Client Guides
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Client Guides
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../folioman-client/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Folioman Client
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TickerTape Client
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TickerTape Client
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#architectural-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architectural Workflow
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#client-initialization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Client Initialization
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Client Initialization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#constructor-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Constructor Parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sitemap-ingestion-disk-caching-clientsitemap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sitemap Ingestion &amp; Disk Caching (client.sitemap)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sitemap Ingestion &amp; Disk Caching (client.sitemap)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#available-sitemaps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Available Sitemaps
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Methods
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#getcategory-force_refreshfalse" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get(category, force_refresh=False)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#refreshcategory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        refresh(category)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mutual-funds-resource-clientmf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mutual Funds Resource (client.mf)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Mutual Funds Resource (client.mf)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#methods_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Methods
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#getslug_or_mfid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get(slug_or_mfid)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_by_isinisin-hint_namenone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_by_isin(isin, hint_name=None)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_peersisin-match_plantrue-match_optiontrue-limit20" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_peers(isin, match_plan=True, match_option=True, limit=20)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#find_funds" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        find_funds(...)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build_isin_index" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        build_isin_index(...)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sqlite-persistent-isin-lookup-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SQLite Persistent ISIN Lookup Table
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SQLite Persistent ISIN Lookup Table">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#database-schema-mf_isin_lookup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Database Schema (mf_isin_lookup)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#table-management-methods-isinlookuptable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table Management Methods (ISINLookupTable)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#heuristic-isin-resolver-isinresolver" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Heuristic ISIN Resolver (ISINResolver)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Models
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Data Models">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mutualfunddetail" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MutualFundDetail
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#isinmapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ISINMapping
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#error-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error Handling
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Core Modules
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Core Modules
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../repositories/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Repositories
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../analytics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Financial Analytics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tools-and-agents/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tools & Agents
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#architectural-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architectural Workflow
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#client-initialization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Client Initialization
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Client Initialization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#constructor-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Constructor Parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sitemap-ingestion-disk-caching-clientsitemap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sitemap Ingestion &amp; Disk Caching (client.sitemap)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sitemap Ingestion &amp; Disk Caching (client.sitemap)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#available-sitemaps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Available Sitemaps
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Methods
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#getcategory-force_refreshfalse" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get(category, force_refresh=False)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#refreshcategory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        refresh(category)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mutual-funds-resource-clientmf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mutual Funds Resource (client.mf)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Mutual Funds Resource (client.mf)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#methods_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Methods
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#getslug_or_mfid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get(slug_or_mfid)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_by_isinisin-hint_namenone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_by_isin(isin, hint_name=None)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_peersisin-match_plantrue-match_optiontrue-limit20" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_peers(isin, match_plan=True, match_option=True, limit=20)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#find_funds" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        find_funds(...)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build_isin_index" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        build_isin_index(...)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sqlite-persistent-isin-lookup-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SQLite Persistent ISIN Lookup Table
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SQLite Persistent ISIN Lookup Table">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#database-schema-mf_isin_lookup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Database Schema (mf_isin_lookup)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#table-management-methods-isinlookuptable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table Management Methods (ISINLookupTable)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#heuristic-isin-resolver-isinresolver" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Heuristic ISIN Resolver (ISINResolver)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Models
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Data Models">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mutualfunddetail" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MutualFundDetail
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#isinmapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ISINMapping
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#error-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error Handling
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="tickertape-client-market-scraper">TickerTape Client &amp; Market Scraper<a class="headerlink" href="#tickertape-client-market-scraper" title="Permanent link">&para;</a></h1>
+<p>The <code>TickerTapeClient</code> is an asynchronous web client and scraping engine designed to collect mutual fund data, financial ratios, stock holdings, scorecard ratings, and sector allocations from <a href="https://www.tickertape.in">TickerTape.in</a>.</p>
+<p>It includes an on-disk sitemap cache and a persistent SQLite lookup database (<code>isin_lookup.db</code>) that maps Indian mutual fund ISINs directly to TickerTape entities and categories.</p>
+<hr />
+<h2 id="architectural-workflow">Architectural Workflow<a class="headerlink" href="#architectural-workflow" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>                        [ TickerTapeClient ]
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>                                  │
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>         ┌────────────────────────┴────────────────────────┐
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>         ▼                                                 ▼
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>[ SitemapResource ]                             [ MutualFundsResource ]
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>  - XML Sitemap Parser                            - Next.js __NEXT_DATA__ Scraper
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>  - Disk Cache (.cache/sitemaps/)                 - MFParser (BeautifulSoup)
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>         │                                                 │
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>         └────────────────────────┬────────────────────────┘
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>                                  ▼
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>                    [ SQLite ISIN Lookup System ]
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>            ┌─────────────────────┼─────────────────────┐
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>            ▼                     ▼                     ▼
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    [ ISINLookupTable ]    [ ISINResolver ]      [ ISINIndexer ]
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    (Persistent SQLite)    (On-demand Match)     (Bulk Sitemap Crawler)
+</code></pre></div>
+<hr />
+<h2 id="client-initialization">Client Initialization<a class="headerlink" href="#client-initialization" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">folioman_intelligence</span><span class="w"> </span><span class="kn">import</span> <span class="n">TickerTapeClient</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="k">async</span> <span class="k">with</span> <span class="n">TickerTapeClient</span><span class="p">(</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    <span class="n">base_url</span><span class="o">=</span><span class="s2">"https://www.tickertape.in"</span><span class="p">,</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    <span class="n">timeout</span><span class="o">=</span><span class="mf">30.0</span><span class="p">,</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    <span class="n">cache_dir</span><span class="o">=</span><span class="n">Path</span><span class="p">(</span><span class="s2">".cache/tickertape"</span><span class="p">),</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="p">)</span> <span class="k">as</span> <span class="n">client</span><span class="p">:</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>    <span class="c1"># Client operations</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>    <span class="o">...</span>
+</code></pre></div>
+<h3 id="constructor-parameters">Constructor Parameters<a class="headerlink" href="#constructor-parameters" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Parameter</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Default</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>base_url</code></td>
+<td style="text-align: left;"><code>str</code></td>
+<td style="text-align: left;"><code>https://www.tickertape.in</code></td>
+<td style="text-align: left;">TickerTape base URL.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>timeout</code></td>
+<td style="text-align: left;"><code>float</code></td>
+<td style="text-align: left;"><code>30.0</code></td>
+<td style="text-align: left;">HTTP request timeout in seconds.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>cache_dir</code></td>
+<td style="text-align: left;"><code>Path \| str</code></td>
+<td style="text-align: left;"><code>.cache/tickertape</code></td>
+<td style="text-align: left;">Local directory for storing sitemap JSON files and the SQLite lookup database.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>http_client</code></td>
+<td style="text-align: left;"><code>httpx.AsyncClient \| None</code></td>
+<td style="text-align: left;"><code>None</code></td>
+<td style="text-align: left;">Optional custom HTTP client.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>headers</code></td>
+<td style="text-align: left;"><code>dict[str, str] \| None</code></td>
+<td style="text-align: left;"><code>None</code></td>
+<td style="text-align: left;">Additional HTTP headers. Uses browser user-agent by default.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>sitemap_urls</code></td>
+<td style="text-align: left;"><code>dict[str, str] \| None</code></td>
+<td style="text-align: left;">Default sitemaps</td>
+<td style="text-align: left;">Custom dictionary of sitemap URLs.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="sitemap-ingestion-disk-caching-clientsitemap">Sitemap Ingestion &amp; Disk Caching (<code>client.sitemap</code>)<a class="headerlink" href="#sitemap-ingestion-disk-caching-clientsitemap" title="Permanent link">&para;</a></h2>
+<p>TickerTape exposes large XML sitemaps containing URLs for all listed mutual funds, stocks, and ETFs. The client downloads, parses, and caches these locally to avoid unnecessary network calls.</p>
+<h3 id="available-sitemaps">Available Sitemaps<a class="headerlink" href="#available-sitemaps" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Category Key</th>
+<th style="text-align: left;">Target Endpoint</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>"mf"</code></td>
+<td style="text-align: left;"><code>https://www.tickertape.in/sitemaps/mutualfunds/sitemap.xml</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>"stocks"</code></td>
+<td style="text-align: left;"><code>https://www.tickertape.in/sitemaps/stocks/sitemap.xml</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>"etf"</code></td>
+<td style="text-align: left;"><code>https://www.tickertape.in/sitemaps/etfs/sitemap.xml</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>"us-stocks"</code></td>
+<td style="text-align: left;"><code>https://www.tickertape.in/sitemaps/us-stocks/sitemap.xml</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>"us-etf"</code></td>
+<td style="text-align: left;"><code>https://www.tickertape.in/sitemaps/us-etfs/sitemap.xml</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="methods">Methods<a class="headerlink" href="#methods" title="Permanent link">&para;</a></h3>
+<h4 id="getcategory-force_refreshfalse"><code>get(category, force_refresh=False)</code><a class="headerlink" href="#getcategory-force_refreshfalse" title="Permanent link">&para;</a></h4>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get</span><span class="p">(</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    <span class="bp">self</span><span class="p">,</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    <span class="n">category</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"mf"</span><span class="p">,</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    <span class="o">*</span><span class="p">,</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    <span class="n">force_refresh</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">SitemapURL</span><span class="p">]</span>
+</code></pre></div>
+Returns parsed sitemap entries from local cache (<code>.cache/tickertape/sitemaps/{category}.json</code>). If the cache does not exist or <code>force_refresh=True</code>, it fetches the live XML and updates the cache.</p>
+<h4 id="refreshcategory"><code>refresh(category)</code><a class="headerlink" href="#refreshcategory" title="Permanent link">&para;</a></h4>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">refresh</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">category</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"mf"</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">SitemapURL</span><span class="p">]</span>
+</code></pre></div>
+Forces a live fetch of the sitemap XML and overwrites the local cache.</p>
+<hr />
+<h2 id="mutual-funds-resource-clientmf">Mutual Funds Resource (<code>client.mf</code>)<a class="headerlink" href="#mutual-funds-resource-clientmf" title="Permanent link">&para;</a></h2>
+<p>Handles page fetching, hydration payload parsing, and direct ISIN resolution.</p>
+<h3 id="methods_1">Methods<a class="headerlink" href="#methods_1" title="Permanent link">&para;</a></h3>
+<h4 id="getslug_or_mfid"><code>get(slug_or_mfid)</code><a class="headerlink" href="#getslug_or_mfid" title="Permanent link">&para;</a></h4>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">slug_or_mfid</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MutualFundDetail</span>
+</code></pre></div>
+Fetches and parses a mutual fund page by slug (e.g. <code>"quant-infrastructure-fund-M_QUNG"</code>) or MFID (<code>"M_QUNG"</code>).
+- <strong>Extraction Mechanism</strong>: Parses the HTML with <code>BeautifulSoup</code>, extracts the <code>&lt;script id="__NEXT_DATA__"&gt;</code> JSON block, and constructs a <code>MutualFundDetail</code> model.
+- <strong>Returns</strong>: <code>MutualFundDetail</code></p>
+<h4 id="get_by_isinisin-hint_namenone"><code>get_by_isin(isin, hint_name=None)</code><a class="headerlink" href="#get_by_isinisin-hint_namenone" title="Permanent link">&para;</a></h4>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_by_isin</span><span class="p">(</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>    <span class="bp">self</span><span class="p">,</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>    <span class="n">isin</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>    <span class="n">hint_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MutualFundDetail</span> <span class="o">|</span> <span class="kc">None</span>
+</code></pre></div>
+Resolves a 12-character Indian ISIN (e.g. <code>"INF966L01721"</code>) from Folioman into full TickerTape details.
+- Checks local SQLite lookup table first.
+- If not indexed, uses <code>hint_name</code> to search sitemap slugs, verifies candidate pages, and saves the verified match into SQLite.
+- <strong>Returns</strong>: <code>MutualFundDetail</code> or <code>None</code>.</p>
+<h4 id="get_peersisin-match_plantrue-match_optiontrue-limit20"><code>get_peers(isin, match_plan=True, match_option=True, limit=20)</code><a class="headerlink" href="#get_peersisin-match_plantrue-match_optiontrue-limit20" title="Permanent link">&para;</a></h4>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">get_peers</span><span class="p">(</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>    <span class="bp">self</span><span class="p">,</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>    <span class="n">isin</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>    <span class="n">match_plan</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>    <span class="n">match_option</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>    <span class="n">limit</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">ISINMapping</span><span class="p">]</span>
+</code></pre></div>
+Finds peer mutual funds in the same subsector/category from the local SQLite database.</p>
+<h4 id="find_funds"><code>find_funds(...)</code><a class="headerlink" href="#find_funds" title="Permanent link">&para;</a></h4>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">find_funds</span><span class="p">(</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>    <span class="bp">self</span><span class="p">,</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>    <span class="o">*</span><span class="p">,</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>    <span class="n">sector</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>    <span class="n">subsector</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>    <span class="n">fund_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>    <span class="n">plan</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>    <span class="n">option</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>    <span class="n">risk_level</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>    <span class="n">benchmark</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>    <span class="n">amc</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>    <span class="n">limit</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span>
+<a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">ISINMapping</span><span class="p">]</span>
+</code></pre></div>
+Filters indexed mutual funds using classification attributes.</p>
+<h4 id="build_isin_index"><code>build_isin_index(...)</code><a class="headerlink" href="#build_isin_index" title="Permanent link">&para;</a></h4>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">build_isin_index</span><span class="p">(</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>    <span class="bp">self</span><span class="p">,</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>    <span class="o">*</span><span class="p">,</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>    <span class="n">force_refresh</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>    <span class="n">concurrency</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>    <span class="n">delay</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>    <span class="n">limit</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>    <span class="n">progress_callback</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span>
+</code></pre></div>
+Crawls sitemap URLs and populates the SQLite database. Supports rate-limited concurrency and progress reporting.</p>
+<hr />
+<h2 id="sqlite-persistent-isin-lookup-table">SQLite Persistent ISIN Lookup Table<a class="headerlink" href="#sqlite-persistent-isin-lookup-table" title="Permanent link">&para;</a></h2>
+<p>Located at <code>.cache/tickertape/isin_lookup.db</code>.</p>
+<h3 id="database-schema-mf_isin_lookup">Database Schema (<code>mf_isin_lookup</code>)<a class="headerlink" href="#database-schema-mf_isin_lookup" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Column Name</th>
+<th style="text-align: left;">SQL Type</th>
+<th style="text-align: left;">Constraints</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>isin</code></td>
+<td style="text-align: left;"><code>TEXT</code></td>
+<td style="text-align: left;"><code>PRIMARY KEY</code></td>
+<td style="text-align: left;">12-character Indian ISIN code.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>record_id</code></td>
+<td style="text-align: left;"><code>TEXT</code></td>
+<td style="text-align: left;"><code>NOT NULL</code></td>
+<td style="text-align: left;">TickerTape record ID (e.g. <code>M_QUNG</code>).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>slug</code></td>
+<td style="text-align: left;"><code>TEXT</code></td>
+<td style="text-align: left;"><code>NOT NULL</code></td>
+<td style="text-align: left;">URL slug path.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>name</code></td>
+<td style="text-align: left;"><code>TEXT</code></td>
+<td style="text-align: left;"><code>NOT NULL</code></td>
+<td style="text-align: left;">Scheme name.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>amc</code></td>
+<td style="text-align: left;"><code>TEXT</code></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Asset Management Company (e.g. <code>Quant</code>).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>amc_code</code></td>
+<td style="text-align: left;"><code>TEXT</code></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AMC code identifier.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>sector</code></td>
+<td style="text-align: left;"><code>TEXT</code></td>
+<td style="text-align: left;">Indexed</td>
+<td style="text-align: left;">Primary asset class (e.g. <code>Equity</code>).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>subsector</code></td>
+<td style="text-align: left;"><code>TEXT</code></td>
+<td style="text-align: left;">Indexed</td>
+<td style="text-align: left;">Category (e.g. <code>Sectoral Fund - Infrastructure</code>).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>fund_type</code></td>
+<td style="text-align: left;"><code>TEXT</code></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Classification (e.g. <code>Equity</code>).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>fund_class</code></td>
+<td style="text-align: left;"><code>TEXT</code></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Scheme type (e.g. <code>Open</code>).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>plan</code></td>
+<td style="text-align: left;"><code>TEXT</code></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"><code>"Direct"</code> or <code>"Regular"</code>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>option</code></td>
+<td style="text-align: left;"><code>TEXT</code></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"><code>"Growth"</code> or <code>"IDCW"</code>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>risk_level</code></td>
+<td style="text-align: left;"><code>TEXT</code></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SEBI risk rating (e.g. <code>"Very High"</code>).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>benchmark</code></td>
+<td style="text-align: left;"><code>TEXT</code></td>
+<td style="text-align: left;">Indexed</td>
+<td style="text-align: left;">Target benchmark index.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>url</code></td>
+<td style="text-align: left;"><code>TEXT</code></td>
+<td style="text-align: left;"><code>NOT NULL</code></td>
+<td style="text-align: left;">Full TickerTape page URL.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>nav</code></td>
+<td style="text-align: left;"><code>REAL</code></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Latest closing NAV.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>updated_at</code></td>
+<td style="text-align: left;"><code>TEXT</code></td>
+<td style="text-align: left;"><code>NOT NULL</code></td>
+<td style="text-align: left;">UTC ISO-8601 timestamp.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="table-management-methods-isinlookuptable">Table Management Methods (<code>ISINLookupTable</code>)<a class="headerlink" href="#table-management-methods-isinlookuptable" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="n">table</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">mf</span><span class="o">.</span><span class="n">lookup</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="c1"># Fetch single mapping</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="n">mapping</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"INF966L01721"</span><span class="p">)</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="c1"># Batch fetch</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="n">mappings_dict</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">get_batch</span><span class="p">([</span><span class="s2">"INF966L01721"</span><span class="p">,</span> <span class="s2">"INF846K01EW2"</span><span class="p">])</span>
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>
+<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="c1"># Get total count of indexed funds</span>
+<a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="n">total</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+<a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>
+<a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a><span class="c1"># Export database</span>
+<a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a><span class="n">table</span><span class="o">.</span><span class="n">export_json</span><span class="p">(</span><span class="s2">"exports/funds.json"</span><span class="p">)</span>
+<a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a><span class="n">table</span><span class="o">.</span><span class="n">export_csv</span><span class="p">(</span><span class="s2">"exports/funds.csv"</span><span class="p">)</span>
+</code></pre></div>
+<hr />
+<h2 id="heuristic-isin-resolver-isinresolver">Heuristic ISIN Resolver (<code>ISINResolver</code>)<a class="headerlink" href="#heuristic-isin-resolver-isinresolver" title="Permanent link">&para;</a></h2>
+<p>When an ISIN is not yet in the SQLite database, <code>ISINResolver.resolve(isin, hint_name)</code> matches it dynamically:</p>
+<ol>
+<li><strong>Token Extraction</strong>: Extracts alphanumeric words from <code>hint_name</code>, excluding stop words (<code>"fund"</code>, <code>"growth"</code>, <code>"direct"</code>, <code>"equity"</code>).</li>
+<li><strong>Slug Scoring</strong>: Computes token overlap across all mutual fund sitemap URLs.</li>
+<li><strong>Candidate Verification</strong>: Fetches the top 3 highest-scoring page payloads and checks if the page <code>isin</code> matches.</li>
+<li><strong>Auto-Persist</strong>: Upon a verified match, inserts the record into SQLite for instant future lookups.</li>
+</ol>
+<hr />
+<h2 id="data-models">Data Models<a class="headerlink" href="#data-models" title="Permanent link">&para;</a></h2>
+<h3 id="mutualfunddetail"><code>MutualFundDetail</code><a class="headerlink" href="#mutualfunddetail" title="Permanent link">&para;</a></h3>
+<p>Top-level representation of scraped mutual fund data:
+- <code>mf_id: str</code>: TickerTape fund ID.
+- <code>name: str</code>: Scheme name.
+- <code>isin: str | None</code>: ISIN code.
+- <code>slug: str | None</code>: Page slug.
+- <code>nav: float | None</code>: Latest NAV price.
+- <code>security_info: MFSecurityInfo | None</code>: Amc, option, sector, 1-day NAV change.
+- <code>meta: MFMeta | None</code>: Detailed metadata, AUM, expense ratio, benchmark, risk rating.
+- <code>scorecard: list[MFScorecardItem]</code>: Scorecard ratings for Performance, Risk, Cost, etc.
+- <code>raw_props: dict[str, Any] | None</code>: Raw Next.js <code>pageProps</code> dictionary.</p>
+<h3 id="isinmapping"><code>ISINMapping</code><a class="headerlink" href="#isinmapping" title="Permanent link">&para;</a></h3>
+<p>Flattened entity stored in the SQLite database:
+- <code>isin: str</code>, <code>record_id: str</code>, <code>slug: str</code>, <code>name: str</code>, <code>amc: str | None</code>, <code>sector: str | None</code>, <code>subsector: str | None</code>, <code>plan: str | None</code>, <code>option: str | None</code>, <code>benchmark: str | None</code>, <code>nav: float | None</code>, <code>updated_at: str</code>.</p>
+<hr />
+<h2 id="error-handling">Error Handling<a class="headerlink" href="#error-handling" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>TickerTapeError (base exception)
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>├── TickerTapeHTTPError (status_code, response_data)
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>│   └── TickerTapeNotFoundError (HTTP 404)
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>└── TickerTapeParseError (failed to find or parse __NEXT_DATA__ or XML)
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "search.suggest", "search.highlight", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
