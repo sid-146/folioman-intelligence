@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from datetime import date
 from decimal import Decimal
 from unittest.mock import AsyncMock, patch
 
@@ -178,3 +179,40 @@ async def test_analyze_portfolio_propagates_repository_exceptions():
 
         with pytest.raises(FoliomanNotFoundError, match="Portfolio not found"):
             await analyze_portfolio(investor_id=999)
+
+
+@pytest.mark.asyncio
+async def test_get_portfolio_volatility_delegation():
+    """Test get_portfolio_volatility retrieves points from PortfolioRepository."""
+    from src.folioman_intelligence.analytics.portfolio import get_portfolio_volatility
+    from folioman_client.models import ValueSeries, ValueSeriesPoint
+
+    mock_series = ValueSeries(
+        investor_id=1,
+        start=date(2025, 1, 1),
+        end=date(2025, 3, 1),
+        granularity="monthly",
+        points=[
+            ValueSeriesPoint(
+                date=date(2025, 1, 1),
+                value_inr=Decimal("100000.00"),
+                invested_inr=Decimal("90000.00"),
+            ),
+            ValueSeriesPoint(
+                date=date(2025, 2, 1),
+                value_inr=Decimal("105000.00"),
+                invested_inr=Decimal("95000.00"),
+            ),
+        ],
+    )
+
+    with patch(
+        "src.folioman_intelligence.analytics.portfolio.PortfolioRepository.get_value_series",
+        new_callable=AsyncMock,
+    ) as mock_get_series:
+        mock_get_series.return_value = mock_series
+
+        points = await get_portfolio_volatility(investor_id=1, days=90)
+        assert len(points) == 2
+        assert points[0]["value_inr"] == 100000.00
+        assert points[1]["value_inr"] == 105000.00
