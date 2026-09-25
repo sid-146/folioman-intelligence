@@ -433,3 +433,210 @@ Analyzes the ledger transactions of a specific holding:
 - `current_units: float`: Units held.
 - `avg_buy_transaction: float`: Average buy transaction amount across buy transactions.
 - `count_buy_transaction: int`: Total number of buy transactions recorded.
+
+---
+
+## Historical Portfolio Analytics (`analytics.historical`)
+
+Provides multi-horizon historical performance trajectory, capital preservation analysis, Modern Portfolio Theory (MPT) risk-adjusted metrics, cash flow discipline, and financial year capital gains auditing using `folioman-client`.
+
+### 1. Valuation Trajectory & Wealth Creation
+
+#### `get_historical_valuation_trajectory(investor_id, from_date=None, to_date=None, granularity="monthly", value_series=None)`
+
+Reconstructs the point-by-point growth of portfolio net worth against cumulative capital invested over time.
+
+```python
+async def get_historical_valuation_trajectory(
+    investor_id: int,
+    from_date: date | str | None = None,
+    to_date: date | str | None = None,
+    granularity: Literal["daily", "weekly", "monthly"] = "monthly",
+    value_series: ValueSeries | dict[str, Any] | None = None,
+) -> dict[str, Any]
+```
+
+**Output Fields**:
+- `initial_value_inr: float`, `latest_value_inr: float`: Beginning and ending portfolio valuation.
+- `initial_invested_inr: float`, `latest_invested_inr: float`: Beginning and ending cost basis.
+- `net_invested_change_inr: float`: Total fresh capital deployed ($I_{\text{end}} - I_{\text{start}}$).
+- `net_wealth_generated_inr: float`: Total net unrealized wealth created ($V_{\text{end}} - I_{\text{end}}$).
+- `absolute_growth_pct: float`: Portfolio value expansion percentage ($((V_{\text{end}} - V_{\text{start}}) / V_{\text{start}}) \times 100$).
+- `peak_valuation_inr: float`, `peak_valuation_date: str`: All-time high valuation milestone and date.
+- `trough_valuation_inr: float`, `trough_valuation_date: str`: Lowest recorded valuation point and date.
+- `trajectory: list[dict]`: Date-by-date series containing `value_inr`, `invested_inr`, `unrealized_gain_inr`, `unrealized_gain_pct`, `period_change_inr`, `period_return_pct`, and `net_inflow_inr`.
+
+---
+
+### 2. Drawdown & Capital Preservation
+
+#### `get_historical_drawdown_analysis(investor_id, from_date=None, to_date=None, granularity="monthly", value_series=None)`
+
+Measures capital preservation, maximum peak-to-trough decline (MDD), recovery duration, and historical drawdown episodes.
+
+```python
+async def get_historical_drawdown_analysis(
+    investor_id: int,
+    from_date: date | str | None = None,
+    to_date: date | str | None = None,
+    granularity: Literal["daily", "weekly", "monthly"] = "monthly",
+    value_series: ValueSeries | dict[str, Any] | None = None,
+) -> dict[str, Any]
+```
+
+**Output Fields**:
+- `max_drawdown_pct: float`: Deepest percentage loss from prior peak (e.g. `-13.64%`).
+- `max_drawdown_inr: float`: Peak-to-trough monetary decline in INR.
+- `peak_date: str`, `peak_value_inr: float`: High watermark establishing the MDD.
+- `trough_date: str`, `trough_value_inr: float`: Bottom of the drawdown cycle.
+- `recovery_date: str | None`: Date on which portfolio returned to or exceeded previous peak (or `None` if unrecovered).
+- `is_recovered: bool`: True if the portfolio has completely recovered from the maximum drawdown.
+- `recovery_duration_days: int | None`: Calendar days taken to recover from trough to peak.
+- `current_drawdown_pct: float`: Current drawdown percentage relative to all-time peak.
+- `is_at_all_time_high: bool`: True if current portfolio valuation represents an all-time high.
+- `average_drawdown_pct: float`: Average depth across all negative drawdown periods.
+- `drawdown_episodes: list[dict]`: Top drawdown periods with peak, trough, recovery, and percentage depth.
+- `drawdown_series: list[dict]`: Date-by-date series with running peak and instantaneous drawdown.
+
+---
+
+### 3. Risk-Adjusted Returns & Volatility
+
+#### `get_historical_risk_and_returns(investor_id, from_date=None, to_date=None, granularity="monthly", risk_free_rate=0.065, value_series=None)`
+
+Computes cashflow-adjusted periodic return series, annualized volatility ($\sigma$), downside deviation, CAGR, Sharpe ratio, Sortino ratio, and Calmar ratio.
+
+```python
+async def get_historical_risk_and_returns(
+    investor_id: int,
+    from_date: date | str | None = None,
+    to_date: date | str | None = None,
+    granularity: Literal["daily", "weekly", "monthly"] = "monthly",
+    risk_free_rate: float = 0.065,
+    value_series: ValueSeries | dict[str, Any] | None = None,
+) -> dict[str, Any]
+```
+
+**Formulas & Metrics**:
+- **Periodic Return ($R_t$)**:
+  $$R_t = \frac{V_t - V_{t-1} - \Delta I_t}{V_{t-1}}$$
+- **Annualized Volatility ($\sigma_{\text{ann}}$)**:
+  $$\sigma_{\text{ann}} = \text{std}(R) \times \sqrt{N} \times 100 \quad (N = 12 \text{ for monthly, } 252 \text{ for daily})$$
+- **Downside Deviation ($\sigma_d$)**:
+  $$\sigma_{d} = \sqrt{\frac{1}{M}\sum_{R_t < R_f/N} (R_t - R_f/N)^2} \times \sqrt{N} \times 100$$
+- **Sharpe Ratio**:
+  $$\text{Sharpe} = \frac{\text{CAGR} - R_f}{\sigma_{\text{ann}} / 100}$$
+- **Sortino Ratio**:
+  $$\text{Sortino} = \frac{\text{CAGR} - R_f}{\sigma_d / 100}$$
+- **Calmar Ratio**:
+  $$\text{Calmar} = \frac{\text{CAGR}}{|\text{Max Drawdown}| / 100}$$
+- `best_period: dict`, `worst_period: dict`: Date and return percentage for highest and lowest periods.
+- `win_rate_pct: float`: Percentage of periods generating positive net returns.
+
+---
+
+### 4. Cash Flow Dynamics & SIP Discipline
+
+#### `get_historical_cashflows(investor_id, transactions=None)`
+
+Audits the investor's transaction ledger history, gross capital inflows vs outflows, SIP investment consistency, and vintage.
+
+```python
+async def get_historical_cashflows(
+    investor_id: int,
+    transactions: list[Transaction] | list[dict[str, Any]] | None = None,
+) -> dict[str, Any]
+```
+
+**Output Fields**:
+- `total_transactions_count: int`: Lifetime transaction count.
+- `first_transaction_date: str`, `latest_transaction_date: str`: Timeline boundaries.
+- `portfolio_vintage_years: float`: Years elapsed between the first investment and latest transaction.
+- `total_gross_inflows_inr: float`: Total gross capital deployed (buys, SIPs, switch-ins).
+- `total_gross_outflows_inr: float`: Total redemptions and withdrawals.
+- `net_cash_invested_inr: float`: Inflows minus outflows.
+- `sip_metrics: dict`:
+  - `total_sip_amount_inr: float`, `total_sip_count: int`
+  - `average_sip_amount_inr: float`
+  - `sip_share_of_inflows_pct: float`: Percentage of total inflows deployed via systematic plans.
+  - `lumpsum_amount_inr: float`, `lumpsum_count: int`
+- `yearly_summary: list[dict]`: Calendar-year breakdown of inflows, outflows, net inflows, and SIP volumes.
+- `breakdown_by_type: dict`: Volume and count partitioned by transaction category.
+
+---
+
+### 5. Realized Capital Gains & Tax Efficiency
+
+#### `get_historical_capital_gains(investor_id, fy_points=None, include_unreconciled=False)`
+
+Aggregates realized capital gains (STCG vs LTCG) across all financial years with disposals.
+
+```python
+async def get_historical_capital_gains(
+    investor_id: int,
+    fy_points: list[CapitalGainsFyPoint] | list[dict[str, Any]] | None = None,
+    include_unreconciled: bool = False,
+) -> dict[str, Any]
+```
+
+**Output Fields**:
+- `financial_years_count: int`: Number of financial years recorded with disposals.
+- `cumulative_stcg_inr: float`: Total realized Short-Term Capital Gains.
+- `cumulative_ltcg_inr: float`: Total realized Long-Term Capital Gains.
+- `cumulative_realized_gain_inr: float`: Cumulative taxable gain across all financial years.
+- `profitable_financial_years: int`, `loss_making_financial_years: int`
+- `fy_breakdown: list[dict]`: Detailed year-by-year summary of STCG, LTCG, total gain, and Gain/Loss status.
+
+---
+
+### 6. Scheme Historical Tenure & Holding Analysis
+
+#### `get_historical_scheme_tenure(investor_id, security_id, scheme_detail=None)`
+
+Evaluates scheme holding vintage, transactions count, average purchase price, current NAV, and NAV multiple.
+
+```python
+async def get_historical_scheme_tenure(
+    investor_id: int,
+    security_id: int,
+    scheme_detail: SchemeDetail | dict[str, Any] | None = None,
+) -> dict[str, Any]
+```
+
+**Output Fields**:
+- `security_id: int`, `name: str`, `isin: str`, `category: str`
+- `first_transaction_date: str`, `latest_transaction_date: str`
+- `tenure_days: int`, `tenure_years: float`: Exact holding period duration.
+- `total_units: float`, `current_value_inr: float`, `invested_inr: float`
+- `buy_transactions_count: int`, `avg_buy_nav: float`: Weighted average acquisition price.
+- `latest_nav: float`, `nav_multiple: float`: Valuation multiple ($\text{latest\_nav} / \text{avg\_buy\_nav}$).
+- `return_pct: float`, `xirr: float`: Scheme return and money-weighted IRR.
+- `nav_history_points_count: int`: Number of NAV curve points available.
+
+---
+
+### 7. Master 360° Historical Portfolio Report
+
+#### `analyze_portfolio_historical(investor_id, from_date=None, to_date=None, granularity="monthly", risk_free_rate=0.065)`
+
+Consolidates all historical performance layers into a unified intelligence report:
+
+```python
+async def analyze_portfolio_historical(
+    investor_id: int,
+    from_date: date | str | None = None,
+    to_date: date | str | None = None,
+    granularity: Literal["daily", "weekly", "monthly"] = "monthly",
+    risk_free_rate: float = 0.065,
+) -> dict[str, Any]
+```
+
+**Aggregated Sections**:
+- `valuation_status`: Calculation readiness, provisional status, and finalization date.
+- `trajectory_summary`: Initial vs latest net worth, capital deployed, wealth created, and peak valuation.
+- `drawdown_summary`: Maximum drawdown percentage, peak date, trough date, recovery date, and current drawdown.
+- `risk_adjusted_performance`: Annualized CAGR, annualized volatility, Sharpe, Sortino, and Calmar ratios.
+- `cashflow_discipline`: Cumulative gross inflows, net capital deployed, SIP percentage, and vintage.
+- `realized_tax_summary`: Cumulative STCG, LTCG, and realized capital gain totals across FYs.
+- `key_insights`: Synthesized list of concise, deterministic factual observations grounded strictly in the data.
+
