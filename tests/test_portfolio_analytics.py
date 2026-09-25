@@ -7,7 +7,7 @@ from unittest.mock import AsyncMock, patch
 
 import pytest
 
-from folioman_intelligence.clients.folioman.errors import FoliomanNotFoundError
+from folioman_client.errors import FoliomanNotFoundError
 from src.folioman_intelligence.analytics.portfolio import analyze_portfolio
 
 

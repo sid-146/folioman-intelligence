@@ -8,11 +8,11 @@ from unittest.mock import AsyncMock, MagicMock, patch
 
 import pytest
 
-from folioman_intelligence.clients.folioman.errors import (
+from folioman_client.errors import (
     FoliomanAPIError,
     FoliomanNotFoundError,
 )
-from folioman_intelligence.clients.folioman.models import (
+from folioman_client.models import (
     AllocationBucket,
     Holding,
     PeriodReturn,
@@ -90,43 +90,32 @@ async def test_get_portfolio_success(mock_portfolio_summary: PortfolioSummary):
 
     mock_client.portfolio.get.assert_awaited_once_with(101)
 
-    assert data["currency"] == "INR"
-    assert data["total_value"] == Decimal("150000.00")
-    # total_invested = 60000.00 + 40000.00 = 100000.00
-    assert data["total_invested"] == Decimal("100000.00")
-    # absolute_returns = 150000.00 - 100000.00 = 50000.00
-    assert data["absolute_returns"] == Decimal("50000.00")
-    assert data["navs_as_of"] == date(2026, 3, 1)
-    assert data["xirr"] == 14.50
+    assert data == mock_portfolio_summary
+    assert data.investor_id == 101
+    assert data.total_inr == Decimal("150000.00")
+    assert data.xirr == 14.50
+    assert data.navs_as_of == date(2026, 3, 1)
 
     # Category mix
-    assert len(data["category_mix"]) == 2
-    assert data["category_mix"][0]["label"] == "Equity"
-    assert data["category_mix"][0]["value_inr"] == 120000.0
+    assert len(data.category_mix) == 2
+    assert data.category_mix[0].label == "Equity"
+    assert data.category_mix[0].value_inr == Decimal("120000.00")
 
     # Period returns
-    assert data["period_returns"] == [
-        {"period": "1y", "absolute_return": 15.2},
-        {"period": "3y", "absolute_return": 42.8},
-    ]
+    assert len(data.period_returns) == 2
+    assert data.period_returns[0].period == "1y"
+    assert data.period_returns[0].absolute == 15.2
 
     # Holdings
-    assert len(data["holdings"]) == 2
-    holding_alpha = data["holdings"][0]
-    assert holding_alpha["name"] == "Fund Alpha Large Cap"
-    assert holding_alpha["category"] == "Equity"
-    assert holding_alpha["units"] == Decimal("100.5")
-    assert holding_alpha["value_inr"] == Decimal("90000.00")
-    assert holding_alpha["invested_inr"] == Decimal("60000.00")
-    # return_pct * 100 -> 0.50 * 100 = 50.0
-    assert holding_alpha["return_pct"] == pytest.approx(50.0)
-    # contribution = (60000 / 100000) * 100 = 60.0
-    assert holding_alpha["contribution_to_portfolio (invested_inr / total_invested)"] == pytest.approx(60.0)
-    # xirr * 100 -> 0.18 * 100 = 18.0
-    assert holding_alpha["xirr"] == pytest.approx(18.0)
-
-    holding_beta = data["holdings"][1]
-    assert holding_beta["contribution_to_portfolio (invested_inr / total_invested)"] == pytest.approx(40.0)
+    assert len(data.holdings) == 2
+    holding_alpha = data.holdings[0]
+    assert holding_alpha.name == "Fund Alpha Large Cap"
+    assert holding_alpha.category == "Equity"
+    assert holding_alpha.units == Decimal("100.5")
+    assert holding_alpha.value_inr == Decimal("90000.00")
+    assert holding_alpha.invested_inr == Decimal("60000.00")
+    assert holding_alpha.return_pct == pytest.approx(0.50)
+    assert holding_alpha.xirr == pytest.approx(0.18)
 
 
 @pytest.mark.asyncio
@@ -170,15 +159,10 @@ async def test_get_portfolio_with_none_holding_fields():
     ):
         data = await repo.get_portfolio(investor_id=1)
 
-    assert data["total_invested"] == 0
-    assert data["absolute_returns"] == Decimal("50000.00")
-    assert data["xirr"] is None
-
-    holding = data["holdings"][0]
-    assert holding["invested_inr"] is None
-    assert holding["return_pct"] is None
-    assert holding["contribution_to_portfolio (invested_inr / total_invested)"] == 0
-    assert holding["xirr"] == 0
+    assert data == summary
+    assert data.holdings[0].invested_inr is None
+    assert data.holdings[0].return_pct is None
+    assert data.holdings[0].xirr is None
 
 
 @pytest.mark.asyncio
@@ -210,12 +194,11 @@ async def test_get_portfolio_empty_holdings():
     ):
         data = await repo.get_portfolio(investor_id=2)
 
-    assert data["total_value"] == Decimal("0.00")
-    assert data["total_invested"] == 0
-    assert data["absolute_returns"] == Decimal("0.00")
-    assert data["holdings"] == []
-    assert data["period_returns"] == []
-    assert data["category_mix"] == []
+    assert data == summary
+    assert data.total_inr == Decimal("0.00")
+    assert data.holdings == []
+    assert data.period_returns == []
+    assert data.category_mix == []
 
 
 @pytest.mark.asyncio

@@ -2,93 +2,121 @@
 
 Intelligence, portfolio analytics, and AI reasoning service for [Folioman](https://github.com/codereverser/folioman).
 
-## Folioman Python Client
+## Overview
 
-A thin, async, typed Python client wrapping the Folioman REST API. It handles:
+`folioman-intelligence` bridges user portfolios with real-time financial market analytics and autonomous AI agents:
 
-- Asynchronous HTTP transport via `httpx`
-- JWT authentication (`/api/auth/token/pair`)
-- Transparent access token refresh (`/api/auth/token/refresh`)
-- Automatic retry on HTTP 401 with refreshed credentials
-- Single-flight concurrent token refresh locking
-- Typed response parsing into Pydantic models
-- Clean, focused exception hierarchy
+- **Autonomous AI Agents**: Multi-agent reasoning for mutual funds and portfolios using `deepagents` and `langchain`.
+- **Deterministic Analytics Engine**: Rigorous, reproducible Modern Portfolio Theory (MPT) metrics (Alpha, Sharpe, Sortino, rolling CAGR, sector trends, mandate compliance).
+- **Domain Repositories**: Normalizes and cleans financial payloads (`MutualFundRepository`, `PortfolioRepository`).
+- **External Client Integrations**: Consumes standalone [`folioman-client`](https://github.com/sid-146/folioman-client) and [`tickertape-client`](https://github.com/sid-146/tickertape-client).
 
 ### Architecture
 
 ```
-DeepAgents / LLM Reasoning
-         ↓
-Portfolio Analytics
-         ↓
-Folioman Client (this client)
-         ↓
-Folioman API (REST / OpenAPI)
+┌────────────────────────────────────────────────────────┐
+│                  Autonomous AI Agents                  │
+│       (ask_fund_agent, ask_portfolio_agent)            │
+└───────────────────────────┬────────────────────────────┘
+                            │
+┌───────────────────────────▼────────────────────────────┐
+│                    LangChain Tools                     │
+│         (fund_tools: 17, portfolio_tools: 3)           │
+└───────────────────────────┬────────────────────────────┘
+                            │
+┌───────────────────────────▼────────────────────────────┐
+│               Financial Analytics Engine               │
+│         (analytics.fund, analytics.portfolio)          │
+└─────────────┬────────────────────────────┬─────────────┘
+              │                            │
+┌─────────────▼────────────┐  ┌────────────▼─────────────┐
+│   MutualFundRepository   │  │   PortfolioRepository    │
+└─────────────┬────────────┘  └────────────┬─────────────┘
+              │                            │
+┌─────────────▼────────────┐  ┌────────────▼─────────────┐
+│    tickertape-client     │  │     folioman-client      │
+│  (TickerTapeClient SDK)  │  │  (FoliomanClient REST)   │
+└─────────────┬────────────┘  └────────────┬─────────────┘
+              │                            │
+              ▼                            ▼
+      [ TickerTape.in ]          [ Folioman REST API ]
 ```
-
-Tokens and raw HTTP details are encapsulated within `FoliomanClient` and are never exposed to agents or analytics logic.
 
 ---
 
-## Installation & Configuration
+## Installation & Setup
+
+### Requirements
+- Python `>= 3.12`
+- Package manager: [`uv`](https://github.com/astral-sh/uv) (recommended)
+
+### Install Dependencies
+```bash
+uv sync
+```
 
 ### Environment Variables
 
 Configure via environment variables or a `.env` file:
 
 ```env
+# Folioman REST API
 FOLIOMAN_BASE_URL=http://localhost:8000
 FOLIOMAN_USERNAME=advisor
 FOLIOMAN_PASSWORD=supersecret
 FOLIOMAN_TIMEOUT=30.0
+
+# LLM Configuration (for AI Agents)
+LLM_MODEL_NAME=gpt-4
+LLM_TEMPERATURE=0.7
+LLM_API_KEY=your-openai-api-key
 ```
 
 ---
 
-## Usage Example
+## Quick Usage
 
+### 1. Folioman Client
 ```python
 import asyncio
-from folioman_intelligence import FoliomanClient, settings
+from folioman_intelligence import FoliomanClient
 
 async def main():
-    # Instantiate from environment variables or settings:
     async with FoliomanClient.from_env() as client:
-        # 1. Investors
         investors = await client.investors.list()
-        investor = await client.investors.get(investors[0].id)
-        print(f"Investor: {investor.name}, PAN: {investor.pan_masked}")
+        summary = await client.portfolio.get(investors[0].id)
+        print(f"Net Worth: INR {summary.total_inr}")
 
-        # 2. Portfolio Summary & Holdings
-        summary = await client.portfolio.get(investor.id)
-        print(f"Net Worth: INR {summary.total_inr}, Holdings: {summary.holdings_count}")
+if __name__ == "__main__":
+    asyncio.run(main())
+```
 
-        holdings = await client.holdings.list(investor.id)
-        for h in holdings:
-            print(f" - {h.name}: {h.units} units (₹{h.value_inr})")
+### 2. Mutual Fund Repository & Analytics
+```python
+import asyncio
+from folioman_intelligence.repository.fund import MutualFundRepository
+from folioman_intelligence.analytics.fund import get_fund_overview, get_risk_and_volatility
 
-        # 3. Scheme Details
-        if holdings:
-            scheme = await client.holdings.get(investor.id, holdings[0].security_id)
-            print(f"Scheme ISIN: {scheme.security.isin}, NAV History points: {len(scheme.nav_history)}")
+async def main():
+    repo = MutualFundRepository()
+    fund = await repo.get_fund_data("INF966L01721")  # by ISIN or slug
+    overview = await get_fund_overview("INF966L01721", fund_data=fund)
+    risk = await get_risk_and_volatility("INF966L01721", fund_data=fund)
+    print(f"Fund: {overview['name']}, NAV: {overview['nav']}")
+    print(f"Sharpe: {risk.get('sharpe_ratio')}, Alpha: {risk.get('alpha')}")
 
-        # 4. Transactions
-        txns = await client.transactions.list(investor.id)
-        print(f"Total Transactions: {len(txns)}")
+if __name__ == "__main__":
+    asyncio.run(main())
+```
 
-        # 5. Valuations Time-Series & Status
-        status = await client.valuations.status(investor.id)
-        print(f"Valuation Status: {status.status}")
+### 3. Autonomous AI Agent
+```python
+import asyncio
+from folioman_intelligence.agents.fund import ask_fund_agent
 
-        series = await client.valuations.list(investor.id, granularity="monthly")
-        print(f"Valuation points: {len(series.points)}")
-
-        # 6. Capital Gains
-        fy_gains = await client.capital_gains.list(investor.id)
-        if fy_gains:
-            latest_fy = fy_gains[-1].fy
-            report = await client.capital_gains.get(investor.id, fy=latest_fy)
-            print(f"FY {report.fy} LTCG: INR {report.ltcg_total}, STCG: INR {report.stcg_total}")
+async def main():
+    response = await ask_fund_agent("Analyze Quant Infrastructure Fund and evaluate its risk profile.")
+    print(response.content)
 
 if __name__ == "__main__":
     asyncio.run(main())
@@ -96,44 +124,28 @@ if __name__ == "__main__":
 
 ---
 
-## Available Client Resources
-
-- **`client.investors`**:
-    - `list(family_id=None, unaffiliated=False)`: List all accessible investors.
-    - `get(investor_id)`: Fetch investor details (includes masked PAN).
-- **`client.portfolio`**:
-    - `get(investor_id, as_of=None)`: Fetch portfolio summary, net worth, XIRR, and asset allocation breakdown.
-- **`client.holdings`**:
-    - `list(investor_id, as_of=None)`: List all priced holdings under an investor.
-    - `get(investor_id, security_id, as_of=None)`: Detailed view of a single holding (transactions, folios, NAV history).
-- **`client.transactions`**:
-    - `list(investor_id)`: List transaction ledger entries for an investor.
-- **`client.valuations`**:
-    - `list(investor_id, from_date=None, to_date=None, granularity="monthly")`: Net-worth historical series.
-    - `status(investor_id)`: Check valuation computation readiness.
-- **`client.capital_gains`**:
-    - `list(investor_id, include_unreconciled=False)`: Realised STCG/LTCG by financial year.
-    - `get(investor_id, fy="...", include_unreconciled=False)`: Realised capital gains report with disposal lots.
-
----
-
-## Error Handling
-
-Errors raised by the client inherit from `FoliomanError`:
-
-| Exception               | Cause                                                                       |
-| ----------------------- | --------------------------------------------------------------------------- |
-| `FoliomanError`         | Base exception for all client errors                                        |
-| `FoliomanAuthError`     | Authentication failure (bad credentials, expired or rejected refresh token) |
-| `FoliomanNotFoundError` | Resource not found (HTTP 404)                                               |
-| `FoliomanAPIError`      | Other API errors (HTTP 4xx/5xx) with `status_code` and `response_data`      |
-
----
-
 ## Running Tests
 
-Tests use `pytest`, `pytest-asyncio`, and `respx` for mock-based HTTP assertions without requiring a live backend:
+Run unit and integration tests using `pytest`:
 
 ```bash
 uv run pytest -v
+```
+
+Run test suite with code coverage:
+
+```bash
+uv run pytest --cov=src/folioman_intelligence
+```
+
+---
+
+## Building Documentation
+
+Documentation is built with Material for MkDocs:
+
+```bash
+uv run --group docs mkdocs build
+# Or serve locally:
+uv run --group docs mkdocs serve
 ```

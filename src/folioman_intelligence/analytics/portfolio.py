@@ -2,13 +2,13 @@ import asyncio
 import heapq
 import logging
 
+from copy import deepcopy
 from typing import List, Dict, Any
 from datetime import datetime, timedelta
 
 from folioman_intelligence.repository.portfolio import PortfolioRepository
-from folioman_intelligence.clients.tickertape.client import TickerTapeClient
-from folioman_intelligence.clients.folioman.client import FoliomanClient
-from folioman_intelligence.clients.folioman.errors import FoliomanNotFoundError
+from tickertape import TickerTapeClient
+from folioman_client import FoliomanClient, FoliomanNotFoundError
 
 # TODO: Need optimization (too many db calls)
 # TODO: Add diversification
@@ -137,6 +137,22 @@ async def get_portfolio_volatility(investor_id: int, days=90):
 async def analyze_portfolio(investor_id: int):
     repo = PortfolioRepository()
     portfolio = await repo.get_portfolio(investor_id)
+    if isinstance(portfolio, dict):
+        analysis = deepcopy(portfolio)
+        top_3_holding = sorted(
+            analysis.get("holdings", []),
+            key=lambda x: (
+                (x.get("invested_inr") or 0)
+                if isinstance(x, dict)
+                else (getattr(x, "invested_inr", 0) or 0)
+            ),
+            reverse=True,
+        )[:3]
+        analysis["top_3_holdings"] = [
+            t["name"] if isinstance(t, dict) else t.name for t in top_3_holding
+        ]
+        return analysis
+
     total_invested = sum(
         [holding.invested_inr for holding in portfolio.holdings if holding.invested_inr]
     )

@@ -11,7 +11,11 @@ import pytest
 
 def create_mock_jwt(exp: float) -> str:
     """Create a mock JWT with the given expiration timestamp."""
-    header = base64.urlsafe_b64encode(b'{"alg":"HS256","typ":"JWT"}').decode("ascii").rstrip("=")
+    header = (
+        base64.urlsafe_b64encode(b'{"alg":"HS256","typ":"JWT"}')
+        .decode("ascii")
+        .rstrip("=")
+    )
     payload = (
         base64.urlsafe_b64encode(json.dumps({"user_id": 1, "exp": exp}).encode("ascii"))
         .decode("ascii")

@@ -8,14 +8,7 @@ from src.folioman_intelligence.repository.fund import standardize_mutual_fund_pa
 
 @pytest.fixture(scope="module")
 def fund_data():
-    sample_path = (
-        Path(__file__).parent.parent
-        / "src"
-        / "folioman_intelligence"
-        / "clients"
-        / "tickertape"
-        / "sample_mf_parser_response.json"
-    )
+    sample_path = Path(__file__).parent / "fixtures" / "sample_mf_parser_response.json"
     with open(sample_path, "r", encoding="utf-8") as f:
         raw = json.load(f)
     return standardize_mutual_fund_payload(raw.get("props", {}).get("pageProps", {}))
@@ -75,7 +68,10 @@ async def test_get_top_holdings(fund_data):
     assert holdings["total_holdings_count"] == 49
     assert len(holdings["top_holdings"]) == 5
     assert holdings["top_5_concentration_pct"] == pytest.approx(38.87, abs=0.1)
-    assert holdings["top_holdings"][0]["title"] == "Samvardhana Motherson International Ltd"
+    assert (
+        holdings["top_holdings"][0]["title"]
+        == "Samvardhana Motherson International Ltd"
+    )
     assert holdings["high_conviction_bets_count"] >= 5
 
 
@@ -95,7 +91,9 @@ async def test_search_stock_in_fund(fund_data):
     assert result["is_held"] is True
     assert result["matches_count"] >= 2  # Adani Green & Adani Power
 
-    not_found = await fa.search_stock_in_fund("test", query="NonExistentXYZCompany", fund_data=fund_data)
+    not_found = await fa.search_stock_in_fund(
+        "test", query="NonExistentXYZCompany", fund_data=fund_data
+    )
     assert not_found["is_held"] is False
     assert not_found["matches_count"] == 0
 

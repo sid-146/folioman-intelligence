@@ -24,7 +24,7 @@ This layer bridges financial calculations into callable tools and provides auton
                    │                                     │
                    ▼                                     ▼
              [ fund_tools ]                      [ portfolio_tools ]
-               (17 tools)                             (2 tools)
+               (17 tools)                             (3 tools)
                    │                                     │
                    ▼                                     ▼
         [ Fund Analytics Engine ]            [ Portfolio Analytics Engine ]
@@ -40,34 +40,35 @@ Every tool is decorated with LangChain's `@tool` decorator, features explicit ar
 
 The `fund_tools` list exposes 17 specialized tools:
 
-| Tool Name | Key Parameters | Description |
-| :--- | :--- | :--- |
-| `analyze_fund_tool` | `identifier: str` | **Master Tool**: Comprehensive 360° audit combining overview, returns, MPT risk, top holdings, top sectors, fees, and health audit. |
-| `get_fund_overview_tool` | `identifier: str` | Basic scheme metadata, AMC, category, benchmark, risk rating, current NAV, AUM, and investment limits. |
-| `get_fund_trailing_returns_tool` | `identifier: str` | Multi-horizon trailing returns (1Y, 3Y CAGR, 5Y CAGR, Life CAGR). |
-| `get_fund_cagr_history_tool` | `identifier: str` | Rolling CAGR statistics (min, max, median, spread) across historical market cycles. |
-| `get_fund_risk_metrics_tool` | `identifier: str` | MPT ratios: Alpha, standard deviation, Sharpe, Sortino, and category outperformance. |
-| `get_fund_valuation_tool` | `identifier: str` | Portfolio weighted P/E ratio compared against category average P/E. |
-| `get_fund_top_holdings_tool` | `identifier: str`, `top_n: int = 10` | Top stock holdings, top 5/10 concentration percentages, and high-conviction bets (>5%). |
-| `get_fund_portfolio_activity_tool`| `identifier: str` | Recent fund manager portfolio moves over 3 months (accumulated vs trimmed stocks). |
-| `search_stock_in_fund_tool` | `identifier: str`, `query: str` | Searches for a specific company or ticker in the fund's portfolio. |
-| `get_fund_asset_allocation_tool` | `identifier: str` | Current asset breakdown across Equity, F&O derivatives, Debt, Cash, and REITs. |
-| `check_fund_mandate_compliance_tool` | `identifier: str` | Verifies adherence to SEBI and scheme asset class allocation limits. |
-| `get_fund_sector_allocation_tool` | `identifier: str` | Current sector breakdown and top 3/5 sector concentration percentages. |
-| `get_sector_rotation_trends_tool`| `identifier: str` | Multi-period sector changes highlighting expanding vs contracting sectors. |
-| `get_fund_peer_comparison_tool` | `identifier: str` | Category peer matrix with 1Y return and 3Y CAGR rankings. |
-| `get_fund_managers_info_tool` | `identifier: str` | Fund manager qualifications, years of experience, total AUM, and other schemes managed. |
-| `get_cost_and_tax_tool` | `identifier: str` | Expense ratio vs category (in basis points), exit load penalty schedules, and tax rules. |
-| `get_fund_health_audit_tool` | `identifier: str` | 5-pillar scorecard evaluations and governance red flags count. |
+| Tool Name                            | Key Parameters                       | Description                                                                                                                         |
+| :----------------------------------- | :----------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------- |
+| `analyze_fund_tool`                  | `identifier: str`                    | **Master Tool**: Comprehensive 360° audit combining overview, returns, MPT risk, top holdings, top sectors, fees, and health audit. |
+| `get_fund_overview_tool`             | `identifier: str`                    | Basic scheme metadata, AMC, category, benchmark, risk rating, current NAV, AUM, and investment limits.                              |
+| `get_fund_trailing_returns_tool`     | `identifier: str`                    | Multi-horizon trailing returns (1Y, 3Y CAGR, 5Y CAGR, Life CAGR).                                                                   |
+| `get_fund_cagr_history_tool`         | `identifier: str`                    | Rolling CAGR statistics (min, max, median, spread) across historical market cycles.                                                 |
+| `get_fund_risk_metrics_tool`         | `identifier: str`                    | MPT ratios: Alpha, standard deviation, Sharpe, Sortino, and category outperformance.                                                |
+| `get_fund_valuation_tool`            | `identifier: str`                    | Portfolio weighted P/E ratio compared against category average P/E.                                                                 |
+| `get_fund_top_holdings_tool`         | `identifier: str`, `top_n: int = 10` | Top stock holdings, top 5/10 concentration percentages, and high-conviction bets (>5%).                                             |
+| `get_fund_portfolio_activity_tool`   | `identifier: str`                    | Recent fund manager portfolio moves over 3 months (accumulated vs trimmed stocks).                                                  |
+| `search_stock_in_fund_tool`          | `identifier: str`, `query: str`      | Searches for a specific company or ticker in the fund's portfolio.                                                                  |
+| `get_fund_asset_allocation_tool`     | `identifier: str`                    | Current asset breakdown across Equity, F&O derivatives, Debt, Cash, and REITs.                                                      |
+| `check_fund_mandate_compliance_tool` | `identifier: str`                    | Verifies adherence to SEBI and scheme asset class allocation limits.                                                                |
+| `get_fund_sector_allocation_tool`    | `identifier: str`                    | Current sector breakdown and top 3/5 sector concentration percentages.                                                              |
+| `get_sector_rotation_trends_tool`    | `identifier: str`                    | Multi-period sector changes highlighting expanding vs contracting sectors.                                                          |
+| `get_fund_peer_comparison_tool`      | `identifier: str`                    | Category peer matrix with 1Y return and 3Y CAGR rankings.                                                                           |
+| `get_fund_managers_info_tool`        | `identifier: str`                    | Fund manager qualifications, years of experience, total AUM, and other schemes managed.                                             |
+| `get_cost_and_tax_tool`              | `identifier: str`                    | Expense ratio vs category (in basis points), exit load penalty schedules, and tax rules.                                            |
+| `get_fund_health_audit_tool`         | `identifier: str`                    | 5-pillar scorecard evaluations and governance red flags count.                                                                      |
 
 ### 2. Portfolio Tools (`tools/portfolio.py`)
 
 The `portfolio_tools` list exposes tools for analyzing investor portfolios:
 
-| Tool Name | Parameters | Description |
-| :--- | :--- | :--- |
-| `get_portfolio_analysis` | `investor_id: int = 1` | Aggregated portfolio analysis: total net worth, total invested, absolute returns, XIRR, category mix, and top holdings. |
-| `get_holding_details` | `investor_id: int`, `security_id: int` | Individual holding analysis: units held, invested amount, current market value, return %, average buy price, and buy transaction count. |
+| Tool Name                    | Parameters                             | Description                                                                                                                             |
+| :--------------------------- | :------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------- |
+| `get_portfolio_analysis`     | `investor_id: int = 1`                 | Aggregated portfolio analysis: total net worth, total invested, absolute returns, XIRR, category mix, and top holdings.                 |
+| `get_holding_details`        | `investor_id: int`, `security_id: int` | Individual holding analysis: units held, invested amount, current market value, return %, average buy price, and buy transaction count. |
+| `get_portfolio_risk_analyse` | `investor_id: int = 1`                 | Evaluates portfolio risk profile: top holding concentration, weighted volatility, maximum drawdown, and diversification breakdown.      |
 
 ---
 
@@ -80,6 +81,7 @@ An autonomous agent specialized in deep-dive mutual fund research, due diligence
 #### System Prompt & Behavioral Guidelines
 
 The agent is governed by strict system guidelines:
+
 1. **Grounded Analytics**: Must use tools to fetch scheme information, returns, MPT ratios, top holdings, sector allocations, and peer comparisons.
 2. **Fact vs Observation**: Must strictly distinguish between deterministic facts (from tool outputs) and qualitative commentary.
 3. **Master vs Granular Tools**: Instructed to use `analyze_fund_tool` for broad reviews, and granular tools for specific inquiries.
@@ -92,7 +94,7 @@ async def ask_fund_agent(question: str) -> FundAgentResponse
 ```
 
 - **Arguments**:
-  - `question` (*str*): Natural language user inquiry.
+    - `question` (_str_): Natural language user inquiry.
 - **Returns**: `FundAgentResponse` (contains `.content` string and `.tool_calls` list).
 
 ---
@@ -115,7 +117,7 @@ async def ask_portfolio_agent(question: str) -> PortfolioAgentResponse
 ```
 
 - **Arguments**:
-  - `question` (*str*): User question about their portfolio.
+    - `question` (_str_): User question about their portfolio.
 - **Returns**: `PortfolioAgentResponse`.
 
 ---
@@ -125,31 +127,33 @@ async def ask_portfolio_agent(question: str) -> PortfolioAgentResponse
 Both `ask_fund_agent` and `ask_portfolio_agent` use LangChain's `astream_events` protocol to provide real-time visibility in terminal environments:
 
 1. **`on_tool_start`**: Intercepted and printed to the terminal with argument inspection:
-   ```
-   ======================================================================
-   🛠️  [TOOL CALL] get_fund_top_holdings_tool
-   ----------------------------------------------------------------------
-   Arguments:
-   {
-     "identifier": "INF966L01721",
-     "top_n": 5
-   }
-   ======================================================================
-   ```
+
+    ```
+    ======================================================================
+    🛠️  [TOOL CALL] get_fund_top_holdings_tool
+    ----------------------------------------------------------------------
+    Arguments:
+    {
+      "identifier": "INF966L01721",
+      "top_n": 5
+    }
+    ======================================================================
+    ```
 
 2. **`on_tool_end`**: Formatted tool output printed to the terminal:
-   ```
-   ======================================================================
-   📦 [TOOL OUTPUT] get_fund_top_holdings_tool
-   ----------------------------------------------------------------------
-   Output:
-   {
-     "total_holdings_count": 48,
-     "top_5_concentration_pct": 34.2
-     ...
-   }
-   ======================================================================
-   ```
+
+    ```
+    ======================================================================
+    📦 [TOOL OUTPUT] get_fund_top_holdings_tool
+    ----------------------------------------------------------------------
+    Output:
+    {
+      "total_holdings_count": 48,
+      "top_5_concentration_pct": 34.2
+      ...
+    }
+    ======================================================================
+    ```
 
 3. **`on_chat_model_stream`**: Model tokens are flushed immediately to `sys.stdout`.
 
@@ -188,7 +192,7 @@ async def main():
         "Detail its 3-year CAGR, Sharpe ratio compared to its category, "
         "top 3 holdings, and any detected red flags."
     )
-    
+
     response = await ask_fund_agent(prompt)
     print("\n\n=== FINAL AGENT ASSESSMENT ===")
     print(response.content)

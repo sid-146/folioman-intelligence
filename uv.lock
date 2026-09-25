@@ -91,18 +91,6 @@ wheels = [
 ]
 
 [[package]]
-name = "bs4"
-version = "0.0.2"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "beautifulsoup4" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/c9/aa/4acaf814ff901145da37332e05bb510452ebed97bc9602695059dd46ef39/bs4-0.0.2.tar.gz", hash = "sha256:a48685c58f50fe127722417bae83fe6badf500d54b55f7e39ffe43b798653925", size = 698, upload-time = "2024-01-17T18:15:47.371Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/51/bb/bf7aab772a159614954d84aa832c129624ba6c32faa559dfb200a534e50b/bs4-0.0.2-py2.py3-none-any.whl", hash = "sha256:abf8742c0805ef7f662dce4b51cca104cffe52b835238afc169142ab9b3fbccc", size = 1189, upload-time = "2024-01-17T18:15:48.613Z" },
-]
-
-[[package]]
 name = "certifi"
 version = "2026.7.22"
 source = { registry = "https://pypi.org/simple" }
@@ -540,17 +528,33 @@ wheels = [
 ]
 
 [[package]]
+name = "folioman-client"
+version = "0.1.1"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "httpx" },
+    { name = "pydantic" },
+    { name = "pydantic-settings" },
+    { name = "pytest-cov" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/ea/d0/b1f1644875cf291a69c97422cb0639d984312d4467bef58e9d044590e4f9/folioman_client-0.1.1.tar.gz", hash = "sha256:a9ada474bf455a6970cc4a42e09a2b3e41f19a2003b1d104c8704ec4f9abe5df", size = 118274, upload-time = "2026-09-25T08:50:43.459Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/60/87/a37d7f698aa6d5b994e353cb06968eab56ca88949c7a5b3c5ce0eb471b63/folioman_client-0.1.1-py3-none-any.whl", hash = "sha256:25f6b9038e49d699c1090d1f485f294c7f7bf0c7dd191e4e277ffa4185512a62", size = 19014, upload-time = "2026-09-25T08:50:41.893Z" },
+]
+
+[[package]]
 name = "folioman-intelligence"
 version = "0.1.0"
 source = { editable = "." }
 dependencies = [
-    { name = "bs4" },
     { name = "deepagents" },
+    { name = "folioman-client" },
     { name = "httpx" },
     { name = "langchain-openai" },
     { name = "pydantic" },
     { name = "pydantic-settings" },
     { name = "pytest-cov" },
+    { name = "tickertape-client" },
 ]
 
 [package.dev-dependencies]
@@ -565,13 +569,14 @@ docs = [
 
 [package.metadata]
 requires-dist = [
-    { name = "bs4", specifier = ">=0.0.2" },
     { name = "deepagents", specifier = ">=0.7.13" },
+    { name = "folioman-client", specifier = ">=0.1.0" },
     { name = "httpx", specifier = ">=0.28.1" },
     { name = "langchain-openai", specifier = ">=1.6.2" },
     { name = "pydantic", specifier = ">=2.13.5" },
     { name = "pydantic-settings", specifier = ">=2.15.0" },
     { name = "pytest-cov", specifier = ">=7.1.0" },
+    { name = "tickertape-client", specifier = ">=0.1.0" },
 ]
 
 [package.metadata.requires-dev]
@@ -1788,6 +1793,20 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/47/c6/ee486fd809e357697ee8a44d3d69222b344920433d3b6666ccd9b374630c/tenacity-9.1.4.tar.gz", hash = "sha256:adb31d4c263f2bd041081ab33b498309a57c77f9acf2db65aadf0898179cf93a", size = 49413, upload-time = "2026-02-07T10:45:33.841Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/d7/c1/eb8f9debc45d3b7918a32ab756658a0904732f75e555402972246b0b8e71/tenacity-9.1.4-py3-none-any.whl", hash = "sha256:6095a360c919085f28c6527de529e76a06ad89b23659fa881ae0649b867a9d55", size = 28926, upload-time = "2026-02-07T10:45:32.24Z" },
+]
+
+[[package]]
+name = "tickertape-client"
+version = "0.1.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "beautifulsoup4" },
+    { name = "httpx" },
+    { name = "pydantic" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/3c/93/4c53646a31bd54769fe3a5821e1a265b2ad9b4adce30ed1338566bd0453f/tickertape_client-0.1.0.tar.gz", hash = "sha256:37cda2254fee9f407f9d31099d545ebc199fe37de4d0cde988ef13e42ceb1b58", size = 242005, upload-time = "2026-09-24T20:20:33.261Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/e6/7f/de41e681a343b1303fe9d33326846b6a72d1c7af20a28458794c9cea4c8d/tickertape_client-0.1.0-py3-none-any.whl", hash = "sha256:b4f372473baffaf792b6bb221c78d853fe39d982dfc1a9f63201bf014664ca6d", size = 35534, upload-time = "2026-09-24T20:20:31.676Z" },
 ]
 
 [[package]]

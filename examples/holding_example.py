@@ -1,5 +1,5 @@
 import asyncio
-from src.folioman_intelligence.analytics.portfolio import holding_details
+from folioman_intelligence.analytics.portfolio import holding_details
 
 
 async def main(isin: str):
