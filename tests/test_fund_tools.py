@@ -9,14 +9,7 @@ from src.folioman_intelligence.tools import fund as ft
 
 @pytest.fixture
 def sample_fund_data():
-    sample_path = (
-        Path(__file__).parent.parent
-        / "src"
-        / "folioman_intelligence"
-        / "clients"
-        / "tickertape"
-        / "sample_mf_parser_response.json"
-    )
+    sample_path = Path(__file__).parent / "fixtures" / "sample_mf_parser_response.json"
     with open(sample_path, "r", encoding="utf-8") as f:
         raw = json.load(f)
     return standardize_mutual_fund_payload(raw.get("props", {}).get("pageProps", {}))
@@ -33,16 +26,22 @@ async def test_fund_tools_execution(sample_fund_data):
         assert ov["name"] == "Quant Infrastructure Fund"
 
         # 2. Risk metrics tool
-        risk = await ft.get_fund_risk_metrics_tool.ainvoke({"identifier": "INF966L01721"})
+        risk = await ft.get_fund_risk_metrics_tool.ainvoke(
+            {"identifier": "INF966L01721"}
+        )
         assert risk["alpha"] == 5.38
         assert risk["sharpe_ratio"] == 0.514
 
         # 3. Top holdings tool
-        holdings = await ft.get_fund_top_holdings_tool.ainvoke({"identifier": "INF966L01721", "top_n": 5})
+        holdings = await ft.get_fund_top_holdings_tool.ainvoke(
+            {"identifier": "INF966L01721", "top_n": 5}
+        )
         assert len(holdings["top_holdings"]) == 5
 
         # 4. Search stock tool
-        search = await ft.search_stock_in_fund_tool.ainvoke({"identifier": "INF966L01721", "query": "Bharti"})
+        search = await ft.search_stock_in_fund_tool.ainvoke(
+            {"identifier": "INF966L01721", "query": "Bharti"}
+        )
         assert search["is_held"] is True
 
         # 5. Comprehensive master tool
