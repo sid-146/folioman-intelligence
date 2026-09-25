@@ -3,7 +3,7 @@ from pathlib import Path
 import pytest
 from unittest.mock import AsyncMock, patch
 
-from src.folioman_intelligence.clients.tickertape.models import MutualFundDetail
+from tickertape import MutualFundDetail
 from src.folioman_intelligence.repository.fund import (
     MutualFundRepository,
     standardize_mutual_fund_payload,
@@ -12,14 +12,7 @@ from src.folioman_intelligence.repository.fund import (
 
 @pytest.fixture
 def sample_raw_props():
-    sample_path = (
-        Path(__file__).parent.parent
-        / "src"
-        / "folioman_intelligence"
-        / "clients"
-        / "tickertape"
-        / "sample_mf_parser_response.json"
-    )
+    sample_path = Path(__file__).parent / "fixtures" / "sample_mf_parser_response.json"
     with open(sample_path, "r", encoding="utf-8") as f:
         data = json.load(f)
     return data.get("props", {}).get("pageProps", {})

@@ -1,13 +1,13 @@
 """Folioman Intelligence Service."""
 
-from folioman_intelligence.clients.folioman import (
+from folioman_client import (
     FoliomanAPIError,
     FoliomanAuthError,
     FoliomanClient,
     FoliomanError,
     FoliomanNotFoundError,
 )
-from folioman_intelligence.clients.tickertape import (
+from tickertape import (
     TickerTapeClient,
     TickerTapeError,
     TickerTapeHTTPError,

@@ -22,10 +22,14 @@ def test_agent_initialization():
 
 
 def test_fund_agent_response_model():
-    resp = FundAgentResponse({
-        "content": "Quant Infrastructure is a top performer with Sharpe 0.51.",
-        "tool_calls": [{"name": "analyze_fund_tool", "input": {"identifier": "M_QUNG"}}],
-    })
+    resp = FundAgentResponse(
+        {
+            "content": "Quant Infrastructure is a top performer with Sharpe 0.51.",
+            "tool_calls": [
+                {"name": "analyze_fund_tool", "input": {"identifier": "M_QUNG"}}
+            ],
+        }
+    )
     assert "top performer" in resp.content
     assert str(resp) == resp.content
     assert len(resp.tool_calls) == 1
@@ -57,7 +61,13 @@ async def test_ask_fund_agent_mock():
         {
             "event": "on_chat_model_stream",
             "name": "ChatOpenAI",
-            "data": {"chunk": type("Chunk", (), {"content": "Quant Infrastructure Fund is direct/growth."})()},
+            "data": {
+                "chunk": type(
+                    "Chunk",
+                    (),
+                    {"content": "Quant Infrastructure Fund is direct/growth."},
+                )()
+            },
         },
         {
             "event": "on_chat_model_end",

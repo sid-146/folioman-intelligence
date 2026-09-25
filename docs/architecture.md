@@ -33,7 +33,7 @@ This document describes the architectural philosophy, system layers, data flow p
                                     │ Tool Invocations
 ┌───────────────────────────────────▼────────────────────────────────────┐
 │                           LangChain Tools                              │
-│         (fund_tools: 17 tools, portfolio_tools: 2 tools)               │
+│         (fund_tools: 17 tools, portfolio_tools: 3 tools)               │
 └───────────────────────────────────┬────────────────────────────────────┘
                                     │ Pure Python Calls
 ┌───────────────────────────────────▼────────────────────────────────────┐
@@ -71,12 +71,12 @@ This document describes the architectural philosophy, system layers, data flow p
 
 ### 2. Clients Layer (`clients/`)
 
-- **`clients.folioman`**:
+- **`folioman-client`**:
     - `FoliomanClient`: Asynchronous HTTP client communicating with Folioman REST API.
     - `JWTAuthManager`: Manages token acquisition (`/api/auth/token/pair`), periodic refresh (`/api/auth/token/refresh`), and 401 recovery.
     - Resource sub-clients: `investors`, `portfolio`, `holdings`, `transactions`, `valuations`, `capital_gains`.
     - Pydantic models for strict type validation and serialization.
-- **`clients.tickertape`**:
+- **`tickertape` (`tickertape-client`)**:
     - `TickerTapeClient`: Scrapes public pages and sitemaps.
     - `SitemapCacheManager`: Stores parsed sitemaps on disk to eliminate redundant web traffic.
     - `ISINLookupTable`: Embedded SQLite database (`isin_lookup.db`) indexed on ISIN, sector, subsector, AMC, and benchmark.

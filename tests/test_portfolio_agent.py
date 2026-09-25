@@ -163,7 +163,7 @@ async def test_get_portfolio_analysis_tool():
     }
 
     with patch(
-        "src.folioman_intelligence.agents.portfolio.analyze_portfolio",
+        "src.folioman_intelligence.tools.portfolio.analyze_portfolio",
         new_callable=AsyncMock,
     ) as mock_analyze:
         mock_analyze.return_value = mock_analytics

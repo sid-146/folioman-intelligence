@@ -12,8 +12,7 @@ import re
 import logging
 from typing import Any, Optional
 
-from folioman_intelligence.clients.tickertape.client import TickerTapeClient
-from folioman_intelligence.clients.tickertape.models import MutualFundDetail
+from tickertape import MutualFundDetail, TickerTapeClient
 
 logger = logging.getLogger(__name__)
 

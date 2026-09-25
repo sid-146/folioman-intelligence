@@ -8,13 +8,14 @@ authors = [
 ]
 requires-python = ">=3.12"
 dependencies = [
-    "bs4>=0.0.2",
     "deepagents>=0.7.13",
+    "folioman-client>=0.1.0",
     "httpx>=0.28.1",
     "langchain-openai>=1.6.2",
     "pydantic>=2.13.5",
     "pydantic-settings>=2.15.0",
     "pytest-cov>=7.1.0",
+    "tickertape-client>=0.1.0",
 ]
 
 [project.scripts]
@@ -38,4 +39,3 @@ docs = [
 asyncio_mode = "auto"
 testpaths = ["tests"]
 pythonpath = ["src"]
-

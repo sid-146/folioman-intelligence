@@ -9,7 +9,7 @@ from uuid import UUID, uuid4
 
 from pydantic import BaseModel
 
-from folioman_intelligence.clients.folioman.models import (
+from folioman_client.models import (
     Holding,
     NavPoint,
     Transaction,
