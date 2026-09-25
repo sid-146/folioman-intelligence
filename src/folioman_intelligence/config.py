@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 from pydantic import Field, SecretStr
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
-print(f"Env Loaded : {load_dotenv()}")
+load_dotenv()
 
 
 class FoliomanSettings(BaseSettings):
