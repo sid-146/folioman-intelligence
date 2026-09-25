@@ -221,3 +221,72 @@ async def test_get_portfolio_api_error_propagation():
     ):
         with pytest.raises(FoliomanNotFoundError, match="Investor not found"):
             await repo.get_portfolio(investor_id=999)
+
+
+@pytest.mark.asyncio
+async def test_portfolio_repository_get_value_series():
+    """Test get_value_series delegates to client.valuations.list with parameters."""
+    mock_client = MagicMock()
+    mock_client.valuations.list = AsyncMock(return_value={"points": []})
+
+    repo = PortfolioRepository(client=mock_client)
+    res = await repo.get_value_series(
+        investor_id=1,
+        from_date="2025-01-01",
+        to_date="2025-06-01",
+        granularity="monthly",
+    )
+
+    mock_client.valuations.list.assert_awaited_once_with(
+        1, from_date="2025-01-01", to_date="2025-06-01", granularity="monthly"
+    )
+    assert res == {"points": []}
+
+
+@pytest.mark.asyncio
+async def test_portfolio_repository_get_valuation_status():
+    """Test get_valuation_status delegates to client.valuations.status."""
+    mock_client = MagicMock()
+    mock_client.valuations.status = AsyncMock(return_value={"status": "READY"})
+
+    repo = PortfolioRepository(client=mock_client)
+    res = await repo.get_valuation_status(investor_id=1)
+
+    mock_client.valuations.status.assert_awaited_once_with(1)
+    assert res == {"status": "READY"}
+
+
+@pytest.mark.asyncio
+async def test_portfolio_repository_get_transactions():
+    """Test get_transactions delegates to client.transactions.list."""
+    mock_client = MagicMock()
+    mock_client.transactions.list = AsyncMock(return_value=[])
+
+    repo = PortfolioRepository(client=mock_client)
+    res = await repo.get_transactions(investor_id=1)
+
+    mock_client.transactions.list.assert_awaited_once_with(1)
+    assert res == []
+
+
+@pytest.mark.asyncio
+async def test_portfolio_repository_get_capital_gains():
+    """Test get_capital_gains_summary and report delegation."""
+    mock_client = MagicMock()
+    mock_client.capital_gains.list = AsyncMock(return_value=[])
+    mock_client.capital_gains.get = AsyncMock(return_value={"fy": "2024-25"})
+
+    repo = PortfolioRepository(client=mock_client)
+    summary = await repo.get_capital_gains_summary(
+        investor_id=1, include_unreconciled=True
+    )
+    report = await repo.get_capital_gains_report(investor_id=1, fy="2024-25")
+
+    mock_client.capital_gains.list.assert_awaited_once_with(
+        1, include_unreconciled=True
+    )
+    mock_client.capital_gains.get.assert_awaited_once_with(
+        1, fy="2024-25", include_unreconciled=False
+    )
+    assert summary == []
+    assert report == {"fy": "2024-25"}

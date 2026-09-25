@@ -9,10 +9,15 @@ from datetime import datetime, timedelta
 from folioman_intelligence.repository.portfolio import PortfolioRepository
 from tickertape import TickerTapeClient
 from folioman_client import FoliomanClient, FoliomanNotFoundError
-
-# TODO: Need optimization (too many db calls)
-# TODO: Add diversification
-
+from folioman_intelligence.analytics.historical import (
+    analyze_portfolio_historical,
+    get_historical_capital_gains,
+    get_historical_cashflows,
+    get_historical_drawdown_analysis,
+    get_historical_risk_and_returns,
+    get_historical_scheme_tenure,
+    get_historical_valuation_trajectory,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -117,17 +122,17 @@ async def get_sector_exposure(investor_id: int):
     return exposure_cats
 
 
-# TODO: Write test for this
-async def get_portfolio_volatility(investor_id: int, days=90):
-    folioman = FoliomanClient()
+async def get_portfolio_volatility(investor_id: int, days: int = 90, repo: Any = None):
+    active_repo = repo or PortfolioRepository()
 
     to_date = datetime.today().date()
     from_date = to_date - timedelta(days=days)
 
-    print(from_date, to_date)
-
-    monthly_volatility = await folioman.valuations.list(
-        investor_id, from_date=from_date, to_date=to_date
+    monthly_volatility = await active_repo.get_value_series(
+        investor_id,
+        from_date=from_date,
+        to_date=to_date,
+        granularity="monthly",
     )
     points = [i.model_dump() for i in monthly_volatility.points]
     return points
@@ -252,7 +257,6 @@ async def holding_details(investor_id: int, security_id: int):
     return analytics
 
 
-# TODO: Write test for this
 async def portfolio_risk_analyse(investor_id: int):
     ticker = TickerTapeClient()
 
@@ -279,11 +283,43 @@ async def portfolio_risk_analyse(investor_id: int):
     # Portfolio Volatility from 90 days
     monthly_volatility = await get_portfolio_volatility(investor_id, days=90)
 
+    # Drawdown and risk analytics
+    drawdown_analysis = await get_historical_drawdown_analysis(
+        investor_id, value_series={"points": monthly_volatility}
+    )
+    risk_metrics = await get_historical_risk_and_returns(
+        investor_id, value_series={"points": monthly_volatility}
+    )
+
     obj = {
         "investor_id": investor_id,
         "top_3_holding_by_invested": top_3_by_invested,
         "asset_allocation": asset_allocation,
         "three_months_volatility": monthly_volatility,
+        "max_drawdown_pct": drawdown_analysis.get("max_drawdown_pct", 0.0),
+        "annualized_volatility_pct": risk_metrics.get("annualized_volatility_pct", 0.0),
+        "sharpe_ratio": risk_metrics.get("sharpe_ratio"),
         "sector_exposure": sector_exposure,
     }
     return obj
+
+
+__all__ = [
+    "get_isin",
+    "get_top_holdings_by_invested",
+    "get_top_holdings_by_returns",
+    "get_asset_allocation",
+    "get_sector_exposure",
+    "get_portfolio_volatility",
+    "analyze_portfolio",
+    "holding_details",
+    "portfolio_risk_analyse",
+    # Historical analytics exports
+    "get_historical_valuation_trajectory",
+    "get_historical_drawdown_analysis",
+    "get_historical_risk_and_returns",
+    "get_historical_cashflows",
+    "get_historical_capital_gains",
+    "get_historical_scheme_tenure",
+    "analyze_portfolio_historical",
+]

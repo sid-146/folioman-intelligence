@@ -70,8 +70,8 @@ Retrieves a normalized mutual fund information dictionary using a 3-tier resolut
 3. **Sitemap Token Fallback**: If direct fetch fails or `identifier` is a scheme name (e.g. `"Quant Infrastructure Fund"`), searches the cached sitemap using token overlap scoring.
 
 - **Parameters**:
-  - `identifier` (*str*): ISIN, URL slug, MFID, or scheme name.
-  - `hint_name` (*str | None*): Optional scheme name hint to assist dynamic ISIN matching.
+    - `identifier` (_str_): ISIN, URL slug, MFID, or scheme name.
+    - `hint_name` (_str | None_): Optional scheme name hint to assist dynamic ISIN matching.
 - **Returns**: `dict[str, Any]` (standardized mutual fund dictionary).
 
 ---
@@ -80,18 +80,18 @@ Retrieves a normalized mutual fund information dictionary using a 3-tier resolut
 
 Transforms raw Next.js `pageProps` into a standardized dictionary containing the following sections:
 
-| Category | Dictionary Keys | Description |
-| :--- | :--- | :--- |
-| **Identification & Info** | `mf_id`, `name`, `full_name`, `isin`, `slug`, `nav`, `nav_1d_change`, `amc`, `amc_code`, `plan`, `option`, `category`, `subsector`, `subsector_desc`, `benchmark`, `risk_classification`, `inception_date`, `objective`, `scheme_type`, `cams_code`, `rta_scheme_code` | Scheme profile, current price, classification, benchmark, and registration codes. |
-| **Rules & Limits** | `sip_allowed`, `lumpsum_allowed`, `investment_amount_info`, `exit_load_remarks` | Minimum SIP and lumpsum amounts, exit load penalty terms. |
-| **Ratios** | `key_ratios`, `faq_ratios` | P/E ratio, category P/E, Sharpe, Alpha, Sortino, volatility, expense ratio, AUM. |
-| **Returns** | `trailing_returns`, `cagr_series` | Trailing return windows (1M, 3M, 6M, 1Y, 3Y, 5Y) and rolling CAGR intervals. |
-| **Scorecard & Governance** | `scorecard`, `total_red_flags` | Qualitative health check pillars and count of red flag companies held. |
-| **Holdings** | `current_allocation`, `asset_allocation_history`, `target_asset_allocation` | Underlying equity holdings, weights, 3-month weight changes, asset class distribution. |
-| **Sectors** | `sector_distribution`, `sector_weightage`, `sector_taxonomy` | Current sector breakdown and historical sector allocation series. |
-| **Peers** | `peers`, `peers_tab_data` | Direct category competitors, peer returns, and peer expense ratios. |
-| **Management** | `fund_managers`, `amc_details` | Manager names, experience, qualifications, AUM overseen, and AMC profile. |
-| **Taxation** | `scheme_info`, `tax_meta` | Capital gains tax rules (STCG, LTCG) and asset holding thresholds. |
+| Category                   | Dictionary Keys                                                                                                                                                                                                                                                        | Description                                                                            |
+| :------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------- |
+| **Identification & Info**  | `mf_id`, `name`, `full_name`, `isin`, `slug`, `nav`, `nav_1d_change`, `amc`, `amc_code`, `plan`, `option`, `category`, `subsector`, `subsector_desc`, `benchmark`, `risk_classification`, `inception_date`, `objective`, `scheme_type`, `cams_code`, `rta_scheme_code` | Scheme profile, current price, classification, benchmark, and registration codes.      |
+| **Rules & Limits**         | `sip_allowed`, `lumpsum_allowed`, `investment_amount_info`, `exit_load_remarks`                                                                                                                                                                                        | Minimum SIP and lumpsum amounts, exit load penalty terms.                              |
+| **Ratios**                 | `key_ratios`, `faq_ratios`                                                                                                                                                                                                                                             | P/E ratio, category P/E, Sharpe, Alpha, Sortino, volatility, expense ratio, AUM.       |
+| **Returns**                | `trailing_returns`, `cagr_series`                                                                                                                                                                                                                                      | Trailing return windows (1M, 3M, 6M, 1Y, 3Y, 5Y) and rolling CAGR intervals.           |
+| **Scorecard & Governance** | `scorecard`, `total_red_flags`                                                                                                                                                                                                                                         | Qualitative health check pillars and count of red flag companies held.                 |
+| **Holdings**               | `current_allocation`, `asset_allocation_history`, `target_asset_allocation`                                                                                                                                                                                            | Underlying equity holdings, weights, 3-month weight changes, asset class distribution. |
+| **Sectors**                | `sector_distribution`, `sector_weightage`, `sector_taxonomy`                                                                                                                                                                                                           | Current sector breakdown and historical sector allocation series.                      |
+| **Peers**                  | `peers`, `peers_tab_data`                                                                                                                                                                                                                                              | Direct category competitors, peer returns, and peer expense ratios.                    |
+| **Management**             | `fund_managers`, `amc_details`                                                                                                                                                                                                                                         | Manager names, experience, qualifications, AUM overseen, and AMC profile.              |
+| **Taxation**               | `scheme_info`, `tax_meta`                                                                                                                                                                                                                                              | Capital gains tax rules (STCG, LTCG) and asset holding thresholds.                     |
 
 ---
 
@@ -110,21 +110,76 @@ Provides a clean data retrieval interface over `FoliomanClient` to fetch raw inv
 ```python
 async def get_portfolio(self, investor_id: int) -> PortfolioSummary
 ```
+
 Fetches the complete portfolio summary for an investor from the Folioman backend.
+
 - **Parameters**:
-  - `investor_id` (*int*): Investor unique identifier.
+    - `investor_id` (_int_): Investor unique identifier.
 - **Returns**: `PortfolioSummary`
 
 #### `get_holding(investor_id, security_id)`
 
 ```python
-async def get_holding(self, investor_id: int, security_id: int) -> SchemeDetail
+async def get_holding(self, investor_id: int, security_id: int, *, as_of: date | str | None = None) -> SchemeDetail
 ```
+
 Fetches the detailed holding view for an individual scheme, including folio balances, full historical NAV points, and transaction ledger records.
+
 - **Parameters**:
-  - `investor_id` (*int*): Investor ID.
-  - `security_id` (*int*): Security / Scheme ID.
+    - `investor_id` (_int_): Investor ID.
+    - `security_id` (_int_): Security / Scheme ID.
 - **Returns**: `SchemeDetail`
+
+#### `get_value_series(investor_id, from_date=None, to_date=None, granularity="monthly")`
+
+```python
+async def get_value_series(
+    self,
+    investor_id: int,
+    *,
+    from_date: date | str | None = None,
+    to_date: date | str | None = None,
+    granularity: Literal["daily", "weekly", "monthly"] = "monthly",
+) -> ValueSeries
+```
+
+Reconstructs net worth and cumulative invested capital historical time series from transactions and NAV curves.
+
+#### `get_valuation_status(investor_id)`
+
+```python
+async def get_valuation_status(self, investor_id: int) -> ValuationStatus
+```
+
+Queries calculation readiness, computed-through date, and provisional state of the valuation engine.
+
+#### `get_transactions(investor_id)`
+
+```python
+async def get_transactions(self, investor_id: int) -> list[Transaction]
+```
+
+Returns all transaction ledger entries (buys, sells, switches, SIPs, dividends) for the investor.
+
+#### `get_capital_gains_summary(investor_id, include_unreconciled=False)`
+
+```python
+async def get_capital_gains_summary(
+    self, investor_id: int, *, include_unreconciled: bool = False
+) -> list[CapitalGainsFyPoint]
+```
+
+Lists realized STCG and LTCG across financial years.
+
+#### `get_capital_gains_report(investor_id, fy, include_unreconciled=False)`
+
+```python
+async def get_capital_gains_report(
+    self, investor_id: int, *, fy: str, include_unreconciled: bool = False
+) -> CapitalGainsReport
+```
+
+Fetches lot-level disposal records and realized capital gains for a specific financial year.
 
 ---
 
