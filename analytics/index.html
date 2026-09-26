@@ -1,0 +1,2846 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Intelligence, portfolio analytics, and AI reasoning service for Folioman">
+      
+      
+        <meta name="author" content="Sudhanwa Kaveeshwar">
+      
+      
+        <link rel="canonical" href="https://sid-146.github.io/folioman-intelligence/analytics/">
+      
+      
+        <link rel="prev" href="../repositories/">
+      
+      
+        <link rel="next" href="../tools-and-agents/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Financial Analytics - Folioman Intelligence</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#financial-analytics-engine" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Folioman Intelligence" class="md-header__button md-logo" aria-label="Folioman Intelligence" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Folioman Intelligence
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Financial Analytics
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/sid-146/folioman-intelligence" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    sid-146/folioman-intelligence
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../getting-started/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Getting Started
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../architecture/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Architecture
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../folioman-client/" class="md-tabs__link">
+          
+  
+  
+  Client Guides
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../repositories/" class="md-tabs__link">
+          
+  
+  
+  Core Modules
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../api-reference/" class="md-tabs__link">
+          
+  
+  
+  Reference
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Folioman Intelligence" class="md-nav__button md-logo" aria-label="Folioman Intelligence" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Folioman Intelligence
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/sid-146/folioman-intelligence" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    sid-146/folioman-intelligence
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Client Guides
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Client Guides
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../folioman-client/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Folioman Client
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tickertape-client/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TickerTape Client
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Core Modules
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Core Modules
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../repositories/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Repositories
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Financial Analytics
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Financial Analytics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#architectural-philosophy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architectural Philosophy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mutual-fund-analytics-analyticsfund" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mutual Fund Analytics (analytics.fund)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Mutual Fund Analytics (analytics.fund)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-scheme-overview-profile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Scheme Overview &amp; Profile
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Scheme Overview &amp; Profile">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get_fund_overviewidentifier-fund_datanone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_fund_overview(identifier, fund_data=None)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-returns-rolling-cagr-trajectory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Returns &amp; Rolling CAGR Trajectory
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Returns &amp; Rolling CAGR Trajectory">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get_trailing_returnsidentifier-fund_datanone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_trailing_returns(identifier, fund_data=None)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_cagr_historyidentifier-fund_datanone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_cagr_history(identifier, fund_data=None)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-risk-volatility-mpt-ratios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Risk, Volatility &amp; MPT Ratios
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Risk, Volatility &amp; MPT Ratios">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get_risk_and_volatilityidentifier-fund_datanone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_risk_and_volatility(identifier, fund_data=None)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_portfolio_valuationidentifier-fund_datanone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_portfolio_valuation(identifier, fund_data=None)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-portfolio-holdings-activity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Portfolio Holdings &amp; Activity
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Portfolio Holdings &amp; Activity">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get_top_holdingsidentifier-top_n10-fund_datanone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_top_holdings(identifier, top_n=10, fund_data=None)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_portfolio_activityidentifier-fund_datanone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_portfolio_activity(identifier, fund_data=None)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#search_stock_in_fundidentifier-query-fund_datanone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        search_stock_in_fund(identifier, query, fund_data=None)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-asset-allocation-mandate-compliance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Asset Allocation &amp; Mandate Compliance
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Asset Allocation &amp; Mandate Compliance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get_asset_allocationidentifier-fund_datanone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_asset_allocation(identifier, fund_data=None)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check_mandate_complianceidentifier-fund_datanone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        check_mandate_compliance(identifier, fund_data=None)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-sector-allocation-macro-rotation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Sector Allocation &amp; Macro Rotation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Sector Allocation &amp; Macro Rotation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get_sector_allocationidentifier-fund_datanone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_sector_allocation(identifier, fund_data=None)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_sector_rotation_trendsidentifier-fund_datanone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_sector_rotation_trends(identifier, fund_data=None)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-peer-comparison-category-ranking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Peer Comparison &amp; Category Ranking
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Peer Comparison &amp; Category Ranking">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get_peer_comparisonidentifier-fund_datanone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_peer_comparison(identifier, fund_data=None)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-fund-managers-workload" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Fund Managers &amp; Workload
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Fund Managers &amp; Workload">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get_fund_managers_analysisidentifier-fund_datanone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_fund_managers_analysis(identifier, fund_data=None)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-fees-exit-load-taxation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Fees, Exit Load &amp; Taxation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Fees, Exit Load &amp; Taxation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get_cost_and_tax_profileidentifier-fund_datanone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_cost_and_tax_profile(identifier, fund_data=None)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10-scorecard-red-flags-health-check" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Scorecard &amp; Red Flags Health Check
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. Scorecard &amp; Red Flags Health Check">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get_fund_health_auditidentifier-fund_datanone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_fund_health_audit(identifier, fund_data=None)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#11-master-360-due-diligence-report" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Master 360° Due Diligence Report
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11. Master 360° Due Diligence Report">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#analyze_fund_comprehensiveidentifier-fund_datanone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        analyze_fund_comprehensive(identifier, fund_data=None)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#portfolio-analytics-analyticsportfolio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Portfolio Analytics (analytics.portfolio)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Portfolio Analytics (analytics.portfolio)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-portfolio-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Portfolio Analysis
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Portfolio Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#analyze_portfolioinvestor_id" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        analyze_portfolio(investor_id)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-holding-details-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Holding Details Analysis
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Holding Details Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#holding_detailsinvestor_id-security_id" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        holding_details(investor_id, security_id)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#historical-portfolio-analytics-analyticshistorical" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Historical Portfolio Analytics (analytics.historical)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Historical Portfolio Analytics (analytics.historical)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-valuation-trajectory-wealth-creation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Valuation Trajectory &amp; Wealth Creation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Valuation Trajectory &amp; Wealth Creation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get_historical_valuation_trajectoryinvestor_id-from_datenone-to_datenone-granularitymonthly-value_seriesnone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_historical_valuation_trajectory(investor_id, from_date=None, to_date=None, granularity="monthly", value_series=None)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-drawdown-capital-preservation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Drawdown &amp; Capital Preservation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Drawdown &amp; Capital Preservation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get_historical_drawdown_analysisinvestor_id-from_datenone-to_datenone-granularitymonthly-value_seriesnone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_historical_drawdown_analysis(investor_id, from_date=None, to_date=None, granularity="monthly", value_series=None)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-risk-adjusted-returns-volatility" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Risk-Adjusted Returns &amp; Volatility
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Risk-Adjusted Returns &amp; Volatility">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get_historical_risk_and_returnsinvestor_id-from_datenone-to_datenone-granularitymonthly-risk_free_rate0065-value_seriesnone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_historical_risk_and_returns(investor_id, from_date=None, to_date=None, granularity="monthly", risk_free_rate=0.065, value_series=None)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-cash-flow-dynamics-sip-discipline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Cash Flow Dynamics &amp; SIP Discipline
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Cash Flow Dynamics &amp; SIP Discipline">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get_historical_cashflowsinvestor_id-transactionsnone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_historical_cashflows(investor_id, transactions=None)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-realized-capital-gains-tax-efficiency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Realized Capital Gains &amp; Tax Efficiency
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Realized Capital Gains &amp; Tax Efficiency">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get_historical_capital_gainsinvestor_id-fy_pointsnone-include_unreconciledfalse" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_historical_capital_gains(investor_id, fy_points=None, include_unreconciled=False)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-scheme-historical-tenure-holding-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Scheme Historical Tenure &amp; Holding Analysis
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Scheme Historical Tenure &amp; Holding Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get_historical_scheme_tenureinvestor_id-security_id-scheme_detailnone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_historical_scheme_tenure(investor_id, security_id, scheme_detail=None)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-master-360-historical-portfolio-report" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Master 360° Historical Portfolio Report
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Master 360° Historical Portfolio Report">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#analyze_portfolio_historicalinvestor_id-from_datenone-to_datenone-granularitymonthly-risk_free_rate0065" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        analyze_portfolio_historical(investor_id, from_date=None, to_date=None, granularity="monthly", risk_free_rate=0.065)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tools-and-agents/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tools & Agents
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#architectural-philosophy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architectural Philosophy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mutual-fund-analytics-analyticsfund" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mutual Fund Analytics (analytics.fund)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Mutual Fund Analytics (analytics.fund)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-scheme-overview-profile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Scheme Overview &amp; Profile
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Scheme Overview &amp; Profile">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get_fund_overviewidentifier-fund_datanone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_fund_overview(identifier, fund_data=None)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-returns-rolling-cagr-trajectory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Returns &amp; Rolling CAGR Trajectory
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Returns &amp; Rolling CAGR Trajectory">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get_trailing_returnsidentifier-fund_datanone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_trailing_returns(identifier, fund_data=None)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_cagr_historyidentifier-fund_datanone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_cagr_history(identifier, fund_data=None)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-risk-volatility-mpt-ratios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Risk, Volatility &amp; MPT Ratios
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Risk, Volatility &amp; MPT Ratios">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get_risk_and_volatilityidentifier-fund_datanone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_risk_and_volatility(identifier, fund_data=None)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_portfolio_valuationidentifier-fund_datanone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_portfolio_valuation(identifier, fund_data=None)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-portfolio-holdings-activity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Portfolio Holdings &amp; Activity
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Portfolio Holdings &amp; Activity">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get_top_holdingsidentifier-top_n10-fund_datanone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_top_holdings(identifier, top_n=10, fund_data=None)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_portfolio_activityidentifier-fund_datanone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_portfolio_activity(identifier, fund_data=None)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#search_stock_in_fundidentifier-query-fund_datanone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        search_stock_in_fund(identifier, query, fund_data=None)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-asset-allocation-mandate-compliance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Asset Allocation &amp; Mandate Compliance
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Asset Allocation &amp; Mandate Compliance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get_asset_allocationidentifier-fund_datanone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_asset_allocation(identifier, fund_data=None)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check_mandate_complianceidentifier-fund_datanone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        check_mandate_compliance(identifier, fund_data=None)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-sector-allocation-macro-rotation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Sector Allocation &amp; Macro Rotation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Sector Allocation &amp; Macro Rotation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get_sector_allocationidentifier-fund_datanone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_sector_allocation(identifier, fund_data=None)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_sector_rotation_trendsidentifier-fund_datanone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_sector_rotation_trends(identifier, fund_data=None)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-peer-comparison-category-ranking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Peer Comparison &amp; Category Ranking
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Peer Comparison &amp; Category Ranking">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get_peer_comparisonidentifier-fund_datanone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_peer_comparison(identifier, fund_data=None)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-fund-managers-workload" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Fund Managers &amp; Workload
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Fund Managers &amp; Workload">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get_fund_managers_analysisidentifier-fund_datanone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_fund_managers_analysis(identifier, fund_data=None)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-fees-exit-load-taxation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Fees, Exit Load &amp; Taxation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Fees, Exit Load &amp; Taxation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get_cost_and_tax_profileidentifier-fund_datanone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_cost_and_tax_profile(identifier, fund_data=None)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10-scorecard-red-flags-health-check" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Scorecard &amp; Red Flags Health Check
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. Scorecard &amp; Red Flags Health Check">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get_fund_health_auditidentifier-fund_datanone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_fund_health_audit(identifier, fund_data=None)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#11-master-360-due-diligence-report" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Master 360° Due Diligence Report
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11. Master 360° Due Diligence Report">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#analyze_fund_comprehensiveidentifier-fund_datanone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        analyze_fund_comprehensive(identifier, fund_data=None)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#portfolio-analytics-analyticsportfolio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Portfolio Analytics (analytics.portfolio)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Portfolio Analytics (analytics.portfolio)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-portfolio-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Portfolio Analysis
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Portfolio Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#analyze_portfolioinvestor_id" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        analyze_portfolio(investor_id)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-holding-details-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Holding Details Analysis
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Holding Details Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#holding_detailsinvestor_id-security_id" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        holding_details(investor_id, security_id)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#historical-portfolio-analytics-analyticshistorical" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Historical Portfolio Analytics (analytics.historical)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Historical Portfolio Analytics (analytics.historical)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-valuation-trajectory-wealth-creation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Valuation Trajectory &amp; Wealth Creation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Valuation Trajectory &amp; Wealth Creation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get_historical_valuation_trajectoryinvestor_id-from_datenone-to_datenone-granularitymonthly-value_seriesnone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_historical_valuation_trajectory(investor_id, from_date=None, to_date=None, granularity="monthly", value_series=None)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-drawdown-capital-preservation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Drawdown &amp; Capital Preservation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Drawdown &amp; Capital Preservation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get_historical_drawdown_analysisinvestor_id-from_datenone-to_datenone-granularitymonthly-value_seriesnone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_historical_drawdown_analysis(investor_id, from_date=None, to_date=None, granularity="monthly", value_series=None)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-risk-adjusted-returns-volatility" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Risk-Adjusted Returns &amp; Volatility
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Risk-Adjusted Returns &amp; Volatility">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get_historical_risk_and_returnsinvestor_id-from_datenone-to_datenone-granularitymonthly-risk_free_rate0065-value_seriesnone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_historical_risk_and_returns(investor_id, from_date=None, to_date=None, granularity="monthly", risk_free_rate=0.065, value_series=None)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-cash-flow-dynamics-sip-discipline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Cash Flow Dynamics &amp; SIP Discipline
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Cash Flow Dynamics &amp; SIP Discipline">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get_historical_cashflowsinvestor_id-transactionsnone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_historical_cashflows(investor_id, transactions=None)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-realized-capital-gains-tax-efficiency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Realized Capital Gains &amp; Tax Efficiency
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Realized Capital Gains &amp; Tax Efficiency">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get_historical_capital_gainsinvestor_id-fy_pointsnone-include_unreconciledfalse" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_historical_capital_gains(investor_id, fy_points=None, include_unreconciled=False)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-scheme-historical-tenure-holding-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Scheme Historical Tenure &amp; Holding Analysis
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Scheme Historical Tenure &amp; Holding Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get_historical_scheme_tenureinvestor_id-security_id-scheme_detailnone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_historical_scheme_tenure(investor_id, security_id, scheme_detail=None)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-master-360-historical-portfolio-report" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Master 360° Historical Portfolio Report
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Master 360° Historical Portfolio Report">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#analyze_portfolio_historicalinvestor_id-from_datenone-to_datenone-granularitymonthly-risk_free_rate0065" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        analyze_portfolio_historical(investor_id, from_date=None, to_date=None, granularity="monthly", risk_free_rate=0.065)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="financial-analytics-engine">Financial Analytics Engine<a class="headerlink" href="#financial-analytics-engine" title="Permanent link">&para;</a></h1>
+<p>The analytics engine defines domain-specific analytical functions for mutual funds and investor portfolios. All computations are strictly deterministic and reproducible.</p>
+<hr />
+<h2 id="architectural-philosophy">Architectural Philosophy<a class="headerlink" href="#architectural-philosophy" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Pure Computation</strong>: The analytics functions do not perform network requests if <code>fund_data</code> is supplied. When an identifier is provided without pre-fetched data, they resolve it via <code>MutualFundRepository</code>.</li>
+<li><strong>Standardized Serialization</strong>: Analytics functions return clean Python primitive types (<code>float</code>, <code>int</code>, <code>str</code>, <code>dict</code>, <code>list</code>), ensuring direct JSON serializability.</li>
+<li><strong>Metric Definitions</strong>: Implements industry-standard Modern Portfolio Theory (MPT) formulas and SEBI regulatory guidelines.</li>
+</ul>
+<hr />
+<h2 id="mutual-fund-analytics-analyticsfund">Mutual Fund Analytics (<code>analytics.fund</code>)<a class="headerlink" href="#mutual-fund-analytics-analyticsfund" title="Permanent link">&para;</a></h2>
+<h3 id="1-scheme-overview-profile">1. Scheme Overview &amp; Profile<a class="headerlink" href="#1-scheme-overview-profile" title="Permanent link">&para;</a></h3>
+<h4 id="get_fund_overviewidentifier-fund_datanone"><code>get_fund_overview(identifier, fund_data=None)</code><a class="headerlink" href="#get_fund_overviewidentifier-fund_datanone" title="Permanent link">&para;</a></h4>
+<p>Computes baseline scheme profile, current NAV, 1-day percentage change, vintage (fund age in years), AUM, and investment limits.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_fund_overview</span><span class="p">(</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">identifier</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="n">fund_data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
+</code></pre></div>
+<p><strong>Output Fields</strong>:</p>
+<ul>
+<li><code>mf_id: str</code>: TickerTape fund identifier.</li>
+<li><code>name: str</code>, <code>full_name: str</code>, <code>isin: str</code>, <code>slug: str</code>: Scheme identity.</li>
+<li><code>amc: str</code>: Asset Management Company.</li>
+<li><code>plan: str</code>: Direct or Regular.</li>
+<li><code>option: str</code>: Growth or IDCW.</li>
+<li><code>category: str</code>, <code>subsector: str</code>, <code>benchmark: str</code>: Category classification and benchmark index.</li>
+<li><code>risk_classification: str</code>: Riskometer level (e.g. <code>"Very High"</code>).</li>
+<li><code>nav: float</code>, <code>nav_1d_change: float</code>, <code>nav_1d_change_pct: float</code>: Current price and 1-day daily fluctuation.</li>
+<li><code>fund_age_years: float</code>: Years since inception (calculated from Unix timestamp).</li>
+<li><code>aum_in_cr: float</code>: Assets Under Management in Crores.</li>
+<li><code>min_sip_amount: float</code>, <code>min_lumpsum_amount: float</code>: Investment thresholds.</li>
+<li><code>sip_allowed: bool</code>, <code>lumpsum_allowed: bool</code>: Transaction eligibility.</li>
+<li><code>objective: str</code>, <code>exit_load_remarks: str</code>: Fund mandate and exit load rules.</li>
+</ul>
+<hr />
+<h3 id="2-returns-rolling-cagr-trajectory">2. Returns &amp; Rolling CAGR Trajectory<a class="headerlink" href="#2-returns-rolling-cagr-trajectory" title="Permanent link">&para;</a></h3>
+<h4 id="get_trailing_returnsidentifier-fund_datanone"><code>get_trailing_returns(identifier, fund_data=None)</code><a class="headerlink" href="#get_trailing_returnsidentifier-fund_datanone" title="Permanent link">&para;</a></h4>
+<p>Extracts trailing point-to-point and annualized CAGR returns across standard investment horizons.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_trailing_returns</span><span class="p">(</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="n">identifier</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    <span class="n">fund_data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
+</code></pre></div>
+<p><strong>Output Fields</strong>:</p>
+<ul>
+<li><code>return_1y: float</code>: 1-Year absolute return percentage.</li>
+<li><code>return_3y_cagr: float</code>: 3-Year annualized CAGR return.</li>
+<li><code>return_5y_cagr: float</code>: 5-Year annualized CAGR return.</li>
+<li><code>life_cagr: float</code>: Since-inception annualized return.</li>
+<li><code>all_trailing_returns: list[dict]</code>: Complete list of durations (1M, 3M, 6M, 1Y, 3Y, 5Y).</li>
+</ul>
+<h4 id="get_cagr_historyidentifier-fund_datanone"><code>get_cagr_history(identifier, fund_data=None)</code><a class="headerlink" href="#get_cagr_historyidentifier-fund_datanone" title="Permanent link">&para;</a></h4>
+<p>Analyzes the historical rolling CAGR series to evaluate long-term compounding consistency and return dispersion across market cycles.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_cagr_history</span><span class="p">(</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    <span class="n">identifier</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    <span class="n">fund_data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
+</code></pre></div>
+<p><strong>Output Fields</strong>:</p>
+<ul>
+<li><code>latest_observation_cagr: float</code>: Most recent multi-year CAGR observation.</li>
+<li><code>min_cagr: float</code>, <code>max_cagr: float</code>: Historical range bounds.</li>
+<li><code>median_cagr: float</code>: Median rolling CAGR across all recorded intervals.</li>
+<li><code>cagr_spread: float</code>: Difference between max and min CAGR (<code>max_cagr - min_cagr</code>), indicating return volatility.</li>
+<li><code>observations: list[dict]</code>: Recent rolling interval data points.</li>
+</ul>
+<hr />
+<h3 id="3-risk-volatility-mpt-ratios">3. Risk, Volatility &amp; MPT Ratios<a class="headerlink" href="#3-risk-volatility-mpt-ratios" title="Permanent link">&para;</a></h3>
+<h4 id="get_risk_and_volatilityidentifier-fund_datanone"><code>get_risk_and_volatility(identifier, fund_data=None)</code><a class="headerlink" href="#get_risk_and_volatilityidentifier-fund_datanone" title="Permanent link">&para;</a></h4>
+<p>Computes Modern Portfolio Theory (MPT) risk-adjusted metrics.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_risk_and_volatility</span><span class="p">(</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    <span class="n">identifier</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    <span class="n">fund_data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
+</code></pre></div>
+<p><strong>Formulas &amp; Metrics</strong>:</p>
+<ul>
+<li><strong>Alpha (<span class="arithmatex">\(\alpha\)</span>)</strong>: Excess return generated relative to the benchmark index.</li>
+<li><strong>Standard Deviation (<span class="arithmatex">\(\sigma\)</span>)</strong>: Annualized volatility of scheme NAV returns.</li>
+<li><strong>Sharpe Ratio</strong>:
+  $<span class="arithmatex">\(\text{Sharpe} = \frac{R_p - R_f}{\sigma_p}\)</span>$
+  Measures risk-adjusted excess return per unit of total risk.</li>
+<li><strong>Sortino Ratio</strong>:
+  $<span class="arithmatex">\(\text{Sortino} = \frac{R_p - R_f}{\sigma_d}\)</span>$
+  Measures return per unit of downside risk (<span class="arithmatex">\(\sigma_d\)</span>).</li>
+<li><strong><code>category_sharpe_ratio: float</code></strong>: Average Sharpe ratio of category peers.</li>
+<li><strong><code>sharpe_outperformance_vs_category: float</code></strong>: <code>sharpe_ratio - category_sharpe_ratio</code>.</li>
+<li><strong><code>risk_profile: str</code></strong>: Qualitative rating based on Sharpe ratio threshold.</li>
+</ul>
+<h4 id="get_portfolio_valuationidentifier-fund_datanone"><code>get_portfolio_valuation(identifier, fund_data=None)</code><a class="headerlink" href="#get_portfolio_valuationidentifier-fund_datanone" title="Permanent link">&para;</a></h4>
+<p>Evaluates the underlying weighted Price-to-Earnings (P/E) ratio against the category benchmark.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_portfolio_valuation</span><span class="p">(</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    <span class="n">identifier</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>    <span class="n">fund_data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
+</code></pre></div>
+<p><strong>Output Fields</strong>:</p>
+<ul>
+<li><code>portfolio_pe: float</code>: Weighted P/E ratio of the underlying stock holdings.</li>
+<li><code>category_pe: float</code>: Average P/E ratio of the fund category.</li>
+<li><code>valuation_premium_pct: float</code>:
+  $<span class="arithmatex">\(\text{Premium \%} = \frac{\text{Portfolio P/E} - \text{Category P/E}}{\text{Category P/E}} \times 100\)</span>$</li>
+<li><code>valuation_status: str</code>: Classification describing whether the fund trades at a premium or discount to its category.</li>
+</ul>
+<hr />
+<h3 id="4-portfolio-holdings-activity">4. Portfolio Holdings &amp; Activity<a class="headerlink" href="#4-portfolio-holdings-activity" title="Permanent link">&para;</a></h3>
+<h4 id="get_top_holdingsidentifier-top_n10-fund_datanone"><code>get_top_holdings(identifier, top_n=10, fund_data=None)</code><a class="headerlink" href="#get_top_holdingsidentifier-top_n10-fund_datanone" title="Permanent link">&para;</a></h4>
+<p>Computes portfolio concentration and high-conviction positions.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_top_holdings</span><span class="p">(</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>    <span class="n">identifier</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>    <span class="n">top_n</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>    <span class="n">fund_data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
+</code></pre></div>
+<p><strong>Output Fields</strong>:</p>
+<ul>
+<li><code>total_holdings_count: int</code>: Total number of individual stocks held.</li>
+<li><code>top_5_concentration_pct: float</code>: Cumulative weight of the top 5 positions.</li>
+<li><code>top_10_concentration_pct: float</code>: Cumulative weight of the top 10 positions.</li>
+<li><code>high_conviction_bets_count: int</code>: Count of stocks with weight <span class="arithmatex">\(\ge 5.0\%\)</span>.</li>
+<li><code>high_conviction_bets: list[dict]</code>: Details of positions with weight <span class="arithmatex">\(\ge 5.0\%\)</span>.</li>
+<li><code>top_holdings: list[dict]</code>: Sorted top holdings with rank, ticker, company name, weight, 3-month change, and analyst rating.</li>
+</ul>
+<h4 id="get_portfolio_activityidentifier-fund_datanone"><code>get_portfolio_activity(identifier, fund_data=None)</code><a class="headerlink" href="#get_portfolio_activityidentifier-fund_datanone" title="Permanent link">&para;</a></h4>
+<p>Identifies recent portfolio changes made by the fund manager over the trailing 3-month window.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_portfolio_activity</span><span class="p">(</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>    <span class="n">identifier</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>    <span class="n">fund_data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
+</code></pre></div>
+<p><strong>Output Fields</strong>:</p>
+<ul>
+<li><code>accumulated_stocks_count: int</code>, <code>trimmed_stocks_count: int</code></li>
+<li><code>top_accumulated: list[dict]</code>: Positions with the highest positive weight increase over 3 months (<code>change_3m_pct &gt; 0</code>).</li>
+<li><code>top_trimmed: list[dict]</code>: Positions with the largest weight reduction or exit over 3 months (<code>change_3m_pct &lt; 0</code>).</li>
+</ul>
+<h4 id="search_stock_in_fundidentifier-query-fund_datanone"><code>search_stock_in_fund(identifier, query, fund_data=None)</code><a class="headerlink" href="#search_stock_in_fundidentifier-query-fund_datanone" title="Permanent link">&para;</a></h4>
+<p>Determines whether a specific stock is held in the fund's portfolio by matching company title, ticker, or symbol ID.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">search_stock_in_fund</span><span class="p">(</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>    <span class="n">identifier</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>    <span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>    <span class="n">fund_data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
+</code></pre></div>
+<p><strong>Output Fields</strong>:</p>
+<ul>
+<li><code>query: str</code>: Search query string.</li>
+<li><code>is_held: bool</code>: True if at least one matching holding exists.</li>
+<li><code>matches: list[dict]</code>: List of matched stocks with title, ticker, portfolio weight %, and 3-month weight change.</li>
+</ul>
+<hr />
+<h3 id="5-asset-allocation-mandate-compliance">5. Asset Allocation &amp; Mandate Compliance<a class="headerlink" href="#5-asset-allocation-mandate-compliance" title="Permanent link">&para;</a></h3>
+<h4 id="get_asset_allocationidentifier-fund_datanone"><code>get_asset_allocation(identifier, fund_data=None)</code><a class="headerlink" href="#get_asset_allocationidentifier-fund_datanone" title="Permanent link">&para;</a></h4>
+<p>Extracts current and historical allocation across asset classes.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_asset_allocation</span><span class="p">(</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>    <span class="n">identifier</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>    <span class="n">fund_data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
+</code></pre></div>
+<p><strong>Output Fields</strong>:</p>
+<ul>
+<li><code>equity_pct: float</code>: Pure equity exposure percentage.</li>
+<li><code>derivatives_fo_pct: float</code>: Futures &amp; Options derivative exposure (hedging or cash-futures arbitrage).</li>
+<li><code>debt_tbills_pct: float</code>: Treasury bills and fixed income exposure.</li>
+<li><code>cash_equivalents_pct: float</code>: Cash and liquid instruments.</li>
+<li><code>reits_invits_pct: float</code>: Real estate &amp; infrastructure trust holdings.</li>
+<li><code>has_active_derivatives: bool</code>: True if derivative exposure exceeds <span class="arithmatex">\(1.0\%\)</span>.</li>
+</ul>
+<h4 id="check_mandate_complianceidentifier-fund_datanone"><code>check_mandate_compliance(identifier, fund_data=None)</code><a class="headerlink" href="#check_mandate_complianceidentifier-fund_datanone" title="Permanent link">&para;</a></h4>
+<p>Verifies whether current asset allocation adheres to SEBI / Scheme statutory boundaries (<code>min</code> and <code>max</code> targets).</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">check_mandate_compliance</span><span class="p">(</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>    <span class="n">identifier</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>    <span class="n">fund_data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
+</code></pre></div>
+<p><strong>Output Fields</strong>:</p>
+<ul>
+<li><code>overall_compliant: bool</code>: True if all asset classes remain within their statutory min/max limits.</li>
+<li><code>breaches_count: int</code>: Number of asset classes outside allowed thresholds.</li>
+<li><code>breaches: list[dict]</code>: Detailed report of breached limits with min allowed, max allowed, and actual weight.</li>
+<li><code>target_limits: list[dict]</code>: Complete compliance table across all asset classes.</li>
+</ul>
+<hr />
+<h3 id="6-sector-allocation-macro-rotation">6. Sector Allocation &amp; Macro Rotation<a class="headerlink" href="#6-sector-allocation-macro-rotation" title="Permanent link">&para;</a></h3>
+<h4 id="get_sector_allocationidentifier-fund_datanone"><code>get_sector_allocation(identifier, fund_data=None)</code><a class="headerlink" href="#get_sector_allocationidentifier-fund_datanone" title="Permanent link">&para;</a></h4>
+<p>Computes sector breakdown and sector concentration.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_sector_allocation</span><span class="p">(</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>    <span class="n">identifier</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>    <span class="n">fund_data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
+</code></pre></div>
+<p><strong>Output Fields</strong>:</p>
+<ul>
+<li><code>sectors_count: int</code>: Number of distinct sectors invested in.</li>
+<li><code>top_3_sectors_concentration_pct: float</code>: Weight of top 3 sectors.</li>
+<li><code>top_5_sectors_concentration_pct: float</code>: Weight of top 5 sectors.</li>
+<li><code>top_sectors: list[dict]</code>: Sorted list of sectors with weights.</li>
+</ul>
+<h4 id="get_sector_rotation_trendsidentifier-fund_datanone"><code>get_sector_rotation_trends(identifier, fund_data=None)</code><a class="headerlink" href="#get_sector_rotation_trendsidentifier-fund_datanone" title="Permanent link">&para;</a></h4>
+<p>Analyzes multi-period historical sector weight changes to identify macro allocation shifts.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_sector_rotation_trends</span><span class="p">(</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>    <span class="n">identifier</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>    <span class="n">fund_data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
+</code></pre></div>
+<p><strong>Output Fields</strong>:</p>
+<ul>
+<li><code>expanding_sectors: list[dict]</code>: Sectors where allocation has systematically increased (<code>change_pct &gt; 0</code>).</li>
+<li><code>contracting_sectors: list[dict]</code>: Sectors where allocation has decreased (<code>change_pct &lt; 0</code>).</li>
+</ul>
+<hr />
+<h3 id="7-peer-comparison-category-ranking">7. Peer Comparison &amp; Category Ranking<a class="headerlink" href="#7-peer-comparison-category-ranking" title="Permanent link">&para;</a></h3>
+<h4 id="get_peer_comparisonidentifier-fund_datanone"><code>get_peer_comparison(identifier, fund_data=None)</code><a class="headerlink" href="#get_peer_comparisonidentifier-fund_datanone" title="Permanent link">&para;</a></h4>
+<p>Builds a comparative peer matrix and calculates the target fund's rank within its category for 1-year returns and 3-year CAGR.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_peer_comparison</span><span class="p">(</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>    <span class="n">identifier</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>    <span class="n">fund_data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
+</code></pre></div>
+<p><strong>Output Fields</strong>:</p>
+<ul>
+<li><code>peer_group_size: int</code>: Total number of comparable funds.</li>
+<li><code>rank_1y_return: str</code>: Target fund rank for 1-year return (e.g. <code>"1 of 6"</code>).</li>
+<li><code>rank_3y_cagr: str</code>: Target fund rank for 3-year CAGR (e.g. <code>"2 of 6"</code>).</li>
+<li><code>comparison_table: list[dict]</code>: Matrix containing peer names, 1Y return, 3Y CAGR, Life CAGR, and expense ratios.</li>
+</ul>
+<hr />
+<h3 id="8-fund-managers-workload">8. Fund Managers &amp; Workload<a class="headerlink" href="#8-fund-managers-workload" title="Permanent link">&para;</a></h3>
+<h4 id="get_fund_managers_analysisidentifier-fund_datanone"><code>get_fund_managers_analysis(identifier, fund_data=None)</code><a class="headerlink" href="#get_fund_managers_analysisidentifier-fund_datanone" title="Permanent link">&para;</a></h4>
+<p>Audits fund manager credentials, years of experience, total AUM overseen, and count of other schemes managed.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_fund_managers_analysis</span><span class="p">(</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>    <span class="n">identifier</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>    <span class="n">fund_data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
+</code></pre></div>
+<p><strong>Output Fields</strong>:</p>
+<ul>
+<li><code>fund_managers_count: int</code>: Number of co-managers.</li>
+<li><code>manager_profiles: list[dict]</code>: For each manager:<ul>
+<li><code>name: str</code>, <code>qualification: str</code>, <code>experience_years: float</code>, <code>aum_in_cr: float</code></li>
+<li><code>other_funds_managed_count: int</code>: Capacity indicator.</li>
+<li><code>sample_managed_funds: list[dict]</code>: Performance of other funds managed by the same individual.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h3 id="9-fees-exit-load-taxation">9. Fees, Exit Load &amp; Taxation<a class="headerlink" href="#9-fees-exit-load-taxation" title="Permanent link">&para;</a></h3>
+<h4 id="get_cost_and_tax_profileidentifier-fund_datanone"><code>get_cost_and_tax_profile(identifier, fund_data=None)</code><a class="headerlink" href="#get_cost_and_tax_profileidentifier-fund_datanone" title="Permanent link">&para;</a></h4>
+<p>Evaluates expense ratio advantage against the category average, exit load redemption penalties, and capital gains tax rules.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_cost_and_tax_profile</span><span class="p">(</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>    <span class="n">identifier</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>    <span class="n">fund_data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
+</code></pre></div>
+<p><strong>Output Fields</strong>:</p>
+<ul>
+<li><code>expense_ratio_pct: float</code>: Current fund expense ratio.</li>
+<li><code>category_expense_ratio_pct: float</code>: Category average expense ratio.</li>
+<li><code>cost_advantage_basis_points: float</code>:
+  $<span class="arithmatex">\(\text{Advantage (bps)} = (\text{Category Expense Ratio} - \text{Fund Expense Ratio}) \times 100\)</span>$
+  Positive value indicates a cheaper fund than the category average.</li>
+<li><code>exit_load_remarks: str</code>: Penalty schedule for early redemptions.</li>
+<li><code>taxation_rules: list[dict]</code>: Applicable STCG and LTCG holding periods and tax rates.</li>
+</ul>
+<hr />
+<h3 id="10-scorecard-red-flags-health-check">10. Scorecard &amp; Red Flags Health Check<a class="headerlink" href="#10-scorecard-red-flags-health-check" title="Permanent link">&para;</a></h3>
+<h4 id="get_fund_health_auditidentifier-fund_datanone"><code>get_fund_health_audit(identifier, fund_data=None)</code><a class="headerlink" href="#get_fund_health_auditidentifier-fund_datanone" title="Permanent link">&para;</a></h4>
+<p>Audits the fund across 5 qualitative scorecard pillars and quantifies portfolio red flags.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_fund_health_audit</span><span class="p">(</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>    <span class="n">identifier</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>    <span class="n">fund_data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
+</code></pre></div>
+<p><strong>Output Fields</strong>:</p>
+<ul>
+<li><code>scorecard_pillars: list[dict]</code>: Tags and evaluations for Performance, Risk, Cost, Composition, and Red flags.</li>
+<li><code>total_red_flags: dict</code>: Breakdown of red flag companies held in the fund.</li>
+<li><code>has_red_flags: bool</code>: True if any underlying holding has governance or accounting red flags.</li>
+</ul>
+<hr />
+<h3 id="11-master-360-due-diligence-report">11. Master 360° Due Diligence Report<a class="headerlink" href="#11-master-360-due-diligence-report" title="Permanent link">&para;</a></h3>
+<h4 id="analyze_fund_comprehensiveidentifier-fund_datanone"><code>analyze_fund_comprehensive(identifier, fund_data=None)</code><a class="headerlink" href="#analyze_fund_comprehensiveidentifier-fund_datanone" title="Permanent link">&para;</a></h4>
+<p>Combines all core analytical domains into a single consolidated report.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">analyze_fund_comprehensive</span><span class="p">(</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>    <span class="n">identifier</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>    <span class="n">fund_data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
+</code></pre></div>
+<p><strong>Aggregated Sections</strong>:</p>
+<ul>
+<li><code>overview</code>: Output from <code>get_fund_overview</code></li>
+<li><code>performance</code>: Output from <code>get_trailing_returns</code></li>
+<li><code>risk_and_volatility</code>: Output from <code>get_risk_and_volatility</code></li>
+<li><code>top_holdings_concentration</code>: Top 5 concentration % and top holdings from <code>get_top_holdings</code></li>
+<li><code>top_sectors</code>: Top 3 sectors from <code>get_sector_allocation</code></li>
+<li><code>costs_and_taxes</code>: Expense ratio, category expense ratio, cost advantage, exit load from <code>get_cost_and_tax_profile</code></li>
+<li><code>health_and_red_flags</code>: Output from <code>get_fund_health_audit</code></li>
+</ul>
+<hr />
+<h2 id="portfolio-analytics-analyticsportfolio">Portfolio Analytics (<code>analytics.portfolio</code>)<a class="headerlink" href="#portfolio-analytics-analyticsportfolio" title="Permanent link">&para;</a></h2>
+<p>Provides portfolio-level and holding-level calculations for investor accounts.</p>
+<h3 id="1-portfolio-analysis">1. Portfolio Analysis<a class="headerlink" href="#1-portfolio-analysis" title="Permanent link">&para;</a></h3>
+<h4 id="analyze_portfolioinvestor_id"><code>analyze_portfolio(investor_id)</code><a class="headerlink" href="#analyze_portfolioinvestor_id" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">analyze_portfolio</span><span class="p">(</span><span class="n">investor_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
+</code></pre></div>
+<p>Aggregates holdings under an investor to compute:</p>
+<ul>
+<li><code>currency: str</code>: Currency code (<code>"INR"</code>).</li>
+<li><code>total_value: float</code>: Total current portfolio market value.</li>
+<li><code>total_invested: float</code>: Total acquisition cost / invested capital across all holdings.</li>
+<li><code>absolute_returns: float</code>: Total unrealized gain (<code>total_value - total_invested</code>).</li>
+<li><code>navs_as_of: date</code>: Point-in-time valuation date.</li>
+<li><code>xirr: float | None</code>: Extended Internal Rate of Return (money-weighted return).</li>
+<li><code>category_mix: list[dict]</code>: Allocation breakdown across mutual fund categories (Large Cap, Mid Cap, Hybrid, etc.).</li>
+<li><code>period_returns: list[dict]</code>: Trailing portfolio returns across multi-period windows.</li>
+<li><code>holdings: list[dict]</code>: Detailed holding records including units, market value, invested value, return %, XIRR, and contribution to total portfolio invested capital (<code>(invested_inr / total_invested) * 100</code>).</li>
+<li><code>top_3_by_invested: dict[int, str]</code>: Top 3 schemes ranked by capital invested.</li>
+<li><code>top_3_by_current_value: dict[int, str]</code>: Top 3 schemes ranked by current valuation.</li>
+</ul>
+<h3 id="2-holding-details-analysis">2. Holding Details Analysis<a class="headerlink" href="#2-holding-details-analysis" title="Permanent link">&para;</a></h3>
+<h4 id="holding_detailsinvestor_id-security_id"><code>holding_details(investor_id, security_id)</code><a class="headerlink" href="#holding_detailsinvestor_id-security_id" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">holding_details</span><span class="p">(</span><span class="n">investor_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">security_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
+</code></pre></div>
+<p>Analyzes the ledger transactions of a specific holding:</p>
+<ul>
+<li><code>name: str</code>, <code>isin: str</code>, <code>security_type: str</code>: Scheme identity.</li>
+<li><code>invested: float</code>, <code>current_value: float</code>: Capital deployed and current market value.</li>
+<li><code>returns%: float</code>: Unrealized return percentage (<code>return_pct * 100</code>).</li>
+<li><code>current_units: float</code>: Units held.</li>
+<li><code>avg_buy_transaction: float</code>: Average buy transaction amount across buy transactions.</li>
+<li><code>count_buy_transaction: int</code>: Total number of buy transactions recorded.</li>
+</ul>
+<hr />
+<h2 id="historical-portfolio-analytics-analyticshistorical">Historical Portfolio Analytics (<code>analytics.historical</code>)<a class="headerlink" href="#historical-portfolio-analytics-analyticshistorical" title="Permanent link">&para;</a></h2>
+<p>Provides multi-horizon historical performance trajectory, capital preservation analysis, Modern Portfolio Theory (MPT) risk-adjusted metrics, cash flow discipline, and financial year capital gains auditing using <code>folioman-client</code>.</p>
+<h3 id="1-valuation-trajectory-wealth-creation">1. Valuation Trajectory &amp; Wealth Creation<a class="headerlink" href="#1-valuation-trajectory-wealth-creation" title="Permanent link">&para;</a></h3>
+<h4 id="get_historical_valuation_trajectoryinvestor_id-from_datenone-to_datenone-granularitymonthly-value_seriesnone"><code>get_historical_valuation_trajectory(investor_id, from_date=None, to_date=None, granularity="monthly", value_series=None)</code><a class="headerlink" href="#get_historical_valuation_trajectoryinvestor_id-from_datenone-to_datenone-granularitymonthly-value_seriesnone" title="Permanent link">&para;</a></h4>
+<p>Reconstructs the point-by-point growth of portfolio net worth against cumulative capital invested over time.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_historical_valuation_trajectory</span><span class="p">(</span>
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>    <span class="n">investor_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>    <span class="n">from_date</span><span class="p">:</span> <span class="n">date</span> <span class="o">|</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>    <span class="n">to_date</span><span class="p">:</span> <span class="n">date</span> <span class="o">|</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>    <span class="n">granularity</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">"daily"</span><span class="p">,</span> <span class="s2">"weekly"</span><span class="p">,</span> <span class="s2">"monthly"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"monthly"</span><span class="p">,</span>
+<a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a>    <span class="n">value_series</span><span class="p">:</span> <span class="n">ValueSeries</span> <span class="o">|</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
+</code></pre></div>
+<p><strong>Output Fields</strong>:
+- <code>initial_value_inr: float</code>, <code>latest_value_inr: float</code>: Beginning and ending portfolio valuation.
+- <code>initial_invested_inr: float</code>, <code>latest_invested_inr: float</code>: Beginning and ending cost basis.
+- <code>net_invested_change_inr: float</code>: Total fresh capital deployed (<span class="arithmatex">\(I_{\text{end}} - I_{\text{start}}\)</span>).
+- <code>net_wealth_generated_inr: float</code>: Total net unrealized wealth created (<span class="arithmatex">\(V_{\text{end}} - I_{\text{end}}\)</span>).
+- <code>absolute_growth_pct: float</code>: Portfolio value expansion percentage (<span class="arithmatex">\(((V_{\text{end}} - V_{\text{start}}) / V_{\text{start}}) \times 100\)</span>).
+- <code>peak_valuation_inr: float</code>, <code>peak_valuation_date: str</code>: All-time high valuation milestone and date.
+- <code>trough_valuation_inr: float</code>, <code>trough_valuation_date: str</code>: Lowest recorded valuation point and date.
+- <code>trajectory: list[dict]</code>: Date-by-date series containing <code>value_inr</code>, <code>invested_inr</code>, <code>unrealized_gain_inr</code>, <code>unrealized_gain_pct</code>, <code>period_change_inr</code>, <code>period_return_pct</code>, and <code>net_inflow_inr</code>.</p>
+<hr />
+<h3 id="2-drawdown-capital-preservation">2. Drawdown &amp; Capital Preservation<a class="headerlink" href="#2-drawdown-capital-preservation" title="Permanent link">&para;</a></h3>
+<h4 id="get_historical_drawdown_analysisinvestor_id-from_datenone-to_datenone-granularitymonthly-value_seriesnone"><code>get_historical_drawdown_analysis(investor_id, from_date=None, to_date=None, granularity="monthly", value_series=None)</code><a class="headerlink" href="#get_historical_drawdown_analysisinvestor_id-from_datenone-to_datenone-granularitymonthly-value_seriesnone" title="Permanent link">&para;</a></h4>
+<p>Measures capital preservation, maximum peak-to-trough decline (MDD), recovery duration, and historical drawdown episodes.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_historical_drawdown_analysis</span><span class="p">(</span>
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>    <span class="n">investor_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>    <span class="n">from_date</span><span class="p">:</span> <span class="n">date</span> <span class="o">|</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>    <span class="n">to_date</span><span class="p">:</span> <span class="n">date</span> <span class="o">|</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>    <span class="n">granularity</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">"daily"</span><span class="p">,</span> <span class="s2">"weekly"</span><span class="p">,</span> <span class="s2">"monthly"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"monthly"</span><span class="p">,</span>
+<a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a>    <span class="n">value_series</span><span class="p">:</span> <span class="n">ValueSeries</span> <span class="o">|</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
+</code></pre></div>
+<p><strong>Output Fields</strong>:
+- <code>max_drawdown_pct: float</code>: Deepest percentage loss from prior peak (e.g. <code>-13.64%</code>).
+- <code>max_drawdown_inr: float</code>: Peak-to-trough monetary decline in INR.
+- <code>peak_date: str</code>, <code>peak_value_inr: float</code>: High watermark establishing the MDD.
+- <code>trough_date: str</code>, <code>trough_value_inr: float</code>: Bottom of the drawdown cycle.
+- <code>recovery_date: str | None</code>: Date on which portfolio returned to or exceeded previous peak (or <code>None</code> if unrecovered).
+- <code>is_recovered: bool</code>: True if the portfolio has completely recovered from the maximum drawdown.
+- <code>recovery_duration_days: int | None</code>: Calendar days taken to recover from trough to peak.
+- <code>current_drawdown_pct: float</code>: Current drawdown percentage relative to all-time peak.
+- <code>is_at_all_time_high: bool</code>: True if current portfolio valuation represents an all-time high.
+- <code>average_drawdown_pct: float</code>: Average depth across all negative drawdown periods.
+- <code>drawdown_episodes: list[dict]</code>: Top drawdown periods with peak, trough, recovery, and percentage depth.
+- <code>drawdown_series: list[dict]</code>: Date-by-date series with running peak and instantaneous drawdown.</p>
+<hr />
+<h3 id="3-risk-adjusted-returns-volatility">3. Risk-Adjusted Returns &amp; Volatility<a class="headerlink" href="#3-risk-adjusted-returns-volatility" title="Permanent link">&para;</a></h3>
+<h4 id="get_historical_risk_and_returnsinvestor_id-from_datenone-to_datenone-granularitymonthly-risk_free_rate0065-value_seriesnone"><code>get_historical_risk_and_returns(investor_id, from_date=None, to_date=None, granularity="monthly", risk_free_rate=0.065, value_series=None)</code><a class="headerlink" href="#get_historical_risk_and_returnsinvestor_id-from_datenone-to_datenone-granularitymonthly-risk_free_rate0065-value_seriesnone" title="Permanent link">&para;</a></h4>
+<p>Computes cashflow-adjusted periodic return series, annualized volatility (<span class="arithmatex">\(\sigma\)</span>), downside deviation, CAGR, Sharpe ratio, Sortino ratio, and Calmar ratio.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_historical_risk_and_returns</span><span class="p">(</span>
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>    <span class="n">investor_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>    <span class="n">from_date</span><span class="p">:</span> <span class="n">date</span> <span class="o">|</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>    <span class="n">to_date</span><span class="p">:</span> <span class="n">date</span> <span class="o">|</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>    <span class="n">granularity</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">"daily"</span><span class="p">,</span> <span class="s2">"weekly"</span><span class="p">,</span> <span class="s2">"monthly"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"monthly"</span><span class="p">,</span>
+<a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a>    <span class="n">risk_free_rate</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.065</span><span class="p">,</span>
+<a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a>    <span class="n">value_series</span><span class="p">:</span> <span class="n">ValueSeries</span> <span class="o">|</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
+</code></pre></div>
+<p><strong>Formulas &amp; Metrics</strong>:
+- <strong>Periodic Return (<span class="arithmatex">\(R_t\)</span>)</strong>:
+  $<span class="arithmatex">\(R_t = \frac{V_t - V_{t-1} - \Delta I_t}{V_{t-1}}\)</span>$
+- <strong>Annualized Volatility (<span class="arithmatex">\(\sigma_{\text{ann}}\)</span>)</strong>:
+  $<span class="arithmatex">\(\sigma_{\text{ann}} = \text{std}(R) \times \sqrt{N} \times 100 \quad (N = 12 \text{ for monthly, } 252 \text{ for daily})\)</span>$
+- <strong>Downside Deviation (<span class="arithmatex">\(\sigma_d\)</span>)</strong>:
+  $<span class="arithmatex">\(\sigma_{d} = \sqrt{\frac{1}{M}\sum_{R_t &lt; R_f/N} (R_t - R_f/N)^2} \times \sqrt{N} \times 100\)</span>$
+- <strong>Sharpe Ratio</strong>:
+  $<span class="arithmatex">\(\text{Sharpe} = \frac{\text{CAGR} - R_f}{\sigma_{\text{ann}} / 100}\)</span>$
+- <strong>Sortino Ratio</strong>:
+  $<span class="arithmatex">\(\text{Sortino} = \frac{\text{CAGR} - R_f}{\sigma_d / 100}\)</span>$
+- <strong>Calmar Ratio</strong>:
+  $<span class="arithmatex">\(\text{Calmar} = \frac{\text{CAGR}}{|\text{Max Drawdown}| / 100}\)</span>$
+- <code>best_period: dict</code>, <code>worst_period: dict</code>: Date and return percentage for highest and lowest periods.
+- <code>win_rate_pct: float</code>: Percentage of periods generating positive net returns.</p>
+<hr />
+<h3 id="4-cash-flow-dynamics-sip-discipline">4. Cash Flow Dynamics &amp; SIP Discipline<a class="headerlink" href="#4-cash-flow-dynamics-sip-discipline" title="Permanent link">&para;</a></h3>
+<h4 id="get_historical_cashflowsinvestor_id-transactionsnone"><code>get_historical_cashflows(investor_id, transactions=None)</code><a class="headerlink" href="#get_historical_cashflowsinvestor_id-transactionsnone" title="Permanent link">&para;</a></h4>
+<p>Audits the investor's transaction ledger history, gross capital inflows vs outflows, SIP investment consistency, and vintage.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_historical_cashflows</span><span class="p">(</span>
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>    <span class="n">investor_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>    <span class="n">transactions</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Transaction</span><span class="p">]</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
+</code></pre></div>
+<p><strong>Output Fields</strong>:
+- <code>total_transactions_count: int</code>: Lifetime transaction count.
+- <code>first_transaction_date: str</code>, <code>latest_transaction_date: str</code>: Timeline boundaries.
+- <code>portfolio_vintage_years: float</code>: Years elapsed between the first investment and latest transaction.
+- <code>total_gross_inflows_inr: float</code>: Total gross capital deployed (buys, SIPs, switch-ins).
+- <code>total_gross_outflows_inr: float</code>: Total redemptions and withdrawals.
+- <code>net_cash_invested_inr: float</code>: Inflows minus outflows.
+- <code>sip_metrics: dict</code>:
+  - <code>total_sip_amount_inr: float</code>, <code>total_sip_count: int</code>
+  - <code>average_sip_amount_inr: float</code>
+  - <code>sip_share_of_inflows_pct: float</code>: Percentage of total inflows deployed via systematic plans.
+  - <code>lumpsum_amount_inr: float</code>, <code>lumpsum_count: int</code>
+- <code>yearly_summary: list[dict]</code>: Calendar-year breakdown of inflows, outflows, net inflows, and SIP volumes.
+- <code>breakdown_by_type: dict</code>: Volume and count partitioned by transaction category.</p>
+<hr />
+<h3 id="5-realized-capital-gains-tax-efficiency">5. Realized Capital Gains &amp; Tax Efficiency<a class="headerlink" href="#5-realized-capital-gains-tax-efficiency" title="Permanent link">&para;</a></h3>
+<h4 id="get_historical_capital_gainsinvestor_id-fy_pointsnone-include_unreconciledfalse"><code>get_historical_capital_gains(investor_id, fy_points=None, include_unreconciled=False)</code><a class="headerlink" href="#get_historical_capital_gainsinvestor_id-fy_pointsnone-include_unreconciledfalse" title="Permanent link">&para;</a></h4>
+<p>Aggregates realized capital gains (STCG vs LTCG) across all financial years with disposals.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_historical_capital_gains</span><span class="p">(</span>
+<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>    <span class="n">investor_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+<a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>    <span class="n">fy_points</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">CapitalGainsFyPoint</span><span class="p">]</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a>    <span class="n">include_unreconciled</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+<a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
+</code></pre></div>
+<p><strong>Output Fields</strong>:
+- <code>financial_years_count: int</code>: Number of financial years recorded with disposals.
+- <code>cumulative_stcg_inr: float</code>: Total realized Short-Term Capital Gains.
+- <code>cumulative_ltcg_inr: float</code>: Total realized Long-Term Capital Gains.
+- <code>cumulative_realized_gain_inr: float</code>: Cumulative taxable gain across all financial years.
+- <code>profitable_financial_years: int</code>, <code>loss_making_financial_years: int</code>
+- <code>fy_breakdown: list[dict]</code>: Detailed year-by-year summary of STCG, LTCG, total gain, and Gain/Loss status.</p>
+<hr />
+<h3 id="6-scheme-historical-tenure-holding-analysis">6. Scheme Historical Tenure &amp; Holding Analysis<a class="headerlink" href="#6-scheme-historical-tenure-holding-analysis" title="Permanent link">&para;</a></h3>
+<h4 id="get_historical_scheme_tenureinvestor_id-security_id-scheme_detailnone"><code>get_historical_scheme_tenure(investor_id, security_id, scheme_detail=None)</code><a class="headerlink" href="#get_historical_scheme_tenureinvestor_id-security_id-scheme_detailnone" title="Permanent link">&para;</a></h4>
+<p>Evaluates scheme holding vintage, transactions count, average purchase price, current NAV, and NAV multiple.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_historical_scheme_tenure</span><span class="p">(</span>
+<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>    <span class="n">investor_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>    <span class="n">security_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+<a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a>    <span class="n">scheme_detail</span><span class="p">:</span> <span class="n">SchemeDetail</span> <span class="o">|</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
+</code></pre></div>
+<p><strong>Output Fields</strong>:
+- <code>security_id: int</code>, <code>name: str</code>, <code>isin: str</code>, <code>category: str</code>
+- <code>first_transaction_date: str</code>, <code>latest_transaction_date: str</code>
+- <code>tenure_days: int</code>, <code>tenure_years: float</code>: Exact holding period duration.
+- <code>total_units: float</code>, <code>current_value_inr: float</code>, <code>invested_inr: float</code>
+- <code>buy_transactions_count: int</code>, <code>avg_buy_nav: float</code>: Weighted average acquisition price.
+- <code>latest_nav: float</code>, <code>nav_multiple: float</code>: Valuation multiple (<span class="arithmatex">\(\text{latest\_nav} / \text{avg\_buy\_nav}\)</span>).
+- <code>return_pct: float</code>, <code>xirr: float</code>: Scheme return and money-weighted IRR.
+- <code>nav_history_points_count: int</code>: Number of NAV curve points available.</p>
+<hr />
+<h3 id="7-master-360-historical-portfolio-report">7. Master 360° Historical Portfolio Report<a class="headerlink" href="#7-master-360-historical-portfolio-report" title="Permanent link">&para;</a></h3>
+<h4 id="analyze_portfolio_historicalinvestor_id-from_datenone-to_datenone-granularitymonthly-risk_free_rate0065"><code>analyze_portfolio_historical(investor_id, from_date=None, to_date=None, granularity="monthly", risk_free_rate=0.065)</code><a class="headerlink" href="#analyze_portfolio_historicalinvestor_id-from_datenone-to_datenone-granularitymonthly-risk_free_rate0065" title="Permanent link">&para;</a></h4>
+<p>Consolidates all historical performance layers into a unified intelligence report:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">analyze_portfolio_historical</span><span class="p">(</span>
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>    <span class="n">investor_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>    <span class="n">from_date</span><span class="p">:</span> <span class="n">date</span> <span class="o">|</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a>    <span class="n">to_date</span><span class="p">:</span> <span class="n">date</span> <span class="o">|</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a>    <span class="n">granularity</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">"daily"</span><span class="p">,</span> <span class="s2">"weekly"</span><span class="p">,</span> <span class="s2">"monthly"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"monthly"</span><span class="p">,</span>
+<a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a>    <span class="n">risk_free_rate</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.065</span><span class="p">,</span>
+<a id="__codelineno-25-7" name="__codelineno-25-7" href="#__codelineno-25-7"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
+</code></pre></div>
+<p><strong>Aggregated Sections</strong>:
+- <code>valuation_status</code>: Calculation readiness, provisional status, and finalization date.
+- <code>trajectory_summary</code>: Initial vs latest net worth, capital deployed, wealth created, and peak valuation.
+- <code>drawdown_summary</code>: Maximum drawdown percentage, peak date, trough date, recovery date, and current drawdown.
+- <code>risk_adjusted_performance</code>: Annualized CAGR, annualized volatility, Sharpe, Sortino, and Calmar ratios.
+- <code>cashflow_discipline</code>: Cumulative gross inflows, net capital deployed, SIP percentage, and vintage.
+- <code>realized_tax_summary</code>: Cumulative STCG, LTCG, and realized capital gain totals across FYs.
+- <code>key_insights</code>: Synthesized list of concise, deterministic factual observations grounded strictly in the data.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "search.suggest", "search.highlight", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
