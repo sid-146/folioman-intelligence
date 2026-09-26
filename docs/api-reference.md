@@ -334,16 +334,28 @@ Exported list: `portfolio_tools` (3 tools)
 
 ## 7. Autonomous AI Agents (`folioman_intelligence.agents`)
 
+### Base Agent Infrastructure (`agents.logger` / `agents.base`)
+
+- Class `AgentRunLogger`:
+    - Uniform event logger handling formatted terminal output, token streaming, and Python logging.
+    - Methods: `log_tool_start`, `log_tool_end`, `log_llm_chunk`, `end_llm_stream`, `log_model_end`, `handle_event`, `run`.
+- Function `async run_agent(agent, question, *, logger=None, response_cls=AgentResponse) -> AgentResponse`:
+    - Unified execution function that streams events through `AgentRunLogger` and returns structured `AgentResponse`.
+- Class `AgentResponse(dict)`:
+    - Base response model for agent queries.
+    - Property `.content`: Final synthesized answer string.
+    - Property `.tool_calls`: List of recorded tool call dictionaries (`name`, `input`, `output`).
+
 ### Funds Analyst Agent (`agents.fund`)
 
-- `async ask_fund_agent(question: str) -> FundAgentResponse`
-- Class `FundAgentResponse`:
+- `async ask_fund_agent(question: str, logger: AgentRunLogger | None = None) -> FundAgentResponse`
+- Class `FundAgentResponse(AgentResponse)`:
     - Property `.content`: Final synthesized answer string.
     - Property `.tool_calls`: List of recorded tool call dictionaries (`name`, `input`, `output`).
 
 ### Portfolio Advisor Agent (`agents.portfolio`)
 
-- `async ask_portfolio_agent(question: str) -> PortfolioAgentResponse`
-- Class `PortfolioAgentResponse`:
+- `async ask_portfolio_agent(question: str, logger: AgentRunLogger | None = None) -> PortfolioAgentResponse`
+- Class `PortfolioAgentResponse(AgentResponse)`:
     - Property `.content`: Final synthesized advice string.
     - Property `.tool_calls`: List of recorded tool call dictionaries (`name`, `input`, `output`).

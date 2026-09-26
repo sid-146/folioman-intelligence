@@ -122,9 +122,9 @@ async def ask_portfolio_agent(question: str) -> PortfolioAgentResponse
 
 ---
 
-## Live Event Streaming & Output Formatting
+## Live Event Streaming & Output Formatting (`AgentRunLogger`)
 
-Both `ask_fund_agent` and `ask_portfolio_agent` use LangChain's `astream_events` protocol to provide real-time visibility in terminal environments:
+All Folioman agents leverage the shared `AgentRunLogger` and `run_agent` runner (`folioman_intelligence.agents.logger` / `agents.base`) using LangChain's `astream_events` protocol to provide real-time visibility in terminal environments:
 
 1. **`on_tool_start`**: Intercepted and printed to the terminal with argument inspection:
 
