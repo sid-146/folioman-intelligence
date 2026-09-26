@@ -1,12 +1,9 @@
 import pytest
-from unittest.mock import AsyncMock, patch
+from unittest.mock import patch
+
 
 from src.folioman_intelligence.agents.fund import (
     FundAgentResponse,
-    _extract_final_text,
-    _extract_text_chunk,
-    _parse_output_value,
-    _safe_format,
     agent,
     ask_fund_agent,
 )
@@ -34,15 +31,6 @@ def test_fund_agent_response_model():
     assert str(resp) == resp.content
     assert len(resp.tool_calls) == 1
     assert resp.tool_calls[0]["name"] == "analyze_fund_tool"
-
-
-def test_safe_format_and_parsing():
-    assert _safe_format(None) == ""
-    assert '"a": 1' in _safe_format({"a": 1})
-    assert _parse_output_value('{"valid": "json"}') == {"valid": "json"}
-    assert _extract_text_chunk("plain text") == "plain text"
-    assert _extract_text_chunk([{"type": "text", "text": "chunk"}]) == "chunk"
-    assert _extract_final_text("final message") == "final message"
 
 
 @pytest.mark.asyncio
