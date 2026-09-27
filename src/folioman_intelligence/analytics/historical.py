@@ -20,10 +20,10 @@ from folioman_client.models import (
 )
 from folioman_intelligence.repository.portfolio import PortfolioRepository
 
-
 # ===========================================================================
 # Helpers & Data Normalization
 # ===========================================================================
+
 
 def _parse_date(d: Any) -> Optional[date]:
     """Parse date or string into datetime.date."""
@@ -200,7 +200,9 @@ async def _resolve_capital_gains(
                 "stcg_inr": round(stcg, 2),
                 "ltcg_inr": round(ltcg, 2),
                 "total_gain_inr": total,
-                "status": "Gain" if total > 0 else ("Loss" if total < 0 else "Break-even"),
+                "status": (
+                    "Gain" if total > 0 else ("Loss" if total < 0 else "Break-even")
+                ),
             }
         )
 
@@ -210,6 +212,7 @@ async def _resolve_capital_gains(
 # ===========================================================================
 # 1. Historical Valuation Trajectory
 # ===========================================================================
+
 
 async def get_historical_valuation_trajectory(
     investor_id: int,
@@ -289,7 +292,9 @@ async def get_historical_valuation_trajectory(
         val = p["value_inr"]
         inv = p["invested_inr"]
         unrealized_gain = round(val - inv, 2)
-        unrealized_gain_pct = round((unrealized_gain / inv) * 100, 2) if inv > 0 else None
+        unrealized_gain_pct = (
+            round((unrealized_gain / inv) * 100, 2) if inv > 0 else None
+        )
 
         period_change = round(val - prev_val, 2) if prev_val is not None else 0.0
         period_return_pct = (
@@ -339,6 +344,7 @@ async def get_historical_valuation_trajectory(
 # ===========================================================================
 # 2. Historical Drawdown Analysis
 # ===========================================================================
+
 
 async def get_historical_drawdown_analysis(
     investor_id: int,
@@ -447,7 +453,7 @@ async def get_historical_drawdown_analysis(
 
     if max_dd_pct < 0:
         is_recovered = False
-        for p in points[mdd_trough_idx + 1:]:
+        for p in points[mdd_trough_idx + 1 :]:
             if p["value_inr"] >= mdd_peak_val:
                 recovery_date = p["date"]
                 is_recovered = True
@@ -464,7 +470,9 @@ async def get_historical_drawdown_analysis(
     is_at_ath = current_dd_pct >= 0.0
 
     # Average non-zero drawdown
-    negative_dds = [pt["drawdown_pct"] for pt in drawdown_series if pt["drawdown_pct"] < 0]
+    negative_dds = [
+        pt["drawdown_pct"] for pt in drawdown_series if pt["drawdown_pct"] < 0
+    ]
     avg_dd_pct = (
         round(sum(negative_dds) / len(negative_dds), 2) if negative_dds else 0.0
     )
@@ -551,6 +559,7 @@ async def get_historical_drawdown_analysis(
 # 3. Risk-Adjusted Returns & Volatility Analytics
 # ===========================================================================
 
+
 async def get_historical_risk_and_returns(
     investor_id: int,
     from_date: date | str | None = None,
@@ -583,7 +592,9 @@ async def get_historical_risk_and_returns(
         repo=repo,
     )
 
-    ann_factor = 12 if granularity == "monthly" else (52 if granularity == "weekly" else 252)
+    ann_factor = (
+        12 if granularity == "monthly" else (52 if granularity == "weekly" else 252)
+    )
 
     if len(points) < 2:
         return {
@@ -639,9 +650,7 @@ async def get_historical_risk_and_returns(
     # Downside deviation relative to risk-free rate per period
     periodic_rf = risk_free_rate / ann_factor
     underperformances = [(r - periodic_rf) ** 2 for r in returns if r < periodic_rf]
-    downside_var = (
-        sum(underperformances) / len(returns) if underperformances else 0.0
-    )
+    downside_var = sum(underperformances) / len(returns) if underperformances else 0.0
     downside_deviation = math.sqrt(downside_var) * math.sqrt(ann_factor) * 100
 
     # CAGR calculation across total days
@@ -686,15 +695,23 @@ async def get_historical_risk_and_returns(
     best_idx = returns.index(max(returns)) if returns else 0
     worst_idx = returns.index(min(returns)) if returns else 0
 
-    best_period = {
-        "date": return_dates[best_idx],
-        "return_pct": round(returns_pct[best_idx], 2),
-    } if returns else None
+    best_period = (
+        {
+            "date": return_dates[best_idx],
+            "return_pct": round(returns_pct[best_idx], 2),
+        }
+        if returns
+        else None
+    )
 
-    worst_period = {
-        "date": return_dates[worst_idx],
-        "return_pct": round(returns_pct[worst_idx], 2),
-    } if returns else None
+    worst_period = (
+        {
+            "date": return_dates[worst_idx],
+            "return_pct": round(returns_pct[worst_idx], 2),
+        }
+        if returns
+        else None
+    )
 
     pos_count = sum(1 for r in returns if r > 0)
     neg_count = sum(1 for r in returns if r < 0)
@@ -719,7 +736,9 @@ async def get_historical_risk_and_returns(
         "returns_distribution": {
             "min_return_pct": round(min(returns_pct), 2) if returns_pct else 0.0,
             "max_return_pct": round(max(returns_pct), 2) if returns_pct else 0.0,
-            "median_return_pct": round(statistics.median(returns_pct), 2) if returns_pct else 0.0,
+            "median_return_pct": (
+                round(statistics.median(returns_pct), 2) if returns_pct else 0.0
+            ),
             "std_deviation_pct": round(stdev_ret * 100, 2),
         },
     }
@@ -728,6 +747,7 @@ async def get_historical_risk_and_returns(
 # ===========================================================================
 # 4. Historical Cash Flows & Discipline Analytics
 # ===========================================================================
+
 
 async def get_historical_cashflows(
     investor_id: int,
@@ -744,7 +764,9 @@ async def get_historical_cashflows(
     Returns:
         Structured cash flow intelligence dictionary.
     """
-    txns = await _resolve_transactions(investor_id, transactions=transactions, repo=repo)
+    txns = await _resolve_transactions(
+        investor_id, transactions=transactions, repo=repo
+    )
 
     if not txns:
         return {
@@ -901,6 +923,7 @@ async def get_historical_cashflows(
 # 5. Historical Realized Capital Gains & Tax Efficiency
 # ===========================================================================
 
+
 async def get_historical_capital_gains(
     investor_id: int,
     fy_points: list[CapitalGainsFyPoint] | list[dict[str, Any]] | None = None,
@@ -960,6 +983,7 @@ async def get_historical_capital_gains(
 # 6. Scheme Historical Tenure & Holding Analysis
 # ===========================================================================
 
+
 async def get_historical_scheme_tenure(
     investor_id: int,
     security_id: int,
@@ -997,21 +1021,24 @@ async def get_historical_scheme_tenure(
 
     txns = data.get("transactions", [])
     buy_txns = [
-        t for t in txns
+        t
+        for t in txns
         if str(t.get("transaction_type", "")).upper() in {"BUY", "PURCHASE", "SIP"}
     ]
 
-    buy_amounts = [_to_float(t.get("amount")) for t in buy_txns if t.get("amount") is not None]
-    buy_units = [_to_float(t.get("units")) for t in buy_txns if t.get("units") is not None]
+    buy_amounts = [
+        _to_float(t.get("amount")) for t in buy_txns if t.get("amount") is not None
+    ]
+    buy_units = [
+        _to_float(t.get("units")) for t in buy_txns if t.get("units") is not None
+    ]
 
     valid_amounts = [a for a in buy_amounts if a is not None]
     valid_units = [u for u in buy_units if u is not None and u > 0]
 
     tot_buy_amt = sum(valid_amounts)
     tot_buy_units = sum(valid_units)
-    avg_buy_nav = (
-        round(tot_buy_amt / tot_buy_units, 4) if tot_buy_units > 0 else None
-    )
+    avg_buy_nav = round(tot_buy_amt / tot_buy_units, 4) if tot_buy_units > 0 else None
 
     first_d: Optional[str] = None
     latest_d: Optional[str] = None
@@ -1059,9 +1086,7 @@ async def get_historical_scheme_tenure(
             else None
         ),
         "xirr": (
-            round(data["xirr"] * 100, 2)
-            if data.get("xirr") is not None
-            else None
+            round(data["xirr"] * 100, 2) if data.get("xirr") is not None else None
         ),
         "nav_history_points_count": len(data.get("nav_history", [])),
     }
@@ -1070,6 +1095,7 @@ async def get_historical_scheme_tenure(
 # ===========================================================================
 # 7. Master 360° Historical Portfolio Intelligence Report
 # ===========================================================================
+
 
 async def analyze_portfolio_historical(
     investor_id: int,
@@ -1110,7 +1136,11 @@ async def analyze_portfolio_historical(
             ),
         }
     except Exception:
-        val_status = {"status": "UNKNOWN", "is_provisional": False, "computed_through": None}
+        val_status = {
+            "status": "UNKNOWN",
+            "is_provisional": False,
+            "computed_through": None,
+        }
 
     # Parallelize / resolve components
     trajectory = await get_historical_valuation_trajectory(
@@ -1162,7 +1192,11 @@ async def analyze_portfolio_historical(
     mdd_val = drawdown.get("max_drawdown_pct", 0.0)
     if mdd_val < 0:
         trough_date = drawdown.get("trough_date")
-        rec_status = "fully recovered" if drawdown.get("is_recovered") else "currently unrecovered"
+        rec_status = (
+            "fully recovered"
+            if drawdown.get("is_recovered")
+            else "currently unrecovered"
+        )
         insights.append(
             f"Maximum peak-to-trough drawdown was {mdd_val}% on {trough_date} ({rec_status})."
         )
@@ -1223,7 +1257,9 @@ async def analyze_portfolio_historical(
         "realized_tax_summary": {
             "cumulative_stcg_inr": capital_gains.get("cumulative_stcg_inr"),
             "cumulative_ltcg_inr": capital_gains.get("cumulative_ltcg_inr"),
-            "cumulative_realized_gain_inr": capital_gains.get("cumulative_realized_gain_inr"),
+            "cumulative_realized_gain_inr": capital_gains.get(
+                "cumulative_realized_gain_inr"
+            ),
         },
         "key_insights": insights,
         "full_trajectory": trajectory.get("trajectory", []),
@@ -1231,3 +1267,7 @@ async def analyze_portfolio_historical(
         "yearly_cashflow_summary": cashflows.get("yearly_summary", []),
         "capital_gains_by_fy": capital_gains.get("fy_breakdown", []),
     }
+
+
+async def historical_asset_allocation():
+    return
